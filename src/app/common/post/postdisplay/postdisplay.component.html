@@ -1,0 +1,47 @@
+<div class="post_detail"  fxFlex="80" fxFlexOffset="15"  style="padding-top: 30px;" >
+ 
+    <div class="coracel_section" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start start" fxLayoutGap="10px">
+
+    <div class="corasel_image_list"  fxFlex="70"  fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="20px">
+       <mat-card  class="corasel_img" >
+        <div class="corasel_img"  >
+
+            <img  class="corasel_img" src="{{mainPicture_url}}"  (click)="imageClick2()"   > 
+             </div>
+       </mat-card>
+       <mat-card>
+        <div class="image_list">
+            <div class="image_list"  fxLayout="row wrap" fxLayoutAlign="start start" fxLayoutGap="10px"  >
+                <div class=""  *ngFor="let s of post.postImage ;let i=index" >
+          
+               
+                    <a  (click)="imageClick(i)"  ><img src="{{s.url}}"  style="width: 50px;height: 50px;" >  </a>
+                  </div>
+             </div>
+        </div>
+       </mat-card>
+
+
+        
+    </div>
+    
+   
+    </div>
+   
+     
+        <div class="price_detail"  > 
+     <h1>{{post.description}}</h1>  <h2>{{post.currency.shortName}}  {{post.price}}</h2>    
+             
+        </div>
+     
+    
+    <div class="product_detail">Sales Location : {{post.user.salesLocation}}</div>
+   
+    <div class="description">description
+      <mat-card>
+          {{post.detail}}
+      </mat-card>
+
+    </div>
+</div>
+ 

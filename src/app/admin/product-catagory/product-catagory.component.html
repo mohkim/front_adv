@@ -1,0 +1,57 @@
+<section fxLayout="row" fxLayoutAlign="start center" style="margin: 20px 20px 20px 20px;">
+
+  <mat-card fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="0px"  style="width: 100%;padding-top: 5px;" class="mat-elevation-z8"  >  
+   
+  <div class=""  fxLayout="row" fxLayoutAlign="center end" style="width: 100%;" >
+    <mat-card-header   >
+      
+        <mat-card-title>Product Catagory</mat-card-title>
+      
+         
+         
+      </mat-card-header>
+    </div>
+      
+      <mat-card-content>
+        <div fxLayoutAlign="space-between">
+            <mat-form-field fxFlex="30%" >
+              <input matInput type="text" (keyup)="doFilter($event.target.value)" placeholder="Filter" />
+            </mat-form-field>
+            <button mat-button (click)="newCatagory()"  color="primary"><mat-icon class="mat-18">create_new_folder</mat-icon> New Catagory</button>
+     
+          </div>
+          
+          <mat-table [dataSource]="dataSource" matSort  >
+            <ng-container matColumnDef="id">
+              <mat-header-cell *matHeaderCellDef mat-sort-header>Id</mat-header-cell>
+              <mat-cell *matCellDef="let element">{{ element.id }}</mat-cell>
+            </ng-container>
+          
+            <ng-container matColumnDef="name">
+              <mat-header-cell *matHeaderCellDef mat-sort-header>Name</mat-header-cell>
+              <mat-cell *matCellDef="let element">{{ element.name }}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="Edit">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Edit</mat-header-cell>
+                <mat-cell *matCellDef="let element"><a    mat-button  (click)="editCat($event, element.id)" ><mat-icon class="mat-16">edit</mat-icon></a>  </mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="Delete">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Delete</mat-header-cell>
+                <mat-cell *matCellDef="let element"><a    mat-button  (click)="deleteCatagory($event, element.id)" ><mat-icon class="mat-16">delete</mat-icon></a>  </mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="Sub Catagory">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Sub Catagory</mat-header-cell>
+                <mat-cell *matCellDef="let element"  ><a    style="padding-left: 20px;" mat-button-a  routerLink="/admin/subcatagory" [queryParams]="{cid:element.id}"  ><mat-icon class="mat-16  "    >forward</mat-icon></a></mat-cell>
+              </ng-container>
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+          </mat-table>
+          <mat-paginator [pageSize]="10" [pageSizeOptions]="[1, 5, 10, 20]">
+          </mat-paginator>
+      </mat-card-content>
+      
+     
+      <mat-card-footer>
+         </mat-card-footer>
+  </mat-card>
+</section>

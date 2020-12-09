@@ -1,0 +1,165 @@
+ <button mat-button (click)="showProperty()">Show </button>
+  <mat-horizontal-stepper [linear]="false"   #stepper>
+    <form   [formGroup]="postForm">
+
+    <mat-step   [completed]="!productSubCatagory.invalid">
+ 
+        <ng-template matStepLabel>Select Catagory ?</ng-template>
+        <!-- // product catagory  -->
+        <mat-form-field appearance="fill">
+          <mat-label>Catagory</mat-label>
+          <mat-select formControlName="productSubCatagory" (selectionChange)="onCatagoryChange($event)"  required>
+            <mat-option> </mat-option>
+            <mat-optgroup  *ngFor="let catagory of catagorys" [label]="catagory.name" 
+             >
+              <mat-option   *ngFor="let subcat of catagory.productSubcatagory"  [value]="subcat">
+                {{subcat.name}}
+              </mat-option>
+            </mat-optgroup>
+          </mat-select>
+        </mat-form-field>
+        <div>
+            
+          <button mat-button  [disabled]="productSubCatagory.invalid"  matStepperNext>Next</button>
+        </div>
+      <p>* If you chage  catagory  specification will be resetted </p>
+    </mat-step>
+
+    <mat-step  [completed]="!description.invalid">
+      
+        <ng-template matStepLabel>Description</ng-template>
+        <!-- //product Description -->
+        <mat-form-field>
+          <mat-label>Product or Service description</mat-label>
+          <input matInput placeholder=" "   formControlName="description" required>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext   [disabled]="description.invalid"  >Next</button>
+        </div>
+    
+    </mat-step>
+
+   
+
+  <mat-step  [completed]="!detail.invalid">
+      
+    <ng-template matStepLabel>Detail</ng-template>
+   
+      <!-- detail -->
+      <mat-form-field>
+        <mat-label>Product or Service detail</mat-label>
+        <input matInput placeholder=""  required   formControlName="detail" required>
+      </mat-form-field>
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button matStepperNext   [disabled]="detail.invalid"  >Next</button>
+    </div>
+
+</mat-step>
+<mat-step  [completed]="!specification.invalid">
+      
+  <ng-template matStepLabel>Specification</ng-template>
+ 
+   <!-- // product description ckEditor-->
+   <div class="">
+    <ckeditor matInput   formControlName="specification" name="specification"  required ></ckeditor>
+   </div>
+  <div>
+    <button mat-button matStepperPrevious>Back</button>
+    <button mat-button matStepperNext   [disabled]="specification.invalid"  >Next</button>
+  </div>
+
+</mat-step>
+
+<mat-step  [completed]="!price.invalid&&!currency.invalid">
+      
+  <ng-template matStepLabel>Price</ng-template>
+ 
+   <!-- //price -->
+   <mat-form-field>
+    <mat-label>Product Price or Type of Service</mat-label>
+    <input matInput placeholder="Price"   formControlName="price" required>
+  </mat-form-field>
+    <!-- //currency -->
+    <mat-form-field appearance="fill">
+      <mat-label>Currency</mat-label>
+      <mat-select  formControlName="currency" required>
+        <mat-option *ngFor="let cur of currency1" [value]="cur">
+          {{cur.shortName}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  <div>
+    <button mat-button matStepperPrevious>Back</button>
+    <button mat-button matStepperNext   [disabled]="price.invalid&&currency.invalid"  >Next</button>
+  </div>
+
+</mat-step>
+
+<mat-step  [completed]="!inputFileName1.invalid">
+      
+  <ng-template matStepLabel>Image Upload </ng-template>
+ 
+    <!-- File Upload -->
+    <div class="">
+      <div class="old_image_frame"  fxLayoutGap="20px" *ngFor="let imge of image_old">
+        <div class="" fxLayout="row wrap" fxLayoutAlign="start start">
+
+        
+        <div class="one_image_frame" style="height: 150px; border: 2px solid black;" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px">
+           <img [src]="imge.url" alt="" height="80">      
+           <button mat-button  (click)="deleteOldImage(imge)" >
+               <mat-icon class="mat-18">delete</mat-icon>
+           </button>
+         </div>
+        </div>
+   </div>
+
+
+
+
+      <button mat-raised-button color="primary" (click)="onClick($event)">
+        <mat-icon>add</mat-icon>
+        {{chooseLabel}}
+      </button>
+      
+      <input #fileUpload type="file" class="input_fileupload--hidden" (input)="onInput($event)"
+        (change)="onFileSelected($event)"  formControl="inputFileName" accept="image/x-png,image/jpeg" multiple>
+      
+      
+      <div *ngFor="let f of files ; let i=index " fxLayout fxLayoutAlign="start start" fxLayoutGap="10px">
+        <div class="">
+          <img [src]="imageSrc[i]"   style="height: 50px; width:50px">
+           
+          <button mat-icon-button color="primary" [attr.title]="deleteButtonLabel?deleteButtonLabel:null"
+            (click)="removeFile($event,f)">
+            <mat-icon>{{deleteButtonIcon}}</mat-icon>
+          </button>
+        </div>
+      
+      </div>
+
+     
+ 
+    <button mat-button matStepperPrevious>Back</button>
+    <button mat-button matStepperNext   [disabled]="inputFileName1.invalid"  >Next</button>
+  </div>
+
+</mat-step>
+
+
+    <mat-step>
+      <ng-template matStepLabel>Done</ng-template>
+      <p>Successfully Completed the Form . Click Submit to save.</p>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+     <!-- //   <button mat-button (click)="stepper.reset()">Reset</button> -->
+     <button mat-button  (click)="submitPost()"  [disabled]="!postForm.valid"   color="accent">Submit</button>
+      </div>
+    </mat-step>
+</form>
+  </mat-horizontal-stepper>
+
+<!--   ///---------------------------------------------- -->
+ 

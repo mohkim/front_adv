@@ -1,0 +1,27 @@
+<form action=""      #f="ngForm"   >
+ <section fxLayout="column" fxLayoutAlign="center center" > 
+
+
+ <h1 mat-dialog-title> New/Edit Catagory  </h1>
+<div mat-dialog-content fxLayout="column"  style="width: 100%;" >
+  
+  <mat-form-field>
+    <input type="text" matInput placeholder="Id"  required name="id" disabled [(ngModel)]="data.id" >
+  </mat-form-field>
+  
+  <mat-form-field>
+    <input type="text" matInput placeholder="name" required name="name1" minlength="2" [(ngModel)]="data.name" >
+
+  </mat-form-field>
+  <mat-form-field>
+    <input type="text" matInput placeholder="icon" required name="icon" minlength="2" [(ngModel)]="data.icon" >
+
+  </mat-form-field>
+  </div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+   <button   [disabled]="f.invalid" mat-button [mat-dialog-close]="data" cdkFocusInitial>Save</button>
+</div>
+
+</section>
+</form>

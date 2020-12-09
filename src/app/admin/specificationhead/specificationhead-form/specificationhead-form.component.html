@@ -1,0 +1,92 @@
+<div class="" style="padding-bottom: 50px;">
+    <mat-card fxLayoutAlign="center center" style="padding-bottom: 20px;"> <a mat-button > <h2>Specifiation Setting</h2> </a></mat-card>
+
+</div>
+ <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="10px">
+     <!-- form card -->
+     <mat-card fxFlex.gt-xs="30%"  >
+         
+  <form  [formGroup]="specificationHeadForm" (ngSubmit)="submitForm()">
+  
+    <div class="" fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="20px" fxFlexOffset="20px"
+     fxFlexOffset="10px">
+     <mat-form-field class=" ">
+       <mat-label>Id</mat-label>
+       <input matInput type="text"   formControlName="id" readonly>
+   </mat-form-field>
+        <mat-form-field>
+            <mat-label>Control Type</mat-label>
+            <mat-select (selectionChange)="onControlTypeChange($event)" formControlName="controlType" required>
+                <mat-option value="textbox">textbox</mat-option>
+                <mat-option value="textarea">textarea</mat-option>
+                <mat-option value="dropdown">dropdown</mat-option>
+             </mat-select>
+        </mat-form-field>
+
+        <mat-form-field *ngIf="!hidetextFom">
+            <mat-label>Type</mat-label>
+            <mat-select   formControlName="type">
+                <mat-option value=""> </mat-option>
+                <mat-option value="text">text</mat-option>
+                <mat-option value="email">email</mat-option>
+
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class=" ">
+            <mat-label>Label</mat-label>
+            <input matInput type="text"   formControlName="label"  required>
+        </mat-form-field>
+
+        <mat-form-field class="">
+            <mat-label>Place Holder</mat-label>
+            <input matInput type="text"   formControlName="placeholder"  required>
+        </mat-form-field>
+        <!-- key -->
+        <mat-form-field class="" >
+            <mat-label>Key</mat-label>
+            <input matInput type="text" formControlName="key"  required >
+        </mat-form-field>
+        <!-- value -->
+        <mat-form-field class="">
+            <mat-label>Value</mat-label>
+            <input matInput type="text" formControlName="value" >
+        </mat-form-field>
+        <!-- required -->
+        <div class="" style="width: 300px;">
+            <mat-checkbox   formControlName="required" >required</mat-checkbox>
+        </div>
+        <!-- pattern -->
+        <mat-form-field *ngIf="!hidetextFom" class="">
+            <mat-label>pattern</mat-label>
+            <input matInput type="text"  formControlName="pattern" >
+        </mat-form-field>
+ 
+       
+
+        <div class=""  style="width: 100%" fxLayoutAlign="center center">
+            <button mat-raised-button  type="submit" [disabled]="!specificationHeadForm.valid" color="primary">
+                Save
+            </button>
+        </div>
+    </div>
+
+ 
+
+</form>
+     </mat-card>
+     <!-- form card end -->
+      <!-- option list start -->
+     <div *ngIf="hidetextFom" fxFlex="45%" >
+       
+   
+            <app-specificationhead-option></app-specificationhead-option>
+         
+     
+    </div>
+    <!-- option list end -->
+ </div>
+
+
+
+ 

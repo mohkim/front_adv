@@ -1,0 +1,27 @@
+<form action=""      #f="ngForm"   >
+    <section fxLayout="column" fxLayoutAlign="center center" > 
+   
+   
+    <h1 mat-dialog-title> New/Edit Currency  </h1>
+   <div mat-dialog-content fxLayout="column"  style="width: 100%;" >
+     
+     <mat-form-field>
+       <input type="text" matInput placeholder="Id"  required name="id" disabled [(ngModel)]="data.id" >
+     </mat-form-field>
+     
+     <mat-form-field>
+       <input type="text" matInput placeholder="longName" required name="longName" minlength="2" [(ngModel)]="data.longName" >
+   
+     </mat-form-field>
+     <mat-form-field>
+       <input type="text" matInput placeholder="shortName" required name="shortName" minlength="2" [(ngModel)]="data.shortName" >
+   
+     </mat-form-field>
+      </div>
+   <div mat-dialog-actions>
+     <button mat-button (click)="onNoClick()">Cancel</button>
+      <button   [disabled]="f.invalid" mat-button [mat-dialog-close]="data" cdkFocusInitial>Save</button>
+   </div>
+   
+   </section>
+   </form>

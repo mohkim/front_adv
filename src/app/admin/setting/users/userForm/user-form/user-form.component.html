@@ -1,0 +1,110 @@
+<form action="">
+<div fxLayout="row wrap"    > 
+
+    <div class="item"> 
+     <mat-card>
+         <mat-card-header>
+       
+             
+         </mat-card-header>
+        
+         <mat-card-content>
+            <img matCardImage src="https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png" style="width: 200px;">
+         </mat-card-content>
+           
+             
+     </mat-card>
+
+    </div>
+    <div class="item"   >
+      <mat-card>
+      
+          <mat-card-content>
+             
+                <hr>
+                Personal Information 
+                <hr>
+                    
+                    <table style="width:300px;margin-top: 10px;" >
+                         
+                        <tr style="border-bottom: 1px;">
+                          <td><b>Full Name</b></td>
+                          <td>{{data.username}}</td>
+                          
+                        </tr>
+                        <tr>
+                            <td><b>Email</b></td>
+                            <td>{{data.email}}</td>
+                            
+                          </tr>
+                           
+                      </table>   
+                    <hr>
+                    Adress 
+                    <hr>
+                    <table style="width:300px;margin-top: 10px;" >
+                         
+                        <tr style="border-bottom: 1px;">
+                          <td><b>Address</b></td>
+                          <td>{{address.address}}</td>
+                          
+                        </tr>
+                        <tr>
+                            <td><b>City</b></td>
+                            <td>{{address.city}}</td>
+                            
+                          </tr>
+                          <tr>
+                            <td><b>Country</b></td>
+                            <td>{{address.country}}</td>
+                            
+                          </tr>
+                          <tr>
+                            <td><b>Phone Number </b></td>
+                            <td>{{address.phone}}</td>
+                            
+                          </tr>
+                      </table>  
+                      <hr>
+                    Admin Setting
+                      <hr> 
+                      <div  >
+                       
+                       <div  fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="10px"  > 
+                        
+                       
+
+                           <mat-form-field  >
+                            <p>Extra Note For Admin</p>
+                                <textarea  width=100 name="description" [(ngModel)]="data.description"></textarea>
+                              </mat-form-field>
+                             <div class="" >
+                              
+                            <input type="checkbox"   name="disabledByAdmin" [(ngModel)]="data.disabledbyAdmin" style="margin-right: 20px;">Disable User 
+                        </div>   
+                            
+                          
+                             
+                        </div>
+                             
+                   
+                </div>
+            
+                
+               
+              
+          </mat-card-content>
+          <div mat-dialog-actions>
+            <button mat-button (click)="onNoClick()">Cancel</button>
+            <button   mat-button [mat-dialog-close]="data" cdkFocusInitial>Save</button>
+        </div>
+          
+      </mat-card>
+
+    
+    </div>
+  
+  </div>
+</form>
+
+ 

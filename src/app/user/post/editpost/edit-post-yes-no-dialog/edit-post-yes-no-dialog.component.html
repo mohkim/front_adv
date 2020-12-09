@@ -1,0 +1,9 @@
+<h1 mat-dialog-title>Confirm ?</h1>
+<div mat-dialog-content>
+  <p>Image will be Deleted Permanently ?</p>
+ 
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No </button>
+  <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Yes</button>
+</div>

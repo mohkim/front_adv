@@ -1,0 +1,34 @@
+ 
+
+ 
+ <mat-card   >
+  
+
+    <mat-card-content>
+      <form (ngSubmit)="onSubmit()" [formGroup]="form">
+           <div class="" fxFlexOffset="10"  fxLayout="column" fxLayoutAlign="start start" fxFlex=50%>
+           <mat-form-field class="example-full-width">
+               <mat-label>Address</mat-label>
+               <input    matInput  type="text" formControlName="address"  required  >
+             </mat-form-field>
+             <mat-form-field class="example-full-width">
+                <mat-label>City</mat-label>
+                <input   matInput   type="text" formControlName="city"  required  >
+              </mat-form-field>
+              <mat-form-field class="example-full-width">
+                <mat-label>Sate</mat-label>
+                <input   matInput   type="text" formControlName="state"  required >
+              </mat-form-field>
+             
+              <button mat-raised-button color="primary" type="submit"    [disabled]="!form.valid">Save Change</button> 
+             </div>
+       </form>
+    </mat-card-content>
+    <mat-card-actions align="start">
+       
+        
+    </mat-card-actions>
+ 
+</mat-card>
+
+

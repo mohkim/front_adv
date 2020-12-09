@@ -1,0 +1,73 @@
+ 
+   <form action=""      #f="ngForm"   >
+   <div fxLayout="column"  fxLayoutAlign="start none"   >
+
+
+    <h1 mat-dialog-title> New/Edit Sub Catagory </h1>
+    <div mat-dialog-content fxLayout="column"  >
+        <div   fxFlex="20%">
+          <mat-form-field >
+            <input type="text"matInput placeholder="Id"  required name="id" disabled [(ngModel)]="data.id" >
+        </mat-form-field>
+        </div>
+        
+        <div fxLayout="row"   fxLayoutGap="50px">
+            <mat-form-field>
+                <input type="text"matInput placeholder="name" required name="name1" minlength="2" [(ngModel)]="data.name">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Type </mat-label>
+                <mat-select required name="type"  [(ngModel)]="data.type">
+                    <mat-option>None</mat-option>
+                    <mat-option value="PRODUCT">Product</mat-option>
+                    <mat-option value="SERVICE">Service</mat-option>
+                    <mat-option value="JOB">Job</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+        </div>
+        <mat-label for="">Select Payment Methods</mat-label>
+        <div fxLayout="row"   fxLayoutGap="50px">
+
+            <mat-checkbox  name="contact"  [(ngModel)]="data.contact">Contact</mat-checkbox>
+            <mat-checkbox name="price"  [(ngModel)]="data.price">Price</mat-checkbox>
+            <mat-checkbox name="commision"  [(ngModel)]="data.commision">Commision</mat-checkbox>
+            <mat-checkbox  name="range"  [(ngModel)]="data.range">Range</mat-checkbox>
+        </div>
+        <mat-label for="">Service Fee and enable/Disable </mat-label>
+        <div fxLayout="column" fxLayoutAlign="space-between stretch" fxLayoutGap="10px">
+            <div fxLayout="row"   fxLayoutGap="50px">
+                <mat-form-field>
+                    <input type="text" matInput placeholder="free Fee" name="fee_free"  [(ngModel)]="data.fee_free">
+                </mat-form-field>
+                <mat-checkbox class="checkspace"  name="fee_free_enable"  [(ngModel)]="data.fee_free_enable" >Disable Weekly Fee</mat-checkbox>
+            </div>
+            <div fxLayout="row"   fxLayoutGap="50px">
+                <mat-form-field>
+                    <input type="text" matInput placeholder="Weekly Fee" name="fee_week"  [(ngModel)]="data.fee_week">
+                </mat-form-field>
+                <mat-checkbox class="checkspace"  name="fee_week_enable"  [(ngModel)]="data.fee_week_enable" >Disable Weekly Fee</mat-checkbox>
+            </div>
+            <div fxLayout="row"   fxLayoutGap="50px">
+                <mat-form-field>
+                    <input type="text" matInput placeholder="monthly Fee" name="fee_month"  [(ngModel)]="data.fee_month">
+                </mat-form-field>
+                <mat-checkbox class="checkspace" name="fee_month_enable"  [(ngModel)]="data.fee_month_enable">Disable Monthly Fee</mat-checkbox>
+            </div>
+            <div fxLayout="row"   fxLayoutGap="50px">
+                <mat-form-field>
+                    <input type="text" matInput placeholder="Yearly fee" name="fee_year"  [(ngModel)]="data.fee_year">
+                </mat-form-field>
+
+                <mat-checkbox class="checkspace" name="fee_year_enable"  [(ngModel)]="data.fee_year_enable">Disable Yearly Fee</mat-checkbox>
+            </div>
+        </div>
+
+    </div>
+    <div mat-dialog-actions fxLayout="row" fxLayoutAlign="space-around" style="margin-top: 30px;">
+        <button mat-raised-button  (click)="onNoClick()" color="accent">Cancel</button>
+        <button mat-raised-button color="primary"  [disabled]="f.invalid"  [mat-dialog-close]="data" cdkFocusInitial>Save</button>
+    </div>
+
+</div>
+</form>

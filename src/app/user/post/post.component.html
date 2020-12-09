@@ -1,0 +1,56 @@
+  <div class=""    fxLayout=""  fxFlexOffset="5"  
+         fxLayoutAlign="start start" fxLayoutGap="10px">  
+      <div class="add_button"  fxFlex="5" fxFlexFill>
+              <a mat-button  routerLink="/user/newpost">
+                  <mat-icon class="mat-18">add</mat-icon>
+                  Add New Advertisement
+              </a>    
+               
+        
+      </div>
+      <div class=""  fxFlex="grow" >
+        <div class="productList" *ngFor="let post of posts"  >
+
+
+            <div   fxLayout="column" fxFlexAlign="center center"    fxFlexOffset="15"  fxFlex="60" fxFlexFill   fxLayoutGap="20px">
+                <mat-card>
+                    <div fxFlex>
+                        <div class="picture"  *ngIf="post.postImage.length>0">
+                            
+                          
+                            <img     src="{{post.postImage[0].url}}" alt="" width="150" height="180"> 
+                        </div>  
+                        <div class="picture"  *ngIf="post.postImage.length===0">
+                           
+                          
+                            <img     src="assets/img/avatar.png" alt="" width="150" height="180"> 
+                        </div>
+                        <div >
+                            <div class="detail_head"  > 
+                                <h1 class="detail_head_text"> {{post.description}}   </h1>
+                            </div>
+                            <div class="detail"> 
+                              <p class="detail_text"> {{post.detail}}</p>  
+                             </div>
+                        </div>
+                        <div class="grow" fxFlex fxLayout="column" fxLayoutAlign="end end">
+                            <div class="price">
+                                <h2> {{post.currency.shortName}} {{post.price}} </h2>
+                            </div>
+                            <div class="view">
+                                <a mat-button routerLink="/display/adv/{{post.id}}" color="primary">
+                                    Detail
+                                </a>
+                                <a mat-button routerLink="/user/editpost/{{post.id}}" color="accent">
+                                   Edit
+                                </a>
+                            </div>
+                                
+                        </div>
+                    </div>
+                </mat-card>
+            </div>
+            </div>  
+      </div>
+  </div>
+ 

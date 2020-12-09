@@ -1,0 +1,32 @@
+<form action=""      #f="ngForm"   >
+    <section fxLayout="column" fxLayoutAlign="center center" > 
+   
+   
+    <h1 mat-dialog-title> New/Edit Sales location  </h1>
+   <div mat-dialog-content fxLayout="column"  style="width: 100%;" >
+     
+     <mat-form-field>
+       <input type="text" matInput placeholder="Id"  required name="id" disabled [(ngModel)]="data.id" >
+     </mat-form-field>
+     
+     <mat-form-field>
+       <input type="text" matInput placeholder="city" required name="city" minlength="2" [(ngModel)]="data.city" >
+   
+     </mat-form-field>
+     <mat-form-field>
+       <input type="text" matInput placeholder="state" required name="state" minlength="2" [(ngModel)]="data.state" >
+   
+     </mat-form-field>
+     <mat-form-field>
+        <input type="text" matInput placeholder="country" required name="country" minlength="2" [(ngModel)]="data.country" >
+    
+      </mat-form-field>
+    
+    </div>
+   <div mat-dialog-actions>
+     <button mat-button (click)="onNoClick()">Cancel</button>
+      <button   [disabled]="f.invalid" mat-button [mat-dialog-close]="data" cdkFocusInitial>Save</button>
+   </div>
+   
+   </section>
+   </form>

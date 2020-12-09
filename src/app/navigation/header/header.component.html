@@ -1,0 +1,38 @@
+ <div class="header">
+  <div fxHide.gt-xs   >
+  <button mat-icon-button (click)="onToggleSidenav()">
+    <mat-icon>menu</mat-icon>
+  </button>
+</div>
+  <div fxFlex fxLayout fxLayoutAlign="flex-end flex-space" fxHide.xs >
+ 
+    <a mat-button    routerLink="/" >Home</a>
+<button mat-button [matMenuTriggerFor]="adminMenu"    >Admin</button>     <!--*ngIf="adminRoleLogedIn()"-->
+<mat-menu #adminMenu="matMenu" xPosition="after"   >
+  <a mat-button    routerLink="/admin/catagory" >Product Catagory </a> <br>
+  <a mat-button    routerLink="/admin/users" >User Managment </a> <br>
+  <a mat-button    routerLink="/admin/posts" >Post Managment  </a> <br>
+  <a mat-button    routerLink="/admin/setting" >Admin Setting</a> <br>
+</mat-menu> 
+
+<button mat-button [matMenuTriggerFor]="managerMenu"  *ngIf="managerRoleLogedIn()">Manager</button> 
+<mat-menu #managerMenu="matMenu" xPosition="after">
+  <a mat-button    routerLink="/post_managment" >Post Managment  </a> <br>
+  <a mat-button    routerLink="/finance_managment" >Finance Managment</a> <br>
+</mat-menu>
+<button mat-button [matMenuTriggerFor]="financeMenu"    *ngIf="financeRoleLogedIn()" >Finance</button>
+<mat-menu #financeMenu="matMenu" xPosition="after">
+  <a mat-button    routerLink="/income_recept" >Income recept</a> <br>
+  <a mat-button    routerLink="/Expense_recept" >expense receipt </a> <br>
+</mat-menu>
+ 
+<a mat-button    routerLink="/login" *ngIf="!userLogedIn()" >LogIn</a>
+<button mat-button [matMenuTriggerFor]="userMenu"  >User</button>  <!--*ngIf="userRoleLogedIn()"-->
+<mat-menu #userMenu="matMenu" yPosition="below"   > 
+  <a mat-button    routerLink="user/post"> Post </a> <br>
+   <a mat-button    routerLink="user/profile" >My Profile </a><br>
+  <a mat-button    routerLink="/logout" >Log Out </a>
+</mat-menu> 
+ 
+</div>
+</div>

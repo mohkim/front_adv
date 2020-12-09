@@ -1,0 +1,28 @@
+  <div class="" fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="20ppx">
+  
+ 
+  <div class="image_section">
+    <mat-card class="mat_image">
+      <div class="">
+          <img src="{{url}}" alt="assets/img/avatar.png" height="200">
+      </div>
+       
+    </mat-card>
+  </div>
+
+  <div class="form_section">
+  <div class="">
+
+    <button mat-raised-button color="primary" (click)="onClick($event)">
+      <mat-icon>upload</mat-icon>
+      {{chooseLabel}}
+    </button>
+    
+    <input #fileUpload type="file" class="input_fileupload--hidden" (input)="onInput($event)"
+      (change)="onFileSelected($event)"  [(ngModel)]="inputFileName" accept="image/x-png,image/jpeg">
+    
+  </div>
+
+  </div>
+
+</div>  

@@ -1,0 +1,71 @@
+{
+  "id": 1,
+  "name": "Land Cruser",
+  "type": "PRODUCT",
+  "specificationList": [
+    {
+      "id": 2,
+      "value": "",
+      "key": "Year",
+      "label": "Year",
+      "required": true,
+      "order": null,
+      "controlType": "textbox",
+      "type": "text",
+      "pattern": "",
+      "placeholder": "Year",
+      "option": []
+    },
+    {
+      "id": 7,
+      "value": "",
+      "key": "condition",
+      "label": "Condtion",
+      "required": true,
+      "order": null,
+      "controlType": "dropdown",
+      "type": "",
+      "pattern": "",
+      "placeholder": "Condtion of The car",
+      "option": [
+        {
+          "id": 13,
+          "item": "New"
+        },
+        {
+          "id": 14,
+          "item": "good Condition"
+        },
+        {
+          "id": 15,
+          "item": "Bad"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "value": "",
+      "key": "job",
+      "label": "Job Description",
+      "required": true,
+      "order": null,
+      "controlType": "textarea",
+      "type": "",
+      "pattern": "",
+      "placeholder": "Job Description",
+      "option": []
+    }
+  ],
+  "contact": false,
+  "price": true,
+  "commision": false,
+  "range": false,
+  "fee_free_enable": false,
+  "fee_free": 0,
+  "fee_week_enable": true,
+  "fee_week": 0,
+  "fee_month_enable": true,
+  "fee_month": 100,
+  "fee_year_enable": true,
+  "fee_year": 1000
+}

@@ -1,0 +1,11 @@
+div{
+    border : 2px solid black ;
+    min-height: 200px;
+}
+img{
+     padding: 0px;
+    height: 200px;
+}
+.input_fileupload--hidden{
+    visibility: hidden;
+}

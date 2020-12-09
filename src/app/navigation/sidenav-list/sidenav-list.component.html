@@ -1,0 +1,34 @@
+  
+    <a mat-button    routerLink="#" >Home</a><br>
+
+    <button mat-button [matMenuTriggerFor]="adminMenu">Admin</button><br>
+    <mat-menu #adminMenu="matMenu" xPosition="after"   >
+      <a mat-button    routerLink="#" >Item 1 </a> <br>
+      <a mat-button    routerLink="#" >Item 2 </a> <br>
+    </mat-menu> 
+    
+    <button mat-button [matMenuTriggerFor]="managerMenu">Manager</button><br>
+    <mat-menu #managerMenu="matMenu" xPosition="after">
+      <a mat-button    routerLink="#" >Item 1 </a> <br>
+      <a mat-button    routerLink="#" >Item 2 </a> <br>
+    </mat-menu>
+    <button mat-button [matMenuTriggerFor]="financeMenu">Finance</button><br>
+    <mat-menu #financeMenu="matMenu" xPosition="after">
+      <a mat-button    routerLink="#" >Item 1 </a> <br>
+      <a mat-button    routerLink="#" >Item 2 </a> <br>
+    </mat-menu>
+     
+    <a mat-button    routerLink="#" >LogIn</a><br>
+    <button mat-button [matMenuTriggerFor]="userMenu">User</button><br>
+    <mat-menu #userMenu="matMenu" yPosition="below"   > 
+      <a mat-button    routerLink="#" >Create Post </a> <br>
+      <a mat-button    routerLink="#" >History </a><br>
+      <a mat-button    routerLink="#" >My Profile </a><br>
+      <a mat-button    routerLink="#" >Log Out </a>
+    </mat-menu> 
+
+
+
+
+
+ 

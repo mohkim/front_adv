@@ -1,0 +1,33 @@
+.detail{
+    padding-left: 10px;
+}
+.detail_head{
+  padding-left : 10px; 
+  
+   
+}
+.detail_head_text{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1; /* number of lines to show */
+  -webkit-box-orient: vertical;
+}
+.detail_text{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* number of lines to show */
+  -webkit-box-orient: vertical;
+}
+ .view{
+  padding-top: 80px;
+}
+.productList{
+  padding-top: 30px;
+  padding-bottom: 5px;
+}
+.add_button{
+  padding-top: 20px;
+}
+ 
