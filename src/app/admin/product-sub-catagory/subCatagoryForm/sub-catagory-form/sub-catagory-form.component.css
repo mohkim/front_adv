@@ -2,3 +2,9 @@
     margin-top: 20px;
   
   }
+  .invisible{
+    display: block;
+    visibility: hidden;
+    height: 0;
+    width: 0;
+}

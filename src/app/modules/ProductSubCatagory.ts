@@ -17,6 +17,8 @@ export class ProductSubCatagory {
         public  fee_month: number, 
         public fee_year_enable: Boolean, 
         public fee_year: number,
+        public  img_min:number,
+        public  img_max:number,
         public  salesLocation?:SalesLocation, 
         public specificationList?:any
         

@@ -114,7 +114,7 @@ export class ProductSubCatagoryComponent implements OnInit {
 
   newSubCatagory() {
 
-    var subcatagory = new ProductSubCatagory(-1,"","PRODUCT",false,false,false,false,false,0,false,0,false,0,false,0)
+    var subcatagory = new ProductSubCatagory(-1,"","PRODUCT",false,false,false,false,false,0,false,0,false,0,false,0,0,0)
     this.openDialog(subcatagory);
   }
   doFilter(filterValue: string) {

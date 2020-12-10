@@ -14,7 +14,7 @@ import {
   Validators,
 } from '@angular/forms';
 
-import {} from '@angular/forms';
+import { } from '@angular/forms';
 
 import { LocationService } from 'src/app/service/location/Sales_location.service';
 
@@ -27,7 +27,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ProductSubCatagory } from 'src/app/modules/ProductSubCatagory';
 import { JSDocTagName } from '@angular/compiler/src/output/output_ast';
-import {} from '@angular/core';
+import { } from '@angular/core';
 import { SpecificationHead } from 'src/app/modules/SpecificationHead';
 
 @Component({
@@ -56,6 +56,7 @@ export class PostNewComponent implements OnInit {
   public currency1;
   public selectSubCat: ProductSubCatagory;
   public isSubCatSelected: boolean = false;
+  public maximum_number_img: number;
 
   postForm;
   paymentform;
@@ -63,8 +64,12 @@ export class PostNewComponent implements OnInit {
   uploadFileCount: number = 0;
 
   onSubmit() {
-   // if payment method price slected  validate price 
-   //if  payment method  range selected validate  range
+    // if(this.files.length<this.selectSubCat.img_min &&)
+    // if payment method price slected  validate price 
+    //if  payment method  range selected validate  range
+    if (this.files.length < this.selectSubCat.img_min) {
+      this.openSnackBar('upload atleast ' + this.selectSubCat.img_min + ' images', 'Error');
+    }
 
     this.payLoad = JSON.stringify(this.postForm.getRawValue());
     // console.log("form data => "+JSON.stringify(this.postForm))
@@ -80,7 +85,7 @@ export class PostNewComponent implements OnInit {
     private sanitizer: DomSanitizer,
     private postService: PostService,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.isSubCatSelected = false;
@@ -89,22 +94,22 @@ export class PostNewComponent implements OnInit {
     this.paymentform = new FormGroup({
       payment_option: new FormControl(''),
       negotiable: new FormControl(false),
-      price_amount: new FormControl( ),
+      price_amount: new FormControl(),
       min: new FormControl(''),
       max: new FormControl(''),
     });
     this.postForm = new FormGroup({
       id: new FormControl(''),
       description: new FormControl(''),
-      productSubCatagory: new FormControl( ),
+      productSubCatagory: new FormControl(),
       detail: new FormControl(''),
       //  price: new FormControl(''),
       //  currency: new FormControl(''),
       inputFileName: new FormControl(''),
       salesLocation: new FormControl(''),
-     // specification: this.form,
+      // specification: this.form,
       post_payment: this.paymentform,
-      package_fee:new FormControl("")
+      package_fee: new FormControl("")
     });
 
     this.getSourceData();
@@ -128,19 +133,22 @@ export class PostNewComponent implements OnInit {
     if (this.fileUpload) this.fileUpload.nativeElement.click();
   }
 
-  onInput(event) {}
+  onInput(event) { }
 
   onFileSelected(event) {
+    var img_width
     let files1 = event.dataTransfer
       ? event.dataTransfer.files
       : event.target.files;
     // console.log('event::::::', event)
     // console.log("1- files size == >"+this.files.length +" files size == >"+this.imageSrc.length)
     // console.log("1- files size == >"+this.files[0].size)
+
+
     for (let i = 0; i < files1.length; i++) {
       let file = files1[i];
-
-      console.log('file extention = >' + file.type);
+      
+  
       //if(!this.isFileSelected(file)){
       if (this.validate(file)) {
         //      if(this.isImage(file)) {
@@ -148,26 +156,45 @@ export class PostNewComponent implements OnInit {
           window.URL.createObjectURL(files1[i])
         );
         //      }
-        if (!this.isMultiple()) {
-          this.files = [];
-        }
-        if (files1[i].size <= 2000000) {
-          if (
-            files1[i].type === 'image/jpeg' ||
-            files1[i].type === 'image/png'
-          ) {
-            this.files.push(files1[i]);
+        // if (!this.isMultiple()) {
+        //   this.files = [];
+        // }
+        if (files1[i].size <= 2000000) {  // check the size
+          if (files1[i].type === 'image/jpeg' || files1[i].type === 'image/png') { // image type
+            if (this.files.length < this.selectSubCat.img_max) { //check number of image 
+              //  if(this.getImageWidth(files1[i])>600){
+                this.files.push(files1[i]);
+              //  } else {
+              //   this.openSnackBar("image width should be atleast 800px", "message")
+              //   break
+              // }
+              this.getImageWidths(files1[i]).then(width => {
+                console.log("return result ==>"+width)
+              })
+
+            } else {
+              this.openSnackBar("Maximum " + this.selectSubCat.img_max + " images are allowed", "message")
+              break
+            }
+
             //  }
+          } else {
+            this.openSnackBar("image format should be *.jpeg,*.png", "message")
+
           }
         }
       }
       //}
     }
+    // console.log("size == >"+files1.length)
     this.imageSrc.splice(0, this.imageSrc.length);
-    for (let i = 0; i < this.files.length; i++) {
+    var num
+    if (this.files.length > this.selectSubCat.img_max) num = this.selectSubCat.img_max
+    else num = this.files.length
+    for (let i = 0; i < num; i++) {
       // test
-      if (files1[i].size <= 2000000) {
-        if (files1[i].type === 'image/jpeg' || files1[i].type === 'image/png') {
+      if (this.files[i].size <= 2000000) {
+        if (this.files[i].type === 'image/jpeg' || this.files[i].type === 'image/png') {
           var reader = new FileReader();
 
           reader.readAsDataURL(this.files[i]);
@@ -206,7 +233,28 @@ export class PostNewComponent implements OnInit {
     }
     return true;
   }
+   
+   getImageWidths(file){
 
+
+    
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        const img = new Image();
+        img.src = reader.result as string;
+        img.onload = () => {
+          const height = img.naturalHeight;
+          const width = img.naturalWidth;
+          // console.log('Width and Height', width, height);
+         return width;
+            
+         
+        };
+      };
+    })
+  }
   clearInputElement() {
     this.fileUpload.nativeElement.value = '';
   }
@@ -230,7 +278,7 @@ export class PostNewComponent implements OnInit {
 
       if (p) {
         this.postService.savePostImages(p, this.files).subscribe(
-          (result) => {},
+          (result) => { },
           (error) => {
             console.log(error.error.message);
           }
@@ -270,19 +318,19 @@ export class PostNewComponent implements OnInit {
   onCatagoryChange(ev) {
     if (ev.value) {
       this.selectSubCat = ev.value;
-      console.log(
-        'form = >' + JSON.stringify(this.selectSubCat)
-      );
+      // console.log(
+      //   'form = >' + JSON.stringify(this.selectSubCat)
+      // );
       // update  the form
       let group = {};
       this.selectSubCat.specificationList.forEach((specification) => {
         // group[specification.key] = new FormControl('');
         group[specification.key] = specification.required ? new FormControl(specification.value || '', Validators.required)
-                                              : new FormControl(specification.value || '');
+          : new FormControl(specification.value || '');
       });
-      
-     this.postForm.removeControl('specification')
-     this.postForm.addControl('specification',new FormGroup(group))
+
+      this.postForm.removeControl('specification')
+      this.postForm.addControl('specification', new FormGroup(group))
 
       // end of  update form specification list
       this.isSubCatSelected = true; // make catagory slected true
@@ -290,20 +338,20 @@ export class PostNewComponent implements OnInit {
       this.isSubCatSelected = false;
     }
   }
-    payment_required(){
-      if(this.selectSubCat.commision===false&&
-        this.selectSubCat.contact===false&&
-        this.selectSubCat.price===false&&
-        this.selectSubCat.range===false) {
-          return  false
-        }else  return  true
-    }
-    fee_required(){
-      if(this.selectSubCat.fee_free_enable===false&&
-        this.selectSubCat.fee_week_enable===false&&
-        this.selectSubCat.fee_month_enable===false&&
-        this.selectSubCat.fee_year_enable===false) {
-          return  false
-        }else  return  true
-    }
+  payment_required() {
+    if (this.selectSubCat.commision === false &&
+      this.selectSubCat.contact === false &&
+      this.selectSubCat.price === false &&
+      this.selectSubCat.range === false) {
+      return false
+    } else return true
+  }
+  fee_required() {
+    if (this.selectSubCat.fee_free_enable === false &&
+      this.selectSubCat.fee_week_enable === false &&
+      this.selectSubCat.fee_month_enable === false &&
+      this.selectSubCat.fee_year_enable === false) {
+      return false
+    } else return true
+  }
 }
