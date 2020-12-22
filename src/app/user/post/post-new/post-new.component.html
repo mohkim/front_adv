@@ -1,10 +1,10 @@
 <div fxFlexOffset="50px">
-  <form (ngSubmit)="onSubmit()" [formGroup]="postForm">
+  <form (ngSubmit)="submitPost()" [formGroup]="postForm">
     <div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="20px">
       <!-- id field -->
-      <mat-form-field>
+      <mat-form-field  style="display: none;" >
         <mat-label>Id</mat-label>
-        <input matInput placeholder="Ex. Pizza" type="text" formControlName="id">
+        <input matInput placeholder="Id"   type="text" formControlName="id">
       </mat-form-field>
 
       <mat-form-field appearance="fill">
@@ -29,10 +29,13 @@
         </mat-select>
       </mat-form-field>
       <!-- Product or Service description -->
-      <mat-form-field>
-        <mat-label>Product or Service description</mat-label>
-        <input matInput placeholder=" " required formControlName="description" required>
-      </mat-form-field>
+      <div class=""  *ngIf="isSubCatSelected" >
+
+        <mat-form-field>
+          <mat-label>Product or Service description</mat-label>
+          <input matInput placeholder=" " required formControlName="description" required>
+        </mat-form-field>
+      </div>
 
       <!-- specification  start  -->
       <div class="" *ngIf="isSubCatSelected" formGroupName="specification">
@@ -42,7 +45,7 @@
               <!-- text box section -->
               <mat-form-field  *ngSwitchCase="'textbox'">
                 <mat-label>{{form_elem.label}}</mat-label>
-                <input matInput [placeholder]="form_elem.placeholder"  formControlName="{{form_elem.key}}"  [value]="form_elem.value" [id]="form_elem.key" [type]="form_elem.type">
+                <input matInput [placeholder]="form_elem.placeholder" [pattern]="form_elem.pattern" formControlName="{{form_elem.key}}"  [value]="form_elem.value" [id]="form_elem.key" [type]="form_elem.type">
                 <!-- <div color="accent" *ngIf="!isValid">{{question.label}} is required</div> -->
               </mat-form-field>
              <!-- drop down selection  section -->
@@ -68,10 +71,14 @@
 
         <!-- specification  end -->
         <!-- detail -->
-        <mat-form-field>
-          <mat-label>Product or Service detail</mat-label>
-          <input matInput placeholder="" required formControlName="detail" required>
-        </mat-form-field>
+        <div class="" *ngIf="isSubCatSelected">
+          <mat-form-field>
+            <mat-label>Product or Service detail</mat-label>
+             
+            <textarea matInput  formControlName="detail" required width="50"   height="50" ></textarea>
+          </mat-form-field>
+        </div>
+       
 
         <!-- //price -->
         <!-- <mat-form-field>
@@ -88,8 +95,8 @@
           </mat-select>
         </mat-form-field> -->
         <!-- file upload -->
-
-        <div class="">
+         
+        <div class="" *ngIf="isSubCatSelected"  fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="10px">
           <button mat-raised-button color="primary" (click)="onClick($event)">
             <mat-icon>add</mat-icon>
             {{chooseLabel}}
@@ -98,24 +105,27 @@
           <input #fileUpload type="file" class="input_fileupload--hidden" (input)="onInput($event)"
             (change)="onFileSelected($event)" formControlName="inputFileName" accept=".png, .jpg, .jpeg" multiple>
 
-
-          <div *ngFor="let f of files ; let i=index " fxLayout fxLayoutAlign="start start" fxLayoutGap="10px">
-            <div class="">
-              <img [src]="imageSrc[i]" style="height: 50px; width:50px">
-
-              <button mat-icon-button color="primary" [attr.title]="deleteButtonLabel?deleteButtonLabel:null"
-                (click)="removeFile($event,f)">
-                <mat-icon>{{deleteButtonIcon}}</mat-icon>
-              </button>
-            </div>
-
-          </div>
+             <div fxLayout="row wrap"   fxLayoutGap="10px">
+              <div *ngFor="let f of files ; let i=index "     >
+                <div  class="img-wraps"  >
+                  <span  class="closes" title="Delete" (click)="removeFile($event,f)"  >&times; </span>
+                  <img     [src]="imageSrc[i]" style="height: 100px; width:100px" class="img-responsive" >
+    
+                
+                </div>
+    
+              </div>
+             </div>
+           
         </div>
+
+        
+
 
         <!-- payment   options  -->
 
         <div class="" *ngIf="isSubCatSelected" formGroupName="post_payment">
-          <mat-radio-group formControlName="payment_option"   [required]="payment_required()">
+          <mat-radio-group formControlName="payment_option"   [required]="payment_required()"  (change)="paymentOnChange()">
             <div class="" fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="10px">
 
               <div fxLayout="row" *ngIf="selectSubCat.contact" fxLayoutAlign="space-between" fxLayoutGap="20px">
@@ -130,16 +140,16 @@
                 <div class="" fxLayout="column" fxLayoutAlign="start start">
                   <mat-form-field class="example-full-width">
                     <mat-label>Price</mat-label>
-                    <input matInput placeholder="selling Price" pattern="[0-9]+" formControlName="price_amount">
+                    <input matInput placeholder="selling Price" pattern="[0-9]+" formControlName="price_amount"  [readonly]="price_readonly" [required]="price_required" >
                   </mat-form-field>
                   <div class="">
-                    <mat-checkbox formControlName="negotiable">Negotiable</mat-checkbox>
+                    <mat-checkbox formControlName="negotiable"   [disabled]="negotiable_readonly">Negotiable</mat-checkbox>
                   </div>
                 </div>
 
               </div>
               <div fxLayout="row" *ngIf="selectSubCat.commision" fxLayoutAlign="space-between" fxLayoutGap="20px">
-                <mat-radio-button value="COMMITION"> Commition</mat-radio-button>
+                <mat-radio-button value="COMMISSION"> Commition</mat-radio-button>
 
               </div>
               <div fxLayout="row" *ngIf="selectSubCat.range" fxLayoutAlign="space-between" fxLayoutGap="20px">
@@ -147,12 +157,12 @@
                 <div class="" fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="20px">
                   <mat-form-field>
                     <mat-label>Min</mat-label>
-                    <input matInput placeholder="Minimum" pattern="" formControlName="min">
+                    <input matInput placeholder="Minimum" pattern="[0-9]+" formControlName="min" [readonly]="min_readonly" [required]="min_required">
                     <!--  -->
                   </mat-form-field>
                   <mat-form-field>
                     <mat-label>Max</mat-label>
-                    <input matInput placeholder="Max" formControlName="max">
+                    <input matInput placeholder="Max" pattern="[0-9]+" formControlName="max" [readonly]="max_readonly" [required]="max_required">
 
                   </mat-form-field>
                 </div>
@@ -205,7 +215,7 @@
   </form>
 
   <div *ngIf="payLoad" class="form-row">
-    <strong>Saved the following values</strong><br>{{payLoad}}
+    <!-- <strong>Saved the following values</strong><br>{{payLoad}} -->
 
   </div>
 </div>

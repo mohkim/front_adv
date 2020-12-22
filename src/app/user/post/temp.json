@@ -1,71 +1,171 @@
 {
-  "id": 1,
-  "name": "Land Cruser",
-  "type": "PRODUCT",
+  "id": -1,
+  "description": "1234",
+  "productSubCatagory": {
+    "id": 1,
+    "name": "Land Cruser",
+    "type": "SERVICE",
+    "specificationList": [
+      {
+        "id": 7,
+        "value": "",
+        "key": "condition",
+        "label": "Condtion",
+        "required": true,
+        "order": null,
+        "controlType": "dropdown",
+        "type": "",
+        "pattern": "",
+        "placeholder": "Condtion of The car",
+        "option": [
+          {
+            "id": 13,
+            "item": "New"
+          },
+          {
+            "id": 14,
+            "item": "good Condition"
+          },
+          {
+            "id": 15,
+            "item": "Bad"
+          }
+        ]
+      },
+      {
+        "id": 8,
+        "value": "",
+        "key": "job",
+        "label": "Job Description",
+        "required": true,
+        "order": null,
+        "controlType": "textarea",
+        "type": "",
+        "pattern": "",
+        "placeholder": "Job Description",
+        "option": []
+      },
+      {
+        "id": 2,
+        "value": "",
+        "key": "Year",
+        "label": "Year",
+        "required": true,
+        "order": null,
+        "controlType": "textbox",
+        "type": "text",
+        "pattern": "[0-9]+",
+        "placeholder": "Year",
+        "option": []
+      }
+    ],
+    "contact": false,
+    "price": true,
+    "commision": false,
+    "range": false,
+    "fee_free_enable": true,
+    "fee_free": 0,
+    "fee_week_enable": true,
+    "fee_week": 0,
+    "fee_month_enable": true,
+    "fee_month": 100,
+    "fee_year_enable": true,
+    "fee_year": 1000,
+    "img_min": 2,
+    "img_max": 60
+  },
+  "salesLocation": {
+    "id": 1,
+    "city": "Luba",
+    "state": "Jubek",
+    "country": "South Sudan"
+  },
   "specificationList": [
     {
-      "id": 2,
-      "value": "",
-      "key": "Year",
-      "label": "Year",
-      "required": true,
-      "order": null,
-      "controlType": "textbox",
-      "type": "text",
-      "pattern": "",
-      "placeholder": "Year",
-      "option": []
+      "id": null,
+      "specification": {
+        "id": 7,
+        "value": "",
+        "key": "condition",
+        "label": "Condtion",
+        "required": true,
+        "order": null,
+        "controlType": "dropdown",
+        "type": "",
+        "pattern": "",
+        "placeholder": "Condtion of The car",
+        "option": [
+          {
+            "id": 13,
+            "item": "New"
+          },
+          {
+            "id": 14,
+            "item": "good Condition"
+          },
+          {
+            "id": 15,
+            "item": "Bad"
+          }
+        ]
+      },
+      "value": "New"
     },
     {
-      "id": 7,
-      "value": "",
-      "key": "condition",
-      "label": "Condtion",
-      "required": true,
-      "order": null,
-      "controlType": "dropdown",
-      "type": "",
-      "pattern": "",
-      "placeholder": "Condtion of The car",
-      "option": [
-        {
-          "id": 13,
-          "item": "New"
-        },
-        {
-          "id": 14,
-          "item": "good Condition"
-        },
-        {
-          "id": 15,
-          "item": "Bad"
-        }
-      ]
+      "id": null,
+      "specification": {
+        "id": 8,
+        "value": "",
+        "key": "job",
+        "label": "Job Description",
+        "required": true,
+        "order": null,
+        "controlType": "textarea",
+        "type": "",
+        "pattern": "",
+        "placeholder": "Job Description",
+        "option": []
+      },
+      "value": "13123"
     },
     {
-      "id": 8,
-      "value": "",
-      "key": "job",
-      "label": "Job Description",
-      "required": true,
-      "order": null,
-      "controlType": "textarea",
-      "type": "",
-      "pattern": "",
-      "placeholder": "Job Description",
-      "option": []
+      "id": null,
+      "specification": {
+        "id": 2,
+        "value": "",
+        "key": "Year",
+        "label": "Year",
+        "required": true,
+        "order": null,
+        "controlType": "textbox",
+        "type": "text",
+        "pattern": "[0-9]+",
+        "placeholder": "Year",
+        "option": []
+      },
+      "value": "12312"
     }
   ],
-  "contact": false,
-  "price": true,
-  "commision": false,
-  "range": false,
-  "fee_free_enable": false,
-  "fee_free": 0,
-  "fee_week_enable": true,
-  "fee_week": 0,
-  "fee_month_enable": true,
-  "fee_month": 100,
-  "fee_year_enable": true,
-  "fee_year": 1000
+  "detail": "2312",
+  "postImage": null,
+  "user": {
+    "id": 1,
+    "username": "Kemal Mohammed",
+    "email": "dawa.age2020@gmail.com",
+    "roles": [
+      "ROLE_USER",
+      "ROLE_ADMIN"
+    ],
+    "tokenType": "Bearer",
+    "accessToken": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJLZW1hbCBNb2hhbW1lZCIsImlhdCI6MTYwODE4MjY2NSwiZXhwIjoxNjA4MjY5MDY1fQ.j2-cL4CVxa_bmUNuCD9V82Yfdz7FR3Fg05GpQ2IHo9zUrPCQkuRlUuG2qfVHXzE3B2qa_P0PUlBPd7tcyMQwkg"
+  },
+  "post_payment": {
+    "id": -1,
+    "option": "PRICE",
+    "negotiable": true,
+    "price_amount": "1231",
+    "min": "",
+    "max": ""
+  },
+  "post_status": "PENDING"
 }

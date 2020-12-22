@@ -57,6 +57,9 @@ import { SpecificationheadYesNoDialogComponent } from './admin/specificationhead
 import { SpecificationheadOptionComponent } from './admin/specificationhead-option/specificationhead-option.component';
 import { SpecificationheadOptionFormComponent } from './admin/specificationhead-option/specificationhead-option-form/specificationhead-option-form.component';
 import { SpecificationheadOptionYesNoDialogComponent } from './admin/specificationhead-option/specificationhead-option-yes-no-dialog/specificationhead-option-yes-no-dialog.component';
+import { RoleComponent } from './admin/setting/users/role/role.component';
+import { RoleYesNoDialogComponent } from './admin/setting/users/role/role-yes-no-dialog/role-yes-no-dialog.component';
+import { RoleFormComponent } from './admin/setting/users/role/role-form/role-form.component';
  
 
  
@@ -118,6 +121,9 @@ import { SpecificationheadOptionYesNoDialogComponent } from './admin/specificati
     SpecificationheadOptionComponent,
     SpecificationheadOptionFormComponent,
     SpecificationheadOptionYesNoDialogComponent,
+    RoleComponent,
+    RoleYesNoDialogComponent,
+    RoleFormComponent,
  
 
     ],

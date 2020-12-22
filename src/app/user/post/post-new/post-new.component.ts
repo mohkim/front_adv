@@ -29,6 +29,12 @@ import { ProductSubCatagory } from 'src/app/modules/ProductSubCatagory';
 import { JSDocTagName } from '@angular/compiler/src/output/output_ast';
 import { } from '@angular/core';
 import { SpecificationHead } from 'src/app/modules/SpecificationHead';
+import { async } from '@angular/core/testing';
+import { Post } from 'src/app/modules/Post';
+import { TokenStorageService } from 'src/app/service/tokenStorage/token-storage.service';
+import { PostPayment } from 'src/app/modules/PostPayment';
+import { PostSpecification } from 'src/app/modules/PostSpecification';
+import { JsonpClientBackend } from '@angular/common/http';
 
 @Component({
   selector: 'app-post-new',
@@ -62,19 +68,43 @@ export class PostNewComponent implements OnInit {
   paymentform;
   packageform;
   uploadFileCount: number = 0;
+  //
+  post: Post
+  paymentObj: PostPayment
+  postSpecifcation = [];
+  //
+  price_readonly = true
+  price_required = false
+  negotiable_readonly = true
+  min_readonly = true
+  min_required = false
+  max_readonly = true
+  max_required = false
 
-  onSubmit() {
-    // if(this.files.length<this.selectSubCat.img_min &&)
-    // if payment method price slected  validate price 
-    //if  payment method  range selected validate  range
+  async submitPost() {
+
     if (this.files.length < this.selectSubCat.img_min) {
       this.openSnackBar('upload atleast ' + this.selectSubCat.img_min + ' images', 'Error');
-    }
+    } else {
+      console.log('Post data For send =>' + JSON.stringify(this.post));
+      this.formToObject()  // preppare post
+      const p = await this.postService
+        .savePost(this.post)
+        .toPromise();
 
-    this.payLoad = JSON.stringify(this.postForm.getRawValue());
-    // console.log("form data => "+JSON.stringify(this.postForm))
+      if (p) {
+        this.postService.savePostImages(p, this.files).subscribe(
+          (result) => { },
+          (error) => {
+            console.log(error.error.message);
+          }
+        );
+      } else {
+      }
+
+      this.router.navigate(['user/post']);
+    }
   }
-  // old code below
 
   constructor(
     public dialog: MatDialog,
@@ -84,10 +114,14 @@ export class PostNewComponent implements OnInit {
     //private currencyService: CurrencyService,
     private sanitizer: DomSanitizer,
     private postService: PostService,
-    private router: Router
+    private router: Router,
+    private tokenStorage: TokenStorageService
   ) { }
 
   ngOnInit() {
+    this.post = new Post(-1, "", null, null, null, "", null, null, null, "PENDING")
+    this.paymentObj = new PostPayment(-1, "PRICE", false, 0, 0, 0)
+
     this.isSubCatSelected = false;
 
     this.form = new FormGroup({}); // = this.qcs.toFormGroup(this.questions);
@@ -135,7 +169,7 @@ export class PostNewComponent implements OnInit {
 
   onInput(event) { }
 
-  onFileSelected(event) {
+  async onFileSelected(event) {
     var img_width
     let files1 = event.dataTransfer
       ? event.dataTransfer.files
@@ -147,8 +181,8 @@ export class PostNewComponent implements OnInit {
 
     for (let i = 0; i < files1.length; i++) {
       let file = files1[i];
-      
-  
+
+
       //if(!this.isFileSelected(file)){
       if (this.validate(file)) {
         //      if(this.isImage(file)) {
@@ -162,15 +196,17 @@ export class PostNewComponent implements OnInit {
         if (files1[i].size <= 2000000) {  // check the size
           if (files1[i].type === 'image/jpeg' || files1[i].type === 'image/png') { // image type
             if (this.files.length < this.selectSubCat.img_max) { //check number of image 
-              //  if(this.getImageWidth(files1[i])>600){
+              const imgWidth = await this.getImageWidths(files1[i]);
+              // console.log("return  result ==> "+imgWidth)
+              if (imgWidth > 799) {
                 this.files.push(files1[i]);
-              //  } else {
-              //   this.openSnackBar("image width should be atleast 800px", "message")
-              //   break
-              // }
-              this.getImageWidths(files1[i]).then(width => {
-                console.log("return result ==>"+width)
-              })
+
+              } else {
+                this.openSnackBar("image width should be atleast 800px", "message")
+                continue
+              }
+
+
 
             } else {
               this.openSnackBar("Maximum " + this.selectSubCat.img_max + " images are allowed", "message")
@@ -233,12 +269,13 @@ export class PostNewComponent implements OnInit {
     }
     return true;
   }
-   
-   getImageWidths(file){
+
+  getImageWidths(file) {
 
 
-    
-    return new Promise((resolve, reject) => {
+
+    return new Promise<number>((resolve, reject) => {
+
       const reader = new FileReader();
       reader.readAsDataURL(file);
       reader.onload = () => {
@@ -247,10 +284,7 @@ export class PostNewComponent implements OnInit {
         img.onload = () => {
           const height = img.naturalHeight;
           const width = img.naturalWidth;
-          // console.log('Width and Height', width, height);
-         return width;
-            
-         
+          resolve(width)
         };
       };
     })
@@ -263,32 +297,7 @@ export class PostNewComponent implements OnInit {
     return true;
   }
 
-  async submitPost() {
-    if (this.files.length == 0) {
-      this.openSnackBar('You have to upload atleaset one image !!!', 'Error');
-    } else if (this.files.length > 9) {
-      this.openSnackBar('Maximum Image allowed is 9 images ', 'Error');
-    } else {
-      console.log(
-        'Post data For send =>' + JSON.stringify(this.postForm.value)
-      );
-      const p = await this.postService
-        .savePost(this.postForm.value)
-        .toPromise();
 
-      if (p) {
-        this.postService.savePostImages(p, this.files).subscribe(
-          (result) => { },
-          (error) => {
-            console.log(error.error.message);
-          }
-        );
-      } else {
-      }
-
-      this.router.navigate(['user/post']);
-    }
-  }
   get productSubCatagory() {
     return this.postForm.get('productSubCatagory');
   }
@@ -332,6 +341,14 @@ export class PostNewComponent implements OnInit {
       this.postForm.removeControl('specification')
       this.postForm.addControl('specification', new FormGroup(group))
 
+      this.postForm.patchValue({
+        post_payment: {
+          negotiable: false,
+          price_amount: "",
+          min: "",
+          max: ""
+        }
+      })
       // end of  update form specification list
       this.isSubCatSelected = true; // make catagory slected true
     } else {
@@ -354,4 +371,109 @@ export class PostNewComponent implements OnInit {
       return false
     } else return true
   }
+  public formToObject() {
+
+
+    this.post.productSubCatagory = this.selectSubCat
+    this.post.description = this.postForm.value.description
+    this.post.salesLocation = this.postForm.value.salesLocation
+    this.post.detail = this.postForm.value.detail
+    this.post.post_status = "PENDING"
+    this.post.detail = this.postForm.value.detail
+
+    //  this.post.user=this.tokenStorage.getUser() 
+    // payment option  
+    this.post.post_payment = this.getPostPayment()
+
+    this.post.specificationList = this.getPostSpecification()
+
+    return this.post;
+  }
+
+  paymentOnChange() {
+    //  console.log("radio button changed to ==>"+JSON.stringify(this.postForm.value.post_payment))
+
+    if (this.postForm.value.post_payment.payment_option === "PRICE") {
+      this.price_readonly = false
+      this.price_required = true
+      this.negotiable_readonly = false
+      this.min_readonly = true
+      this.min_required = false
+      this.max_readonly = true
+      this.max_required = false
+      this.postForm.patchValue({
+        post_payment: {
+          // negotiable:false,
+          // price_amount:"",
+          min: "",
+          max: ""
+        }
+      })
+
+    } else if (this.postForm.value.post_payment.payment_option === "RANGE") {
+      this.postForm.patchValue({
+        post_payment: {
+          negotiable: false,
+          price_amount: "",
+          // min:"",
+          // max:""
+        }
+      })
+
+      this.price_readonly = true
+      this.price_required = false
+      this.negotiable_readonly = true
+      this.min_readonly = false
+      this.min_required = true
+      this.max_readonly = false
+      this.max_required = true
+    } else {
+      this.postForm.patchValue({
+        post_payment: {
+          negotiable: false,
+          price_amount: "",
+          min: "",
+          max: ""
+        }
+      })
+
+      this.price_readonly = true
+      this.price_required = false
+      this.negotiable_readonly = true
+      this.min_readonly = true
+      this.min_required = false
+      this.max_readonly = true
+      this.max_required = false
+    }
+  }
+
+  getPostPayment() {
+    this.paymentObj.option = this.postForm.value.post_payment.payment_option
+    this.paymentObj.price_amount = this.postForm.value.post_payment.price_amount
+    this.paymentObj.min = this.postForm.value.post_payment.min
+    this.paymentObj.max = this.postForm.value.post_payment.max
+    this.paymentObj.negotiable = this.postForm.value.post_payment.negotiable
+
+    return this.paymentObj
+  }
+
+  getPostSpecification() {
+    this.postSpecifcation.splice(0, this.postSpecifcation.length)
+    console.log("length of array =>" + this.selectSubCat.specificationList.length)
+    for (let index = 0; index < this.selectSubCat.specificationList.length; index++) {
+
+      // console.log("index = "+index+" data => "+ JSON.stringify(
+      //   this.postForm.value.specification[this.selectSubCat.specificationList[index].key]
+      // ))
+
+
+      this.postSpecifcation.push(new PostSpecification(null,
+        this.selectSubCat.specificationList[index],
+        this.postForm.value.specification[this.selectSubCat.specificationList[index].key]))
+
+    }
+    return this.postSpecifcation
+
+  }
+
 }

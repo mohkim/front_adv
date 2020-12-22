@@ -41,6 +41,7 @@ console.log("post id=> " + this.postid)
   const p= await   this.postService.getPostById(id).toPromise()
   
     this.post=p
+    console.log("post => "+JSON.stringify(this.post))
    
   this.loop()
 
@@ -79,5 +80,18 @@ this.timer=  setInterval(() => {
 
     });
   }
+  displayPrice(){
+   if(this.post.post_payment.option=== "PRICE"){ 
+     return  ""+this.post.post_payment.price_amount+" SSP"
+  }else if(this.post.post_payment.option=== "CONTACT"){
+     return  "CONTACT"
 
+  }
+  else if(this.post.post_payment.option=== "COMMISSION"){
+    return  "COMMISSION"
+
+  } else if(this.post.post_payment.option=== "RANGE"){
+     return ""+this.post.post_payment.min+"-"+this.post.post_payment.max
+  }
+}
 }

@@ -5,26 +5,27 @@ import {
   ActivatedRouteSnapshot,
    Router
 } from "@angular/router";
-import { TokenStorageService } from "../../service/tokenStorage/token-storage.service";
+import { TokenStorageService } from "../tokenStorage/token-storage.service";
 
 @Injectable({
   providedIn: "root"
 })
-export class RouteGuardService implements CanActivate {
+export class FinanceGuardService implements CanActivate {
   constructor( private router:Router,
     private tokenStorage: TokenStorageService
   ) {}
 
 canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot)  {  
     
-    if (this.tokenStorage.isUserLoggedIn()) {
      
-      return true;
-    }
-    else{
-      this.router.navigate(['login'])
-       
-      return false;
-    } 
+  if (this.tokenStorage.isRoleAvailable('ROLE_FINANCE')) {
+     
+    return true;
   }
+  else{
+    this.router.navigate(['error'])
+     
+    return false;
+  } 
+}
 }

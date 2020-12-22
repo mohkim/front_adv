@@ -60,6 +60,7 @@ export class UserService {
   getUserById(selectedid: number) {
     return this.http.get<User>(AUTH_API + 'user/' + selectedid, httpOptions);
   }
+
   getCurrentUser() {
     return this.http.get<User>(AUTH_API + 'user/' + this.getCurrentUserId(), httpOptions);
   }

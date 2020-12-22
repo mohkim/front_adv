@@ -1,47 +1,69 @@
-<div class="post_detail"  fxFlex="80" fxFlexOffset="15"  style="padding-top: 30px;" >
- 
-    <div class="coracel_section" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start start" fxLayoutGap="10px">
+<div class="post_detail" fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="10px" FX fxFlex="80"
+  fxFlexOffset="5" style="padding-top: 30px;">
 
-    <div class="corasel_image_list"  fxFlex="70"  fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="20px">
-       <mat-card  class="corasel_img" >
-        <div class="corasel_img"  >
 
-            <img  class="corasel_img" src="{{mainPicture_url}}"  (click)="imageClick2()"   > 
-             </div>
-       </mat-card>
-       <mat-card>
+
+  <div class="top_section" fxLayout="row wrap" fxLayoutAlign="start start" fxLayoutGap="50px">
+
+    <div class="corasel_image_list" fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="20px">
+      <!-- CORRACEL START  -->
+      <mat-card class="corasel_img">
+
+
+        <img src="{{mainPicture_url}}" style="width:300px;height: 300px;" (click)="imageClick2()">
+
+      </mat-card>
+      <mat-card style="max-width: 300px;">
         <div class="image_list">
-            <div class="image_list"  fxLayout="row wrap" fxLayoutAlign="start start" fxLayoutGap="10px"  >
-                <div class=""  *ngFor="let s of post.postImage ;let i=index" >
-          
-               
-                    <a  (click)="imageClick(i)"  ><img src="{{s.url}}"  style="width: 50px;height: 50px;" >  </a>
-                  </div>
-             </div>
-        </div>
-       </mat-card>
+          <div class="image_list" fxLayout="row wrap" fxLayoutAlign="start start" fxLayoutGap="10px">
+            <div class="" *ngFor="let s of post.postImage ;let i=index">
 
 
-        
-    </div>
-    
-   
-    </div>
-   
-     
-        <div class="price_detail"  > 
-     <h1>{{post.description}}</h1>  <h2>{{post.currency.shortName}}  {{post.price}}</h2>    
-             
+              <a (click)="imageClick(i)"><img src="{{s.url}}" style="width: 50px;height: 50px;"> </a>
+            </div>
+          </div>
         </div>
-     
-    
-    <div class="product_detail">Sales Location : {{post.user.salesLocation}}</div>
-   
-    <div class="description">description
-      <mat-card>
-          {{post.detail}}
       </mat-card>
 
-    </div>
+
+
+    </div><!-- CORRACEL end  -->
+    <div class="coracelsid" fxLayout="column" fxLayoutAlign="start start">
+      <!-- SECTION START -->
+      <div class="description">{{post.description}}</div>
+      <div class="price">{{displayPrice()}}</div>
+
+      <div fxLayout="row wrap" fxLayoutAlign="space-between none">
+
+        <div class="postdate">{{post.createdDate |date}}</div>
+        <div class="view">{{post.view}}</div>
+
+      </div>
+
+      <div class="specification" fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="10px">
+        <!-- specification start  -->
+        <div class="">Secification</div>
+        <div class="specifcation_detail">
+          <table *ngFor="let sp of post.specificationList">
+            <tr>
+              <td>{{sp.specification.key}}</td>
+              <td>{{sp.value}}</td>
+            </tr>
+
+
+          </table>
+        </div>
+      </div><!-- specification END -->
+
+    </div><!-- SECTION END -->
+
+
+
+
+  </div>
+
+  <div class="detal">{{post.detail}}</div>
+  <div class="contact"></div>
+  <div class="ralaited_obj"></div>
+
 </div>
- 

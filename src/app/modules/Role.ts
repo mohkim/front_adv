@@ -4,7 +4,7 @@ export class Role  {
 
 constructor( 
              public id:number,
-             public name :String
+             public name :"ROLE_USER"|"ROLE_MANAGER"|"ROLE_FINANCE"|"ROLE_ADMIN"
              ){
 
               

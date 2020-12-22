@@ -7,7 +7,7 @@
   <div fxFlex fxLayout fxLayoutAlign="flex-end flex-space" fxHide.xs >
  
     <a mat-button    routerLink="/" >Home</a>
-<button mat-button [matMenuTriggerFor]="adminMenu"    >Admin</button>     <!--*ngIf="adminRoleLogedIn()"-->
+<button mat-button [matMenuTriggerFor]="adminMenu" *ngIf="adminRoleLogedIn()"    >Admin</button>      
 <mat-menu #adminMenu="matMenu" xPosition="after"   >
   <a mat-button    routerLink="/admin/catagory" >Product Catagory </a> <br>
   <a mat-button    routerLink="/admin/users" >User Managment </a> <br>
@@ -27,7 +27,7 @@
 </mat-menu>
  
 <a mat-button    routerLink="/login" *ngIf="!userLogedIn()" >LogIn</a>
-<button mat-button [matMenuTriggerFor]="userMenu"  >User</button>  <!--*ngIf="userRoleLogedIn()"-->
+<button mat-button [matMenuTriggerFor]="userMenu"  *ngIf="userRoleLogedIn()" >User</button>  
 <mat-menu #userMenu="matMenu" yPosition="below"   > 
   <a mat-button    routerLink="user/post"> Post </a> <br>
    <a mat-button    routerLink="user/profile" >My Profile </a><br>

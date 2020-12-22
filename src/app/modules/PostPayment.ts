@@ -1,13 +1,10 @@
- export class PostPayment {
-
-    constructor(
-        public id: number,        
-        public contact: boolean,    
-        public negotiable: boolean,     
-        public commision: boolean,
-        public range: boolean, 
-        public  price_amount:number, 
-        public  min: number,       
-        public  max: number   
-          ) { } 
+export class PostPayment {
+  constructor(
+    public id: number,
+    public option: 'CONTACT' | 'PRICE' | 'COMMISSION' | 'RANGE',
+    public negotiable: boolean,
+    public price_amount: number,
+    public min: number,
+    public max: number
+  ) {}
 }

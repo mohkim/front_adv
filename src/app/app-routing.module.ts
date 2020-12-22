@@ -19,13 +19,16 @@ import { SettingComponent } from './admin/setting/setting.component';
 import { PostComponent } from './user/post/post.component';
 import { PostNewComponent } from './user/post/post-new/post-new.component';
  
-import { LayoutComponent } from './demo/layout/layout.component';
+ 
 import { PostdisplayComponent } from './common/post/postdisplay/postdisplay.component';
 import { ProfileComponent } from './user/profile/profile.component';
 import { ChangeProfileImageComponent } from './user/profile/change-profile-image/change-profile-image.component';
 import { EditpostComponent } from './user/post/editpost/editpost.component';
 import { SpecificationheadComponent } from './admin/specificationhead/specificationhead.component';
 import { SpecificationheadFormComponent } from './admin/specificationhead/specificationhead-form/specificationhead-form.component';
+import { LogInGuardService } from './service/router-guard/LogIn-guard.service';
+import { AdminGuardService } from './service/route-guard/admin-guard.service';
+import { UserGuardService } from './service/router-guard/user-guard.service';
  
  
  
@@ -37,7 +40,7 @@ const routes: Routes = [
   
   {path:"login",component:LoginComponent},
   {path:"home",component:HomeComponent},
-  {path:"logout",component:LogoutComponent},//,canActivate:[RouteGuardService]},
+  {path:"logout",component:LogoutComponent,canActivate:[LogInGuardService]},
   {path:"forgotpassword",component:ForgotpasswordComponent},
   {path:"activate/:token",component:ActivateComponent},
   {path:"register",component:RegisterComponent},
@@ -47,19 +50,19 @@ const routes: Routes = [
   {path:"display/adv/:id",component:PostdisplayComponent},
 
 // admin  pages
-  {path:"admin/catagory",component:ProductCatagoryComponent},
-   {path:"admin/users",component:UsersComponent},
-   {path:"admin/setting",component:SettingComponent},
-   {path:"admin/specification",component:SpecificationheadComponent},
-   {path:"admin/specificationform",component:SpecificationheadFormComponent},
-   {path:"admin/subcatagory",component:ProductSubCatagoryComponent},
+  {path:"admin/catagory",component:ProductCatagoryComponent,canActivate:[AdminGuardService]},
+   {path:"admin/users",component:UsersComponent,canActivate:[AdminGuardService]},
+   {path:"admin/setting",component:SettingComponent,canActivate:[AdminGuardService]},
+   {path:"admin/specification",component:SpecificationheadComponent,canActivate:[AdminGuardService]},
+   {path:"admin/specificationform",component:SpecificationheadFormComponent,canActivate:[AdminGuardService]},
+   {path:"admin/subcatagory",component:ProductSubCatagoryComponent,canActivate:[AdminGuardService]},
 
   //user pages
  
-  {path:"user/newpost",component:PostNewComponent},
-  {path:"user/editpost/:id",component:EditpostComponent},
-  {path:"user/profile",component:ProfileComponent},
-  {path:"user/post",component:PostComponent},
+  {path:"user/newpost",component:PostNewComponent,canActivate:[UserGuardService]},
+  {path:"user/editpost/:id",component:EditpostComponent,canActivate:[UserGuardService]},
+  {path:"user/profile",component:ProfileComponent,canActivate:[UserGuardService]},
+  {path:"user/post",component:PostComponent,canActivate:[UserGuardService]},
   {path:"demo",component:ChangeProfileImageComponent},
   {path:"**",component:ErrorComponent},
   
