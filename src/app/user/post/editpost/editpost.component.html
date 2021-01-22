@@ -1,165 +1,249 @@
- <button mat-button (click)="showProperty()">Show </button>
-  <mat-horizontal-stepper [linear]="false"   #stepper>
-    <form   [formGroup]="postForm">
+<div fxFlexOffset="50px">
+  <!-- (ngSubmit)="submitPost1()" -->
+  <form  [formGroup]="postForm">
+    <div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="20px">
+      <!-- id field -->
+      <mat-form-field  style="display: none;" >
+        <mat-label>Id</mat-label>
+        <input matInput placeholder="Id"   type="text" formControlName="id">
+      </mat-form-field>
 
-    <mat-step   [completed]="!productSubCatagory.invalid">
- 
-        <ng-template matStepLabel>Select Catagory ?</ng-template>
-        <!-- // product catagory  -->
-        <mat-form-field appearance="fill">
-          <mat-label>Catagory</mat-label>
-          <mat-select formControlName="productSubCatagory" (selectionChange)="onCatagoryChange($event)"  required>
-            <mat-option> </mat-option>
-            <mat-optgroup  *ngFor="let catagory of catagorys" [label]="catagory.name" 
-             >
-              <mat-option   *ngFor="let subcat of catagory.productSubcatagory"  [value]="subcat">
-                {{subcat.name}}
-              </mat-option>
-            </mat-optgroup>
-          </mat-select>
-        </mat-form-field>
-        <div>
-            
-          <button mat-button  [disabled]="productSubCatagory.invalid"  matStepperNext>Next</button>
-        </div>
-      <p>* If you chage  catagory  specification will be resetted </p>
-    </mat-step>
+      <mat-form-field appearance="fill">
+        <mat-label>Catagory</mat-label>
+        <mat-select formControlName="productSubCatagory" (selectionChange)="onCatagoryChange($event)" required>
+          <mat-option value=""> </mat-option>
+          <mat-optgroup *ngFor="let catagory of catagorys" [label]="catagory.name">
+            <mat-option *ngFor="let subcat of catagory.productSubcatagory" [value]="subcat">
+              {{subcat.name}}
+            </mat-option>
+          </mat-optgroup>
+        </mat-select>
+      </mat-form-field>
 
-    <mat-step  [completed]="!description.invalid">
-      
-        <ng-template matStepLabel>Description</ng-template>
-        <!-- //product Description -->
+      <!-- //sale Location -->
+      <mat-form-field appearance="fill">
+        <mat-label>Sales Location</mat-label>
+        <mat-select formControlName="salesLocation" required>
+          <mat-option *ngFor="let sal of salesLocations" [value]="sal">
+            {{sal.city}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <!-- Product or Service description -->
+      <div class=""  *ngIf="isSubCatSelected" >
+
         <mat-form-field>
           <mat-label>Product or Service description</mat-label>
-          <input matInput placeholder=" "   formControlName="description" required>
+          <input matInput placeholder=" " required formControlName="description" required>
         </mat-form-field>
-        <div>
-          <button mat-button matStepperPrevious>Back</button>
-          <button mat-button matStepperNext   [disabled]="description.invalid"  >Next</button>
+      </div>
+
+      <!-- specification  start  -->
+      <div class="" *ngIf="isSubCatSelected" formGroupName="specification">
+
+        <div *ngFor="let form_elem of selectSubCat.specificationList">
+          <div [ngSwitch]="form_elem.controlType">
+              <!-- text box section -->
+              <mat-form-field  *ngSwitchCase="'textbox'">
+                <mat-label>{{form_elem.label}}</mat-label>
+                <input matInput [placeholder]="form_elem.placeholder" [pattern]="form_elem.pattern" formControlName="{{form_elem.key}}"  [value]="form_elem.value" [id]="form_elem.key" [type]="form_elem.type">
+                <!-- <div color="accent" *ngIf="!isValid">{{question.label}} is required</div> -->
+              </mat-form-field>
+             <!-- drop down selection  section -->
+             <mat-form-field   *ngSwitchCase="'dropdown'">
+              <mat-label>{{form_elem.label}}</mat-label>
+              <mat-select  [formControlName]="form_elem.key"   [placeholder]="form_elem.placeholder"  [id]="form_elem.key"  >
+                <mat-option *ngFor="let opt of form_elem.option"  [value]="opt.item" >
+                  {{opt.item}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <!-- textarea section  -->
+            <mat-form-field *ngSwitchCase="'textarea'">
+              <mat-label>{{form_elem.label}}</mat-label>
+              <textarea matInput  [placeholder]="form_elem.placeholder"   formControlName="{{form_elem.key}}" 
+              [id]="form_elem.key" [value]="form_elem.value" ></textarea>
+            </mat-form-field>
+            
+          </div>
         </div>
-    
-    </mat-step>
+      </div>
 
-   
+        <!-- specification  end -->
+        <!-- detail -->
+        <div class="" *ngIf="isSubCatSelected">
+          <mat-form-field>
+            <mat-label>Product or Service detail</mat-label>
+             
+            <textarea matInput  formControlName="detail" required width="50"   height="50" ></textarea>
+          </mat-form-field>
+        </div>
+       
 
-  <mat-step  [completed]="!detail.invalid">
-      
-    <ng-template matStepLabel>Detail</ng-template>
-   
-      <!-- detail -->
-      <mat-form-field>
-        <mat-label>Product or Service detail</mat-label>
-        <input matInput placeholder=""  required   formControlName="detail" required>
-      </mat-form-field>
-    <div>
-      <button mat-button matStepperPrevious>Back</button>
-      <button mat-button matStepperNext   [disabled]="detail.invalid"  >Next</button>
+        <!-- //price -->
+        <!-- <mat-form-field>
+        <mat-label>Product Price or Type of Service</mat-label>
+        <input matInput placeholder="Price"   formControlName="price" required>
+      </mat-form-field> -->
+        <!-- //currency -->
+        <!-- <mat-form-field appearance="fill">
+          <mat-label>Currency</mat-label>
+          <mat-select  formControlName="currency" required>
+            <mat-option *ngFor="let cur of currency1" [value]="cur">
+              {{cur.shortName}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field> -->
+        <!-- file upload -->
+        <div class="old_image_container" *ngIf="isSubCatSelected" >
+
+
+          <div fxLayout="row wrap"   fxLayoutGap="10px">
+            <div *ngFor="let imge of image_old ; let i=index "     >
+              <div  class="img-wraps"  >
+                <span  class="closes" title="Delete" (click)="deleteOldImage(imge)"  >&times; </span>
+                <img     [src]="imge.url" style="height: 100px; width:100px" class="img-responsive" >
+  
+              
+              </div>
+       </div>
+           </div>
+        
+        <!-- <div class="old_image_frame"   fxLayoutGap="20px" *ngFor="let imge of image_old">
+          <div class="" fxLayout="row wrap" fxLayoutAlign="start start">
+  
+          
+          <div class="one_image_frame" style="height: 150px; border: 2px solid black;" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px">
+             <img [src]="imge.url" alt="" height="80">      
+             <button mat-button  (click)="deleteOldImage(imge)" >
+                 <mat-icon class="mat-18">delete</mat-icon>
+             </button>
+           </div>
+          </div>
+     </div> -->
     </div>
+          
+          
 
-</mat-step>
-<mat-step  [completed]="!specification.invalid">
-      
-  <ng-template matStepLabel>Specification</ng-template>
- 
-   <!-- // product description ckEditor-->
-   <div class="">
-    <ckeditor matInput   formControlName="specification" name="specification"  required ></ckeditor>
-   </div>
-  <div>
-    <button mat-button matStepperPrevious>Back</button>
-    <button mat-button matStepperNext   [disabled]="specification.invalid"  >Next</button>
-  </div>
+        <div class="" *ngIf="isSubCatSelected"  fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="10px">
+          <button mat-raised-button color="primary" (click)="onClick()">
+            <mat-icon>add</mat-icon>
+            {{chooseLabel}}
+          </button>
 
-</mat-step>
+          <input #fileUpload type="file" class="input_fileupload--hidden" (input)="onInput($event)"
+            (change)="onFileSelected($event)" formControlName="inputFileName" accept=".png, .jpg, .jpeg" multiple>
 
-<mat-step  [completed]="!price.invalid&&!currency.invalid">
-      
-  <ng-template matStepLabel>Price</ng-template>
- 
-   <!-- //price -->
-   <mat-form-field>
-    <mat-label>Product Price or Type of Service</mat-label>
-    <input matInput placeholder="Price"   formControlName="price" required>
-  </mat-form-field>
-    <!-- //currency -->
-    <mat-form-field appearance="fill">
-      <mat-label>Currency</mat-label>
-      <mat-select  formControlName="currency" required>
-        <mat-option *ngFor="let cur of currency1" [value]="cur">
-          {{cur.shortName}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-  <div>
-    <button mat-button matStepperPrevious>Back</button>
-    <button mat-button matStepperNext   [disabled]="price.invalid&&currency.invalid"  >Next</button>
-  </div>
-
-</mat-step>
-
-<mat-step  [completed]="!inputFileName1.invalid">
-      
-  <ng-template matStepLabel>Image Upload </ng-template>
- 
-    <!-- File Upload -->
-    <div class="">
-      <div class="old_image_frame"  fxLayoutGap="20px" *ngFor="let imge of image_old">
-        <div class="" fxLayout="row wrap" fxLayoutAlign="start start">
+             <div fxLayout="row wrap"   fxLayoutGap="10px">
+              <div *ngFor="let f of files ; let i=index "     >
+                <div  class="img-wraps"  >
+                  <span  class="closes" title="Delete" (click)="removeFile($event,f)"  >&times; </span>
+                  <img     [src]="imageSrc[i]" style="height: 100px; width:100px" class="img-responsive" >
+    
+                
+                </div>
+    
+              </div>
+             </div>
+           
+        </div>
 
         
-        <div class="one_image_frame" style="height: 150px; border: 2px solid black;" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px">
-           <img [src]="imge.url" alt="" height="80">      
-           <button mat-button  (click)="deleteOldImage(imge)" >
-               <mat-icon class="mat-18">delete</mat-icon>
-           </button>
-         </div>
+
+
+        <!-- payment   options  -->
+
+        <div class="" *ngIf="isSubCatSelected" formGroupName="post_payment">
+          <mat-radio-group formControlName="payment_option"   [required]="payment_required()"  (change)="paymentOnChange()">
+            <div class="" fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="10px">
+
+              <div fxLayout="row" *ngIf="selectSubCat.contact" fxLayoutAlign="space-between" fxLayoutGap="20px">
+
+                <mat-radio-button value="CONTACT">contact for Price</mat-radio-button>
+
+
+
+              </div>
+              <div fxLayout="row" *ngIf="selectSubCat.price" fxLayoutAlign="space-between" fxLayoutGap="20px">
+                <mat-radio-button value="PRICE" style="padding-top:20px">Price</mat-radio-button>
+                <div class="" fxLayout="column" fxLayoutAlign="start start">
+                  <mat-form-field class="example-full-width">
+                    <mat-label>Price</mat-label>
+                    <input matInput placeholder="selling Price" pattern="[0-9]+" formControlName="price_amount"  [readonly]="price_readonly" [required]="price_required" >
+                  </mat-form-field>
+                  <div class="">
+                    <mat-checkbox formControlName="negotiable"   [disabled]="negotiable_readonly">Negotiable</mat-checkbox>
+                  </div>
+                </div>
+
+              </div>
+              <div fxLayout="row" *ngIf="selectSubCat.commision" fxLayoutAlign="space-between" fxLayoutGap="20px">
+                <mat-radio-button value="COMMISSION"> Commition</mat-radio-button>
+
+              </div>
+              <div fxLayout="row" *ngIf="selectSubCat.range" fxLayoutAlign="space-between" fxLayoutGap="20px">
+                <mat-radio-button value="RANGE" style="padding-top: 10px;">Range</mat-radio-button>
+                <div class="" fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="20px">
+                  <mat-form-field>
+                    <mat-label>Min</mat-label>
+                    <input matInput placeholder="Minimum" pattern="[0-9]+" formControlName="min" [readonly]="min_readonly" [required]="min_required">
+                    <!--  -->
+                  </mat-form-field>
+                  <mat-form-field>
+                    <mat-label>Max</mat-label>
+                    <input matInput placeholder="Max" pattern="[0-9]+" formControlName="max" [readonly]="max_readonly" [required]="max_required">
+
+                  </mat-form-field>
+                </div>
+              </div>
+
+
+            </div>
+          </mat-radio-group>
         </div>
-   </div>
 
+        <!-- service  type and charge options  -->
+        <div class="" *ngIf="isSubCatSelected">
+          <mat-radio-group aria-label="Select package" formControlName="package_fee"  [required]="fee_required()">
+            <div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="10px">
+             <!-- free package -->
+              <div  *ngIf="selectSubCat.fee_free_enable" class="" style="border: solid black  1px;" fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="10px">
+                <mat-radio-button value="0">Free -</mat-radio-button>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p><br>
+                <h3><b>{{selectSubCat.fee_free}}</b></h3>
+              </div>
+               <!--week  Package -->
+               <div *ngIf="selectSubCat.fee_week_enable"    class="" style="border: solid black  1px;" fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="10px">
+                <mat-radio-button value="1">week -</mat-radio-button>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.  </p><br>
+                <h3><b>{{selectSubCat.fee_week}}</b></h3>
 
+              </div>
+            <!--month  Package -->
+            <div *ngIf="selectSubCat.fee_month_enable"  class="" style="border: solid black  1px;" fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="10px">
+              <mat-radio-button value="2">month - </mat-radio-button>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p><br>
+              <h3><b>{{selectSubCat.fee_month}}</b></h3>
+            </div>
+             <!--Year  Package -->
+             <div  *ngIf="selectSubCat.fee_year_enable"  class="" style="border: solid black  1px;" fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="10px">
+              <mat-radio-button value="3">year -</mat-radio-button>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p><br>
+              <h3><b>{{selectSubCat.fee_year}}</b></h3>
+            </div>
+            </div>
 
-
-      <button mat-raised-button color="primary" (click)="onClick($event)">
-        <mat-icon>add</mat-icon>
-        {{chooseLabel}}
-      </button>
-      
-      <input #fileUpload type="file" class="input_fileupload--hidden" (input)="onInput($event)"
-        (change)="onFileSelected($event)"  formControl="inputFileName" accept="image/x-png,image/jpeg" multiple>
-      
-      
-      <div *ngFor="let f of files ; let i=index " fxLayout fxLayoutAlign="start start" fxLayoutGap="10px">
-        <div class="">
-          <img [src]="imageSrc[i]"   style="height: 50px; width:50px">
-           
-          <button mat-icon-button color="primary" [attr.title]="deleteButtonLabel?deleteButtonLabel:null"
-            (click)="removeFile($event,f)">
-            <mat-icon>{{deleteButtonIcon}}</mat-icon>
-          </button>
+          </mat-radio-group>
         </div>
-      
+
+        <!-- submit  -->
+        <div class="form-row">
+          <button mat-button (click)="submitPost1()" [disabled]="!postForm.valid">Action</button>
+          <!-- <button  mat-button [disabled]="!postForm.valid">Save</button> -->
+        </div>
       </div>
+  </form>
 
-     
- 
-    <button mat-button matStepperPrevious>Back</button>
-    <button mat-button matStepperNext   [disabled]="inputFileName1.invalid"  >Next</button>
-  </div>
-
-</mat-step>
-
-
-    <mat-step>
-      <ng-template matStepLabel>Done</ng-template>
-      <p>Successfully Completed the Form . Click Submit to save.</p>
-      <div>
-        <button mat-button matStepperPrevious>Back</button>
-     <!-- //   <button mat-button (click)="stepper.reset()">Reset</button> -->
-     <button mat-button  (click)="submitPost()"  [disabled]="!postForm.valid"   color="accent">Submit</button>
-      </div>
-    </mat-step>
-</form>
-  </mat-horizontal-stepper>
-
-<!--   ///---------------------------------------------- -->
- 
+  
+</div>

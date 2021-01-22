@@ -41,7 +41,7 @@ console.log("post id=> " + this.postid)
   const p= await   this.postService.getPostById(id).toPromise()
   
     this.post=p
-    console.log("post => "+JSON.stringify(this.post))
+    // console.log("post => "+JSON.stringify(this.post))
    
   this.loop()
 
@@ -49,9 +49,9 @@ console.log("post id=> " + this.postid)
   loop (){
     this.mainPicture_url = this.post.postImage[0].url
     this.loopsize = this.post.postImage.length
-    console.log("post loop size=> " + this.loopsize) 
+    // console.log("post loop size=> " + this.loopsize) 
 this.timer=  setInterval(() => {
-      console.log("progress=> " + this.progress)
+      // console.log("progress=> " + this.progress)
       this.progress = this.progress + 1;
       this.progress = this.progress % this.loopsize
       this.mainPicture_url = this.post.postImage[this.progress].url

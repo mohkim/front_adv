@@ -8,11 +8,8 @@ constructor(
              public address:String,
              public  city:String,
              public  state:String,
-            
              public  user?:User
-             ){        
-}
+             ){       
+           }
  
- 
-  
 }

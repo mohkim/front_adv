@@ -1,0 +1,260 @@
+{
+    "id": 2,
+    "user": {
+        "id": 1,
+        "username": "Kemal Mohammed",
+        "email": "dawa.age2020@gmail.com",
+        "password": "$2a$10$kKj7M60Zz5t77DQbkLUP.eW8xMDXVZuzTr.1z7j/Z3j6dl22.hIOu",
+        "fullName": "Kemal Mohammed",
+        "roles": [
+            {
+                "id": 1,
+                "name": "ROLE_USER"
+            },
+            {
+                "id": 4,
+                "name": "ROLE_ADMIN"
+            },
+            {
+                "id": 2,
+                "name": "ROLE_MANAGER"
+            },
+            {
+                "id": 3,
+                "name": "ROLE_FINANCE"
+            }
+        ],
+        "active": true,
+        "disabledbyAdmin": false,
+        "createdDate": "2020-11-18T00:12:37.764",
+        "updatedTime": "2021-01-16T14:54:48.414",
+        "description": "yrtytyr",
+        "image_name": "20210116145448182_1_.jpg",
+        "image_url": "http://localhost:8080/adv/admin/user/1/image/20210116145448182_1_.jpg"
+    },
+    "view": 0,
+    "description": "5465654",
+    "detail": "456546",
+    "salesLocation": {
+        "id": 2,
+        "city": "Rumbek",
+        "state": "Jongoli",
+        "country": "South Sudan"
+    },
+    "productSubCatagory": {
+        "id": 2,
+        "name": "Laptop",
+        "type": "PRODUCT",
+        "specificationList": [
+            {
+                "id": 3,
+                "value": "",
+                "key": "Model",
+                "label": "Model",
+                "required": true,
+                "order": null,
+                "controlType": "dropdown",
+                "type": "text",
+                "pattern": "",
+                "placeholder": "Model",
+                "option": [
+                    {
+                        "id": 3,
+                        "item": "Dell"
+                    },
+                    {
+                        "id": 4,
+                        "item": "HP"
+                    },
+                    {
+                        "id": 5,
+                        "item": "Toshiba"
+                    }
+                ]
+            },
+            {
+                "id": 5,
+                "value": "",
+                "key": "Condition1",
+                "label": "Condition",
+                "required": true,
+                "order": null,
+                "controlType": "dropdown",
+                "type": "text",
+                "pattern": "",
+                "placeholder": "New or Second hand",
+                "option": [
+                    {
+                        "id": 6,
+                        "item": "New"
+                    },
+                    {
+                        "id": 7,
+                        "item": "Used"
+                    }
+                ]
+            },
+            {
+                "id": 4,
+                "value": "",
+                "key": "Year",
+                "label": "Year",
+                "required": true,
+                "order": null,
+                "controlType": "textbox",
+                "type": "text",
+                "pattern": "[0-9]+",
+                "placeholder": "Year of Made",
+                "option": []
+            }
+        ],
+        "contact": true,
+        "price": true,
+        "commision": true,
+        "range": true,
+        "fee_free_enable": false,
+        "fee_free": 0,
+        "fee_week_enable": true,
+        "fee_week": 0,
+        "fee_month_enable": true,
+        "fee_month": 100,
+        "fee_year_enable": true,
+        "fee_year": 1000,
+        "img_min": 1,
+        "img_max": 20
+    },
+    "postImage": [
+        {
+            "id": 1,
+            "name": "20201231082748739_1_2_0_.jpg",
+            "url": "http://localhost:8080/adv/post/2/image/20201231082748739_1_2_0_.jpg"
+        }
+    ],
+    "specificationList": [
+        {
+            "id": 4,
+            "specification": {
+                "id": 3,
+                "value": "",
+                "key": "Model",
+                "label": "Model",
+                "required": true,
+                "order": null,
+                "controlType": "dropdown",
+                "type": "text",
+                "pattern": "",
+                "placeholder": "Model",
+                "option": [
+                    {
+                        "id": 3,
+                        "item": "Dell"
+                    },
+                    {
+                        "id": 4,
+                        "item": "HP"
+                    },
+                    {
+                        "id": 5,
+                        "item": "Toshiba"
+                    }
+                ]
+            },
+            "value": "HP"
+        },
+        {
+            "id": 5,
+            "specification": {
+                "id": 5,
+                "value": "",
+                "key": "Condition1",
+                "label": "Condition",
+                "required": true,
+                "order": null,
+                "controlType": "dropdown",
+                "type": "text",
+                "pattern": "",
+                "placeholder": "New or Second hand",
+                "option": [
+                    {
+                        "id": 6,
+                        "item": "New"
+                    },
+                    {
+                        "id": 7,
+                        "item": "Used"
+                    }
+                ]
+            },
+            "value": "Used"
+        },
+        {
+            "id": 6,
+            "specification": {
+                "id": 4,
+                "value": "",
+                "key": "Year",
+                "label": "Year",
+                "required": true,
+                "order": null,
+                "controlType": "textbox",
+                "type": "text",
+                "pattern": "[0-9]+",
+                "placeholder": "Year of Made",
+                "option": []
+            },
+            "value": "45456"
+        }
+    ],
+    "post_payment": {
+        "id": 2,
+        "option": "COMMISSION",
+        "negotiable": false,
+        "price_amount": null,
+        "min": null,
+        "max": null
+    },
+    "post_receipt": null,
+    "post_status": {
+        "id": 2,
+        "status": "ACTIVE",
+        "apply_date": "2020-12-31T08:27:48.515",
+        "rejectedByUser": null,
+        "rejectionReason": null,
+        "rejected_date": null,
+        "approvedByUser": {
+            "id": 1,
+            "username": "Kemal Mohammed",
+            "email": "dawa.age2020@gmail.com",
+            "password": "$2a$10$kKj7M60Zz5t77DQbkLUP.eW8xMDXVZuzTr.1z7j/Z3j6dl22.hIOu",
+            "fullName": "Kemal Mohammed",
+            "roles": [
+                {
+                    "id": 1,
+                    "name": "ROLE_USER"
+                },
+                {
+                    "id": 4,
+                    "name": "ROLE_ADMIN"
+                },
+                {
+                    "id": 2,
+                    "name": "ROLE_MANAGER"
+                },
+                {
+                    "id": 3,
+                    "name": "ROLE_FINANCE"
+                }
+            ],
+            "active": true,
+            "disabledbyAdmin": false,
+            "createdDate": "2020-11-18T00:12:37.764",
+            "updatedTime": "2021-01-16T14:54:48.414",
+            "description": "yrtytyr",
+            "image_name": "20210116145448182_1_.jpg",
+            "image_url": "http://localhost:8080/adv/admin/user/1/image/20210116145448182_1_.jpg"
+        },
+        "approved_date": "2021-01-08T15:24:42.82",
+        "diasabledByUser": null,
+        "disabled_date": null
+    }
+}

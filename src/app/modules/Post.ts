@@ -1,8 +1,10 @@
 import { PostPayment } from "./PostPayment";
+import { PostRecipt } from "./PostRecipt";
 import { PostSpecification } from "./PostSpecification";
+import { Post_status } from "./Post_status";
 
 
-
+// :"PENDING"|"ACTIVE"|"ERROR"|"EXPIRED",
 export class Post {
 
     constructor(
@@ -15,10 +17,11 @@ export class Post {
         public postImage: any,      // images of product if there 
         public user:any,              //seller id       
         public post_payment: PostPayment,
-        public  post_status:"PENDING"|"ACTIVE"|"ERROR"|"EXPIRED",
-        public  createdDate?:Date,
-        public  updatedDate?:Date,
-        public  view?:number 
+        
+        public  view:number ,
+        public post_receipt?:PostRecipt,
+        public  post_status?:Post_status,
+        
     ) { }
 
   }

@@ -54,6 +54,11 @@ export class UserService {
     
     return this.http.get<Message>(`${AUTH_API}user/${id}/image`, httpOptions);
   }
+  getUserImageUrlById(id) {
+     
+    
+    return this.http.get<Message>(`${AUTH_API}user/${id}/image`, httpOptions);
+  }
   getallUser() {
     return this.http.get<User[]>(AUTH_API + 'user', httpOptions);
   }

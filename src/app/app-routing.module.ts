@@ -27,8 +27,16 @@ import { EditpostComponent } from './user/post/editpost/editpost.component';
 import { SpecificationheadComponent } from './admin/specificationhead/specificationhead.component';
 import { SpecificationheadFormComponent } from './admin/specificationhead/specificationhead-form/specificationhead-form.component';
 import { LogInGuardService } from './service/router-guard/LogIn-guard.service';
-import { AdminGuardService } from './service/route-guard/admin-guard.service';
+
 import { UserGuardService } from './service/router-guard/user-guard.service';
+import { AdmGuardService } from './service/router-guard/adm-guard.service';
+import { ManagerGuardService } from './service/router-guard/manager-guard.service';
+import { MgPostListComponent } from './managment/mg-post-list/mg-post-list.component';
+import { MgPostDisplayComponent } from './managment/display/mg-post-display/mg-post-display.component';
+ 
+import { AdminPostDisplayComponent } from './admin/post_managment/postlist/admin-post-display/admin-post-display.component';
+import { AdminPostlistComponent } from './admin/post_managment/admin-postlist/admin-postlist.component';
+import { UserPostDisplayComponent } from './user/post/user-post-display/user-post-display.component';
  
  
  
@@ -50,20 +58,29 @@ const routes: Routes = [
   {path:"display/adv/:id",component:PostdisplayComponent},
 
 // admin  pages
-  {path:"admin/catagory",component:ProductCatagoryComponent,canActivate:[AdminGuardService]},
-   {path:"admin/users",component:UsersComponent,canActivate:[AdminGuardService]},
-   {path:"admin/setting",component:SettingComponent,canActivate:[AdminGuardService]},
-   {path:"admin/specification",component:SpecificationheadComponent,canActivate:[AdminGuardService]},
-   {path:"admin/specificationform",component:SpecificationheadFormComponent,canActivate:[AdminGuardService]},
-   {path:"admin/subcatagory",component:ProductSubCatagoryComponent,canActivate:[AdminGuardService]},
+  {path:"admin/catagory",component:ProductCatagoryComponent,canActivate:[AdmGuardService]},
+   {path:"admin/users",component:UsersComponent,canActivate:[AdmGuardService]},
+   {path:"admin/setting",component:SettingComponent,canActivate:[AdmGuardService]},
+   {path:"admin/specification",component:SpecificationheadComponent,canActivate:[AdmGuardService]},
+   {path:"admin/specificationform",component:SpecificationheadFormComponent,canActivate:[AdmGuardService]},
+   {path:"admin/subcatagory",component:ProductSubCatagoryComponent,canActivate:[AdmGuardService]},
+   {path:"admin/post",component:AdminPostlistComponent,canActivate:[AdmGuardService]},
+    {path:"admin/postdisplay",component:AdminPostDisplayComponent,canActivate:[AdmGuardService]},
+
+// managment pages
+{path:"managment/post",component:MgPostListComponent,canActivate:[ManagerGuardService]},
+{path:"managment/postdisplay",component:MgPostDisplayComponent,canActivate:[ManagerGuardService]},
+ 
 
   //user pages
  
   {path:"user/newpost",component:PostNewComponent,canActivate:[UserGuardService]},
-  {path:"user/editpost/:id",component:EditpostComponent,canActivate:[UserGuardService]},
+  {path:"user/editpost",component:EditpostComponent,canActivate:[UserGuardService]},
+  {path:"user/postdisplay",component:UserPostDisplayComponent,canActivate:[UserGuardService]},
   {path:"user/profile",component:ProfileComponent,canActivate:[UserGuardService]},
   {path:"user/post",component:PostComponent,canActivate:[UserGuardService]},
   {path:"demo",component:ChangeProfileImageComponent},
+  {path:"error",component:ErrorComponent},
   {path:"**",component:ErrorComponent},
   
   

@@ -1,2 +1,11 @@
- 
- 
+ .price{
+    color: red;
+ }
+ .view span{
+    margin-top: 0px;
+    
+ }
+
+ mat-tab{
+     height:300px;
+ }

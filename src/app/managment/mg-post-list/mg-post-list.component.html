@@ -1,0 +1,59 @@
+<section fxLayout="row" fxLayoutAlign="start center" style="margin: 20px 20px 20px 20px;">
+
+  <mat-card fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="0px"  style="width: 100%;padding-top: 5px;" class="mat-elevation-z8"  >  
+   
+  <div class=""  fxLayout="row" fxLayoutAlign="center end" style="width: 100%;" >
+    <mat-card-header   >
+          <mat-card-title>{{title}} POST</mat-card-title>
+        </mat-card-header>
+    </div>
+        <mat-card-content>
+          <div fxLayoutAlign="space-between">
+            <mat-form-field appearance="fill">
+              <mat-label>Post Status</mat-label>
+              <mat-select  (selectionChange)="onStatusChange($event)" >
+                <mat-option value="PENDING">Pending</mat-option>
+                <mat-option value="ERROR">Error</mat-option>
+                <mat-option value="ACTIVE">Active</mat-option>
+                 
+              </mat-select>
+            </mat-form-field>  
+              
+            </div>
+            
+            <table  mat-table [dataSource]="dataSource" matSort  fxFlexFill >
+ 
+              <ng-container matColumnDef="image">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Image</mat-header-cell>
+                <mat-cell *matCellDef="let element"><img src="{{getImageUrl(element)}}"  alt=""> </mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="Subcatagory">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> Catagory</mat-header-cell>
+                  <mat-cell *matCellDef="let element">{{ element.productSubCatagory.name }}</mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="Owner">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header>Owner</mat-header-cell>
+                  <mat-cell *matCellDef="let element">{{ element.user.fullName}}</mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="date">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> {{getDateTitle()}}</mat-header-cell>
+                    <mat-cell *matCellDef="let element">{{ getDate(element) |date}}</mat-cell>
+                  </ng-container>
+                <ng-container matColumnDef="detail">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header>Detail</mat-header-cell>
+                  <mat-cell *matCellDef="let element" > <a  routerLink="/managment/postdisplay" [queryParams]="{pid:element.id}">Detail</a></mat-cell>   
+                  <!-- routerLink="/admin/subcatagory" [queryParams]="{cid:element.id}"  -->
+               
+                </ng-container>
+              <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+              <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+            </table>
+            <mat-paginator [pageSize]="10" [pageSizeOptions]="[10, 25, 50, 100]">
+            </mat-paginator>
+        </mat-card-content>
+        
+       
+        <mat-card-footer>
+           </mat-card-footer>
+    </mat-card>
+  </section>

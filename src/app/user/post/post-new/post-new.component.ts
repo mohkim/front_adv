@@ -35,6 +35,8 @@ import { TokenStorageService } from 'src/app/service/tokenStorage/token-storage.
 import { PostPayment } from 'src/app/modules/PostPayment';
 import { PostSpecification } from 'src/app/modules/PostSpecification';
 import { JsonpClientBackend } from '@angular/common/http';
+import { Post_status } from 'src/app/modules/Post_status';
+import { UserPostService } from 'src/app/service/post/User_post.service';
 
 @Component({
   selector: 'app-post-new',
@@ -113,13 +115,13 @@ export class PostNewComponent implements OnInit {
     private salesLocationService: LocationService,
     //private currencyService: CurrencyService,
     private sanitizer: DomSanitizer,
-    private postService: PostService,
+    private postService: UserPostService,
     private router: Router,
     private tokenStorage: TokenStorageService
   ) { }
 
   ngOnInit() {
-    this.post = new Post(-1, "", null, null, null, "", null, null, null, "PENDING")
+    this.post = new Post(-1,"",null,null,null,"",null,null,null,null,null,null)
     this.paymentObj = new PostPayment(-1, "PRICE", false, 0, 0, 0)
 
     this.isSubCatSelected = false;
@@ -378,10 +380,9 @@ export class PostNewComponent implements OnInit {
     this.post.description = this.postForm.value.description
     this.post.salesLocation = this.postForm.value.salesLocation
     this.post.detail = this.postForm.value.detail
-    this.post.post_status = "PENDING"
-    this.post.detail = this.postForm.value.detail
-
-    //  this.post.user=this.tokenStorage.getUser() 
+   this.post.post_status = this.getPostStatus()
+   this.post.view=0
+   
     // payment option  
     this.post.post_payment = this.getPostPayment()
 
@@ -474,6 +475,9 @@ export class PostNewComponent implements OnInit {
     }
     return this.postSpecifcation
 
+  }
+  getPostStatus(){
+    return  new Post_status(-1,"PENDING",null,null,null,null,null,null,null)
   }
 
 }

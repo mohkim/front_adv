@@ -1,0 +1,83 @@
+<div class="post_detail" fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="10px" FX fxFlex="80"
+  fxFlexOffset="5" style="padding-top: 30px;">
+
+  <mat-card  *ngIf="display_error_message">
+    <h2>Error Message From  Evaluator</h2>
+     <p> {{error_message}}</p>
+  </mat-card>
+
+  <div class="top_section" fxLayout="row wrap" fxLayoutAlign="start start" fxLayoutGap="50px">
+
+    <div class="corasel_image_list" fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="20px">
+      <!-- CORRACEL START  -->
+      
+
+
+        <img src="{{mainPicture_url}}" style="width:300px;height: 300px;" (click)="imageClick2()">
+
+      
+      <div style="max-width: 300px;">
+        <div class="image_list">
+          <div class="image_list" fxLayout="row wrap" fxLayoutAlign="start start" fxLayoutGap="10px">
+            <div class="" *ngFor="let s of post.postImage ;let i=index">
+
+
+              <a (click)="imageClick(i)"><img src="{{s.url}}" style="width: 50px;height: 50px;"> </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+    </div><!-- CORRACEL end  -->
+    <div class="coracelsid" fxLayout="column" fxLayoutAlign="start start">
+      <!-- SECTION START -->
+      <div class="description"><h1>{{post.description}}</h1></div>
+      <div class="price"><h2>{{displayPrice()}}</h2></div>
+
+      
+
+        <div class="postdate">{{post.post_status.apply_date |date}}</div>
+        <div class="view" ><p>view : {{post.view}} </p> </div>
+
+     
+
+      <div class="specification" fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="10px">
+        <!-- specification start  -->
+        <div class="">Secification</div>
+        <div class="specifcation_detail">
+          <table *ngFor="let sp of post.specificationList">
+            <tr>
+              <td>{{sp.specification.key}}</td>
+              <td>{{sp.value}}</td>
+            </tr>
+
+
+          </table>
+        </div>
+      </div><!-- specification END -->
+
+    </div><!-- SECTION END -->
+
+
+
+
+  </div>
+  <div class="tab">
+    <mat-tab-group [disableRipple]="false">
+        <mat-tab label="Detail" >
+         <div class="">
+           <p>{{post.detail}}</p>
+         </div>
+        </mat-tab>
+        
+         
+    </mat-tab-group>
+  </div>
+ 
+
+  
+</div>
+
+

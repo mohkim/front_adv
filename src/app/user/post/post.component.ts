@@ -34,4 +34,19 @@ export class PostComponent implements OnInit {
      return  "http://localhost:8080/adv/post/"+post.id+"/image/"+post.postImage[0].name;
   }
 
+  displayPrice(post:Post){
+    if(post.post_payment.option=== "PRICE"){ 
+      return  ""+post.post_payment.price_amount+" SSP"
+   }else if(post.post_payment.option=== "CONTACT"){
+      return  "CONTACT"
+ 
+   }
+   else if(post.post_payment.option=== "COMMISSION"){
+     return  "COMMISSION"
+ 
+   } else if(post.post_payment.option=== "RANGE"){
+      return ""+post.post_payment.min+"-"+post.post_payment.max
+   }
+
+}
 }

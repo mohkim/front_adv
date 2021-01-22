@@ -1,33 +1,35 @@
-.detail{
-    padding-left: 10px;
+ 
+mat-card{
+  padding: 0px;
+  margin: 0px;
+  width: fit-content;
+  min-width: 400px;
 }
-.detail_head{
-  padding-left : 10px; 
-  
-   
+.page1{
+  margin-left: 50px;
+}   
+.img{
+  width: fit-content;
 }
-.detail_head_text{
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 1; /* number of lines to show */
-  -webkit-box-orient: vertical;
+.img  img{
+width: 150px;
+height: 150px;
+
 }
-.detail_text{
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 2; /* number of lines to show */
-  -webkit-box-orient: vertical;
+.description{
+  text-transform: uppercase;
 }
- .view{
-  padding-top: 80px;
+.description2 h1{
+  text-transform: uppercase;
+  font-size-adjust: inherit;
 }
-.productList{
-  padding-top: 30px;
-  padding-bottom: 5px;
+.price{
+  color: red;
 }
-.add_button{
-  padding-top: 20px;
+.main_container{
+  max-width: 50%;
+  margin: 15px;
+
 }
+ 
  

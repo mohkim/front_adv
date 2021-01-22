@@ -7,13 +7,13 @@
 
     <div class="corasel_image_list" fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="20px">
       <!-- CORRACEL START  -->
-      <mat-card class="corasel_img">
+      
 
 
         <img src="{{mainPicture_url}}" style="width:300px;height: 300px;" (click)="imageClick2()">
 
-      </mat-card>
-      <mat-card style="max-width: 300px;">
+      
+      <div style="max-width: 300px;">
         <div class="image_list">
           <div class="image_list" fxLayout="row wrap" fxLayoutAlign="start start" fxLayoutGap="10px">
             <div class="" *ngFor="let s of post.postImage ;let i=index">
@@ -23,22 +23,22 @@
             </div>
           </div>
         </div>
-      </mat-card>
+      </div>
 
 
 
     </div><!-- CORRACEL end  -->
     <div class="coracelsid" fxLayout="column" fxLayoutAlign="start start">
       <!-- SECTION START -->
-      <div class="description">{{post.description}}</div>
-      <div class="price">{{displayPrice()}}</div>
+      <div class="description"><h1>{{post.description}}</h1></div>
+      <div class="price"><h2>{{displayPrice()}}</h2></div>
 
-      <div fxLayout="row wrap" fxLayoutAlign="space-between none">
+      
 
-        <div class="postdate">{{post.createdDate |date}}</div>
-        <div class="view">{{post.view}}</div>
+        <div class="postdate">{{post.post_status.apply_date |date}}</div>
+        <div class="view" ><p>view : {{post.view}} </p> </div>
 
-      </div>
+     
 
       <div class="specification" fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="10px">
         <!-- specification start  -->
@@ -61,8 +61,27 @@
 
 
   </div>
+  <div class="tab">
+    <mat-tab-group [disableRipple]="false">
+        <mat-tab label="Detail" >
+         <div class="">
+           <p>{{post.detail}}</p>
+         </div>
+        </mat-tab>
+        <mat-tab label="Seller" >
+          <div class="">
+           <p>{{post.user.username}}</p>
+          </div>
+         </mat-tab>
+         <mat-tab label="Similar Products" >
+          <div class="">
+           <p>similar Products</p>
+          </div>
+         </mat-tab>
+    </mat-tab-group>
+  </div>
 
-  <div class="detal">{{post.detail}}</div>
+  <div class="detal"></div>
   <div class="contact"></div>
   <div class="ralaited_obj"></div>
 

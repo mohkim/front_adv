@@ -23,7 +23,7 @@ canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot)  {
     return true;
   }
   else{
-    this.router.navigate(['error'])
+    this.router.navigate(['error'],{queryParams:{code:'401'}})
      
     return false;
   } 

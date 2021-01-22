@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, Input } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
  
 import { FormGroup } from '@angular/forms';
@@ -13,6 +13,7 @@ import { RoleService } from 'src/app/service/user/role.service';
 })
 export class RoleFormComponent implements OnInit {
   public catForm: FormGroup;
+  
  constructor( 
   public dialogRef: MatDialogRef<RoleFormComponent>,
   @Inject(MAT_DIALOG_DATA) public data: Role,

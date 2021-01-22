@@ -16,14 +16,11 @@ constructor(
              public disabledbyAdmin?:boolean,
              public description?:String,
              public  roles?:Role[],
-             public  username?:String
+             public  username?:String,
+             public  image_name?:String,
+             public  image_url?:String
              ){ }
                   
-  // ngOnInit(): void {
-  //     this.email=""
-  //     this.password=""
-  //     this.username=""       
-  //     this.id=-1        
-          
-  // }
+ 
+ 
 }

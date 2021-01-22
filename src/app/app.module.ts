@@ -60,15 +60,15 @@ import { SpecificationheadOptionYesNoDialogComponent } from './admin/specificati
 import { RoleComponent } from './admin/setting/users/role/role.component';
 import { RoleYesNoDialogComponent } from './admin/setting/users/role/role-yes-no-dialog/role-yes-no-dialog.component';
 import { RoleFormComponent } from './admin/setting/users/role/role-form/role-form.component';
+import { MgPostListComponent } from './managment/mg-post-list/mg-post-list.component';
+import { MgPostDisplayComponent } from './managment/display/mg-post-display/mg-post-display.component';
+ 
+import { AdminPostDisplayComponent } from './admin/post_managment/postlist/admin-post-display/admin-post-display.component';
+import { AdminPostlistComponent } from './admin/post_managment/admin-postlist/admin-postlist.component';
+import { UserPostDisplayComponent } from './user/post/user-post-display/user-post-display.component';
+ 
  
 
- 
- 
-
-
- 
- 
- 
 @NgModule({
   declarations: [
     AppComponent,
@@ -124,6 +124,13 @@ import { RoleFormComponent } from './admin/setting/users/role/role-form/role-for
     RoleComponent,
     RoleYesNoDialogComponent,
     RoleFormComponent,
+    MgPostListComponent,
+    MgPostDisplayComponent,
+    AdminPostDisplayComponent,
+    AdminPostlistComponent,
+    UserPostDisplayComponent,
+  
+ 
  
 
     ],

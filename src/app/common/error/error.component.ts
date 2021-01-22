@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute } from '@angular/router';
 import { PostImageDialogComponent } from '../post/post-image-dialog/post-image-dialog.component';
  
  
@@ -10,27 +11,29 @@ import { PostImageDialogComponent } from '../post/post-image-dialog/post-image-d
   styleUrls: ['./error.component.css']
 })
 export class ErrorComponent implements OnInit {
+ 
+ // 404 page not found
+ // 401 Unauthorized 
+  code
+ list=['401','404']
 
-  slides:any=[{'image':'assets/img/20200814003442169_1_24_0_.jpg'},
-         {'image':'assets/img/20200814003442265_1_24_1_.jpg'},
-         {'image':'assets/img/20200814003442298_1_24_2_.jpg'},
-         {'image':'assets/img/20200815205445252_1_29_0_.jpg'},
-         {'image':'assets/img/20200815205445376_1_29_1_.png'},
-         {'image':'assets/img/20200815205445382_1_29_2_.jpg'},
-         {'image':'assets/img/20200815205445401_1_29_3_.jpg'},
-         {'image':'assets/img/20200815215958663_1_30_0_.jpg'}
-        ];
-mainPicture_url=""
-loopsize
-progress=0
-
-  constructor(public dialog: MatDialog) { }
+  constructor(private route:ActivatedRoute) { }
 
 
 
   ngOnInit(): void {
+ 
+    this.route.queryParams.subscribe(
+      result =>{
+        this.code=<number>result.code
+        if(!this.list.find(x=>x===this.code)){
+          this.code='404';
+         } 
+         },
+      
+    )
   
   }
-   
+  
 
 }

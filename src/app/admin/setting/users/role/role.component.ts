@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
  
 import { MatSort } from '@angular/material/sort';
@@ -27,7 +27,7 @@ export class RoleComponent implements OnInit {
 
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
- 
+  @Input() userId;
  
 
   constructor(
@@ -39,10 +39,12 @@ export class RoleComponent implements OnInit {
     this.getSourcedata();
   }
   getSourcedata(){
-    this.roleService.getAllUserRole(1).subscribe(
-      data=> {
+  
+    this.roleService.getAllUserRole(this.userId).subscribe(
+      result=> {
         
-        this.dataSource.data =data
+        this.dataSource.data =result
+        console.log("user   roles ==>"+JSON.stringify(result))
       },
       error=>{
         this.snackbar.open("Retrieve Data Fail","error")._dismissAfter(2000)
@@ -53,7 +55,7 @@ export class RoleComponent implements OnInit {
  
   saveRole(result:Role){
     
-    this.roleService.addUserRole(1,result.id).subscribe(
+    this.roleService.addUserRole(this.userId,result.id).subscribe(
       data=> { 
           this.snackbar.open("Role Saved Successfully !","Message")._dismissAfter(2000)
           this.getSourcedata()
@@ -66,7 +68,8 @@ export class RoleComponent implements OnInit {
   }
    
   deleteOldRole(result:Role){
-    this.roleService.deleteUserRole(1,result.id).subscribe(
+    console.log("role deleted =>"+result.id+"  user =? "+this.userId)
+    this.roleService.deleteUserRole(this.userId,result.id).subscribe(
       data=> { 
           this.snackbar.open("Role Deleted Successfully !!!","Message")._dismissAfter(2000)
           this.getSourcedata()
