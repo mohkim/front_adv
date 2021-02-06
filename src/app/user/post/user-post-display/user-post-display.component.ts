@@ -122,13 +122,13 @@ export class UserPostDisplayComponent implements OnInit {
   }
   displayPrice() {
     if (this.post.post_payment.option === 'PRICE') {
-      return '' + this.post.post_payment.price_amount + ' SSP';
+      return '' + this.post.post_payment.price_amount + " "+this.post.post_payment.price_currency.shortName;
     } else if (this.post.post_payment.option === 'CONTACT') {
       return 'CONTACT';
     } else if (this.post.post_payment.option === 'COMMISSION') {
       return 'COMMISSION';
     } else if (this.post.post_payment.option === 'RANGE') {
-      return '' + this.post.post_payment.min + '-' + this.post.post_payment.max;
+      return '' + this.post.post_payment.min+ " "+this.post.post_payment.price_currency.shortName + '-' + this.post.post_payment.max+ " "+this.post.post_payment.price_currency.shortName;
     }
   }
 

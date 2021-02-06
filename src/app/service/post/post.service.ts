@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders, HttpRequest } from '@angular/common/http';
  
 import { Post } from '../../modules/Post';
 import { TokenStorageService } from '../tokenStorage/token-storage.service';
-import { JsonPipe } from '@angular/common';
+ 
  
 const AUTH_API = 'http://localhost:8080/adv/';
 
@@ -21,19 +21,20 @@ export class PostService {
 
  
   getallPost() {
-    return this.http.get<Post[]>(AUTH_API + 'post', httpOptions);
+    
+    return this.http.get<Post[]>(`${AUTH_API}post`, httpOptions);
   }
   getallPostByUser() {
     const id=this.tokenStorage.getUserId();
-    return this.http.get<Post[]>(AUTH_API + 'user/' + id+'/post', httpOptions);
+    return this.http.get<Post[]>(`${AUTH_API}user/${id}/post`, httpOptions);
   }
-  getPostById(selectedid: number) {
-    return this.http.get<Post>(AUTH_API + 'post/' + selectedid, httpOptions);
+  getPostById(pid: number) {
+    return this.http.get<Post>(`${AUTH_API}post/${pid}`, httpOptions);
   }
   
   
-  getPostImages(id: number) {
-    return this.http.get<any>(AUTH_API + 'post/' + id + '/images', httpOptions);
+  getPostImages(pid: number) {
+    return this.http.get<any>(`${AUTH_API}post/${pid}/images`, httpOptions);
   }
 
   

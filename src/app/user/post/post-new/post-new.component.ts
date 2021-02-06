@@ -37,6 +37,7 @@ import { PostSpecification } from 'src/app/modules/PostSpecification';
 import { JsonpClientBackend } from '@angular/common/http';
 import { Post_status } from 'src/app/modules/Post_status';
 import { UserPostService } from 'src/app/service/post/User_post.service';
+import { PostRecipt } from 'src/app/modules/PostRecipt';
 
 @Component({
   selector: 'app-post-new',
@@ -73,6 +74,7 @@ export class PostNewComponent implements OnInit {
   //
   post: Post
   paymentObj: PostPayment
+  serviceFee:PostRecipt
   postSpecifcation = [];
   //
   price_readonly = true
@@ -84,7 +86,8 @@ export class PostNewComponent implements OnInit {
   max_required = false
 
   async submitPost() {
-
+//     this.formToObject()
+//  console.log("payment object==>"+JSON.stringify(this.serviceFee))
     if (this.files.length < this.selectSubCat.img_min) {
       this.openSnackBar('upload atleast ' + this.selectSubCat.img_min + ' images', 'Error');
     } else {
@@ -113,7 +116,7 @@ export class PostNewComponent implements OnInit {
     private snackbar: MatSnackBar,
     private catServive: CatagoyrService,
     private salesLocationService: LocationService,
-    //private currencyService: CurrencyService,
+    private currencyService: CurrencyService,
     private sanitizer: DomSanitizer,
     private postService: UserPostService,
     private router: Router,
@@ -122,7 +125,8 @@ export class PostNewComponent implements OnInit {
 
   ngOnInit() {
     this.post = new Post(-1,"",null,null,null,"",null,null,null,null,null,null)
-    this.paymentObj = new PostPayment(-1, "PRICE", false, 0, 0, 0)
+    this.paymentObj = new PostPayment(-1, "PRICE", false, 0,null, 0, 0,null)
+    this.serviceFee=new  PostRecipt(-1,"FREE","",0)
 
     this.isSubCatSelected = false;
 
@@ -131,16 +135,16 @@ export class PostNewComponent implements OnInit {
       payment_option: new FormControl(''),
       negotiable: new FormControl(false),
       price_amount: new FormControl(),
+      price_currency: new FormControl(),
       min: new FormControl(''),
       max: new FormControl(''),
+      range_currency: new FormControl(''),
     });
     this.postForm = new FormGroup({
       id: new FormControl(''),
       description: new FormControl(''),
       productSubCatagory: new FormControl(),
       detail: new FormControl(''),
-      //  price: new FormControl(''),
-      //  currency: new FormControl(''),
       inputFileName: new FormControl(''),
       salesLocation: new FormControl(''),
       // specification: this.form,
@@ -160,9 +164,11 @@ export class PostNewComponent implements OnInit {
     if (c != null) this.salesLocation = s;
     else console.log('  Sales Location retrieve failed!!! ');
 
-    // const cur = await this.currencyService.getallCurrency().toPromise()
-    // if (cur != null) this.currency1 = cur
-    // else console.log("  currency retrieve failed!!! ")
+    const cur = await this.currencyService.getallCurrency().toPromise()
+    if (cur != null) this.currency1 = cur
+    else console.log("  currency retrieve failed!!! ")
+
+   
   }
 
   onClick(event) {
@@ -195,7 +201,7 @@ export class PostNewComponent implements OnInit {
         // if (!this.isMultiple()) {
         //   this.files = [];
         // }
-        if (files1[i].size <= 2000000) {  // check the size
+        if (files1[i].size <= 5000000) {  // check the size
           if (files1[i].type === 'image/jpeg' || files1[i].type === 'image/png') { // image type
             if (this.files.length < this.selectSubCat.img_max) { //check number of image 
               const imgWidth = await this.getImageWidths(files1[i]);
@@ -220,6 +226,9 @@ export class PostNewComponent implements OnInit {
             this.openSnackBar("image format should be *.jpeg,*.png", "message")
 
           }
+        }else {
+          this.openSnackBar("too big image size !!!", "message")
+
         }
       }
       //}
@@ -348,7 +357,9 @@ export class PostNewComponent implements OnInit {
           negotiable: false,
           price_amount: "",
           min: "",
-          max: ""
+          max: "",
+          price_currency:"",
+          range_currency:""
         }
       })
       // end of  update form specification list
@@ -387,6 +398,7 @@ export class PostNewComponent implements OnInit {
     this.post.post_payment = this.getPostPayment()
 
     this.post.specificationList = this.getPostSpecification()
+    this.post.post_receipt=this.getServiceFee()
 
     return this.post;
   }
@@ -434,7 +446,8 @@ export class PostNewComponent implements OnInit {
           negotiable: false,
           price_amount: "",
           min: "",
-          max: ""
+          max: "",
+          price_currency:"",
         }
       })
 
@@ -449,13 +462,41 @@ export class PostNewComponent implements OnInit {
   }
 
   getPostPayment() {
+     
     this.paymentObj.option = this.postForm.value.post_payment.payment_option
     this.paymentObj.price_amount = this.postForm.value.post_payment.price_amount
     this.paymentObj.min = this.postForm.value.post_payment.min
     this.paymentObj.max = this.postForm.value.post_payment.max
     this.paymentObj.negotiable = this.postForm.value.post_payment.negotiable
+    this.paymentObj.price_currency=this.postForm.value.post_payment.price_currency
+    this.paymentObj.range_currency=this.postForm.value.post_payment.price_currency
 
     return this.paymentObj
+  }
+  getServiceFee(){
+    // this.serviceFee.feeOption=this.postForm.value.package_fee
+    var  index=this.postForm.value.package_fee
+    if(index=="1")   {
+      this.serviceFee.feeOption='FREE'
+      this.serviceFee.amount=this.selectSubCat.fee_free
+    } 
+    else if(index=="2"){
+      this.serviceFee.feeOption='WEEK'
+      this.serviceFee.amount=this.selectSubCat.fee_week
+    }  
+    else if(index=="3")  {
+      this.serviceFee.feeOption='MONTH'
+      this.serviceFee.amount=this.selectSubCat.fee_month
+    }
+    else if(index=="4")  {
+      this.serviceFee.feeOption='YEAR'
+      this.serviceFee.amount=this.selectSubCat.fee_year
+    }
+
+
+    return this.serviceFee
+    
+    
   }
 
   getPostSpecification() {

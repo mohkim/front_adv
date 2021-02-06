@@ -28,6 +28,8 @@ import { Post_status } from 'src/app/modules/Post_status';
 import { UserPostService } from 'src/app/service/post/User_post.service';
 import { EditPostYesNoDialogComponent } from './edit-post-yes-no-dialog/edit-post-yes-no-dialog.component';
 import { PostImage } from 'src/app/modules/PostImage';
+import { CurrencyService } from 'src/app/service/currency/currency.service';
+import { PostRecipt } from 'src/app/modules/PostRecipt';
 
 
 
@@ -69,7 +71,8 @@ export class EditpostComponent implements OnInit {
   //
   post: Post
   pid: number
-  paymentObj: PostPayment
+
+
   postSpecifcation = [];
   //
   price_readonly = true
@@ -90,17 +93,17 @@ export class EditpostComponent implements OnInit {
       console.log('Post data For send =>' + JSON.stringify(this.post));
       this.formToObject()  // preppare post
       const p = await this.postService
-        .editPost(this.post,this.pid)
+        .editPost(this.post, this.pid)
         .toPromise();
 
-     
-        this.postService.savePostImages(this.pid, this.files).subscribe(
-          (result) => { },
-          (error) => {
-            console.log(error.error.message);
-          }
-        );
-      
+
+      this.postService.savePostImages(this.pid, this.files).subscribe(
+        (result) => { },
+        (error) => {
+          console.log(error.error.message);
+        }
+      );
+
 
       this.router.navigate(['user/post']);
     }
@@ -114,7 +117,7 @@ export class EditpostComponent implements OnInit {
     private snackbar: MatSnackBar,
     private catServive: CatagoyrService,
     private salesLocationService: LocationService,
-    //private currencyService: CurrencyService,
+    private currencyService: CurrencyService,
     private sanitizer: DomSanitizer,
     private postService: UserPostService,
     private router: Router,
@@ -134,7 +137,7 @@ export class EditpostComponent implements OnInit {
     );
 
     this.post = new Post(-1, "", null, null, null, "", null, null, null, null, null, null)
-    this.paymentObj = new PostPayment(-1, "PRICE", false, 0, 0, 0)
+
 
     this.isSubCatSelected = true;
 
@@ -144,17 +147,17 @@ export class EditpostComponent implements OnInit {
       payment_option: new FormControl(''),
       negotiable: new FormControl(false),
       price_amount: new FormControl(),
+      price_currency: new FormControl(),
       min: new FormControl(''),
       max: new FormControl(''),
+      range_currency: new FormControl(''),
     });
 
     this.postForm = new FormGroup({
       id: new FormControl(''),
       description: new FormControl(''),
-      productSubCatagory: new FormControl(),
+      productSubCatagory: new FormControl(''),
       detail: new FormControl(''),
-      //  price: new FormControl(''),
-      //  currency: new FormControl(''),
       inputFileName: new FormControl(''),
       salesLocation: new FormControl(),
       // specification: this.form,
@@ -164,9 +167,6 @@ export class EditpostComponent implements OnInit {
 
     this.getSourceData();
 
-
-
-
   }
 
 
@@ -175,7 +175,7 @@ export class EditpostComponent implements OnInit {
     if (p != null) {
 
       this.post = p;
-      //  console.log("post ==>"+JSON.stringify(this.post))
+       // console.log("post ==>"+JSON.stringify(this.post))
 
     } else this.router.navigate(['error']);
 
@@ -187,28 +187,34 @@ export class EditpostComponent implements OnInit {
     if (c != null) this.salesLocations = s;
     else console.log('  Sales Location retrieve failed!!! ');
 
-    // const cur = await this.currencyService.getallCurrency().toPromise()
-    // if (cur != null) this.currency1 = cur
-    // else console.log("  currency retrieve failed!!! ")
+    const cur = await this.currencyService.getallCurrency().toPromise()
+    if (cur != null) this.currency1 = cur
+    else console.log("  currency retrieve failed!!! ")
     this.image_old = this.post.postImage
+
+    
 
     this.objectToForm();
   }
 
   onClick() {
+
     if (this.fileUpload) this.fileUpload.nativeElement.click();
   }
 
-  onInput(event) { }
+  onInput(event) {
+
+  }
 
   async onFileSelected(event) {
+
     var img_width
     let files1 = event.dataTransfer
       ? event.dataTransfer.files
       : event.target.files;
     // console.log('event::::::', event)
-    // console.log("1- files size == >"+this.files.length +" files size == >"+this.imageSrc.length)
-    // console.log("1- files size == >"+this.files[0].size)
+    // console.log("1- files size == >" + this.files.length + " files size == >" + this.imageSrc.length)
+    // console.log("1- files size == >" + this.files[0].size)
 
 
     for (let i = 0; i < files1.length; i++) {
@@ -225,8 +231,9 @@ export class EditpostComponent implements OnInit {
         // if (!this.isMultiple()) {
         //   this.files = [];
         // }
-        if (files1[i].size <= 2000000) {  // check the size
-          if (files1[i].type === 'image/jpeg' || files1[i].type === 'image/png') { // image type
+        if (files1[i].size < 50000000) {  // check the size
+          console.log("IMAGE SIZE ==>" + JSON.stringify(files1[i].size))
+          if (files1[i].type === 'image/jpeg' || files1[i].type === 'image/png' || files1[i].type === 'image/jpg') { // image type
             if (this.files.length < this.selectSubCat.img_max) { //check number of image 
               const imgWidth = await this.getImageWidths(files1[i]);
               // console.log("return  result ==> "+imgWidth)
@@ -250,6 +257,8 @@ export class EditpostComponent implements OnInit {
             this.openSnackBar("image format should be *.jpeg,*.png", "message")
 
           }
+        } else {
+          this.openSnackBar("image size should be less than 5MB", "message")
         }
       }
       //}
@@ -261,7 +270,7 @@ export class EditpostComponent implements OnInit {
     else num = this.files.length
     for (let i = 0; i < num; i++) {
       // test
-      if (this.files[i].size <= 2000000) {
+      if (this.files[i].size < 5000000) {
         if (this.files[i].type === 'image/jpeg' || this.files[i].type === 'image/png') {
           var reader = new FileReader();
 
@@ -369,7 +378,7 @@ export class EditpostComponent implements OnInit {
     // update  the form
     let group = {};
     this.selectSubCat.specificationList.forEach((specification) => {
-      // group[specification.key] = new FormControl('');
+
       group[specification.key] = specification.required ? new FormControl(specification.value || '', Validators.required)
         : new FormControl(specification.value || '');
     });
@@ -416,10 +425,10 @@ export class EditpostComponent implements OnInit {
     this.post.view = 0
 
     // payment option  
-    this.post.post_payment = this.getPostPayment()
+    this.getPostPayment()    // post payment from form to post
 
     this.post.specificationList = this.getPostSpecification()
-
+    this.getServiceFee()   // set  postServisceFee
     return this.post;
   }
 
@@ -481,18 +490,20 @@ export class EditpostComponent implements OnInit {
   }
 
   getPostPayment() {
-    this.paymentObj.option = this.postForm.value.post_payment.payment_option
-    this.paymentObj.price_amount = this.postForm.value.post_payment.price_amount
-    this.paymentObj.min = this.postForm.value.post_payment.min
-    this.paymentObj.max = this.postForm.value.post_payment.max
-    this.paymentObj.negotiable = this.postForm.value.post_payment.negotiable
+    this.post.post_payment.option = this.postForm.value.post_payment.payment_option
+    this.post.post_payment.price_amount = this.postForm.value.post_payment.price_amount
+    this.post.post_payment.min = this.postForm.value.post_payment.min
+    this.post.post_payment.max = this.postForm.value.post_payment.max
+    this.post.post_payment.negotiable = this.postForm.value.post_payment.negotiable
+    this.post.post_payment.price_currency = this.postForm.value.post_payment.price_currency
+    this.post.post_payment.range_currency = this.postForm.value.post_payment.price_currency
 
-    return this.paymentObj
+
   }
 
   getPostSpecification() {
     this.postSpecifcation.splice(0, this.postSpecifcation.length)
-    console.log("length of array =>" + this.selectSubCat.specificationList.length)
+    // console.log("length of array =>" + this.selectSubCat.specificationList.length)
     for (let index = 0; index < this.selectSubCat.specificationList.length; index++) {
 
       // console.log("index = "+index+" data => "+ JSON.stringify(
@@ -526,25 +537,52 @@ export class EditpostComponent implements OnInit {
     this.putSepecifiationListToProductionSubcatagory()
     this.setPostDataToForm()
   }
+  getServiceFee() {
 
+    var index = this.postForm.value.package_fee
+    if (this.post.post_receipt === null) this.post.post_receipt = new PostRecipt(null, "FREE", "", 0)
+
+    if (index == "1") {
+      this.post.post_receipt.feeOption = 'FREE'
+      this.post.post_receipt.amount = this.selectSubCat.fee_free
+    }
+    else if (index == "2") {
+      this.post.post_receipt.feeOption = 'WEEK'
+      this.post.post_receipt.amount = this.selectSubCat.fee_week
+    }
+    else if (index == "3") {
+      this.post.post_receipt.feeOption = 'MONTH'
+      this.post.post_receipt.amount = this.selectSubCat.fee_month
+    }
+    else if (index == "4") {
+      this.post.post_receipt.feeOption = 'YEAR'
+      this.post.post_receipt.amount = this.selectSubCat.fee_year
+    }
+
+
+
+
+
+  }
 
   /**
    * sets specificationlist value to  ProductSubCAtagory specification list in order to be 
    * used in creating dynamic form  based on the data that was ginven by user  [ upgrade is needed in the code]
    */
   putSepecifiationListToProductionSubcatagory() {
-    var array_length = this.post.productSubCatagory.specificationList.length > this.post.specificationList.length ? this.post.productSubCatagory.specificationList.length : this.post.specificationList.length
+    var i=0;
+    var array_length = this.post.productSubCatagory.specificationList.length //> this.post.specificationList.length ? this.post.productSubCatagory.specificationList.length : this.post.specificationList.length
 
     for (let index = 0; index < array_length; index++) {
       // console.log(" index = "+ index+" -specifiationlist= "+this.post.specificationList[index].specification.id+" product subcatagory = "+
       // this.post.productSubCatagory.specificationList[index].id     )
-
-      if (this.post.specificationList[index].specification.id == this.post.productSubCatagory.specificationList[index].id)
-        this.post.productSubCatagory.specificationList[index].value = this.post.specificationList[index].value
-
+    //
+    i=this.post.productSubCatagory.specificationList[index].id
+ 
+    this.post.productSubCatagory.specificationList[index].value = (this.post.specificationList.find(x=>x.specification.id===i)).value
 
     }
-    //console.log("product subcatagory  ==>" +JSON.stringify(this.post.productSubCatagory.specificationList))
+    console.log("product subcatagory  ==>" +JSON.stringify(this.post.productSubCatagory.specificationList))
   }
 
   setPostDataToForm() {
@@ -554,8 +592,6 @@ export class EditpostComponent implements OnInit {
       // specification:this.post.specification,
       detail: this.post.detail,
       //  productSubCatagory: this.catagorys[i].productSubCatagory[y],
-      // currency: this.currency1[0],
-      // price:this.post.price,
     })
 
 
@@ -563,20 +599,53 @@ export class EditpostComponent implements OnInit {
     var y = 0
     var z = 0
     var s = 0
-    for (i = 0; i < this.catagorys.length; i++) {
 
-      // if(this.catagorys[i].productSubcatagory)
-      for (y = 0; y < this.catagorys[i].productSubcatagory.length; y++) {
+    // sales location end
 
-        if (this.catagorys[i].productSubcatagory[y].id === this.post.productSubCatagory.id) {
-          this.postForm.patchValue({
-            productSubCatagory: this.catagorys[i].productSubcatagory[y]
-
-          })
+    this.selectSubCat = this.post.productSubCatagory
+    this.changeCatagory()
 
 
-          break;
-        }
+    this.paymentform.patchValue({
+      payment_option: this.post.post_payment.option,
+      negotiable: this.post.post_payment.negotiable,
+      price_amount: this.post.post_payment.price_amount,
+      min: this.post.post_payment.min,
+      max: this.post.post_payment.max,
+    })
+
+    // console.log("Payment option ==>" + this.paymentform.value.payment_option)
+    this.paymentOnChange() //  reset  required and other staffs
+
+
+    // payment  price  currency setting
+    for (z = 0; z < this.currency1.length; z++) {
+      if (this.currency1[z].id === this.post.post_payment.price_currency.id) {
+        this.paymentform.patchValue({
+          price_currency: this.currency1[z]
+        })
+      }
+
+    }
+
+    // range price  currency setting
+    for (z = 0; z < this.currency1.length; z++) {
+      if (this.currency1[z].id === this.post.post_payment.range_currency.id) {
+        this.paymentform.patchValue({
+          range_currency: this.currency1[z]
+        })
+      }
+
+    }
+
+    //  service  fee  option
+    if (this.post.post_receipt != null) {
+      if (this.post.post_receipt.feeOption === "FREE") { this.postForm.patchValue({ package_fee: "1" }) }
+      else if (this.post.post_receipt.feeOption === "WEEK") { this.postForm.patchValue({ package_fee: "2" }) }
+      else if (this.post.post_receipt.feeOption === "MONTH") { this.postForm.patchValue({ package_fee: "3" }) }
+      else if (this.post.post_receipt.feeOption === "YEAR") { this.postForm.patchValue({ package_fee: "4" }) }
+
+    }
         //sales location start
 
         for (s = 0; s < this.salesLocations.length; s++) {
@@ -588,39 +657,28 @@ export class EditpostComponent implements OnInit {
 
 
         }
-        // sales location end
-
-        this.selectSubCat = this.post.productSubCatagory
-        this.changeCatagory()
-
-
-        this.paymentform.patchValue({
-          payment_option: this.post.post_payment.option,
-          negotiable: this.post.post_payment.negotiable,
-          price_amount: this.post.post_payment.price_amount,
-          min: this.post.post_payment.min,
-          max: this.post.post_payment.max,
-        })
-
-        console.log("Payment option ==>" + this.paymentform.value.payment_option)
-        this.paymentOnChange() //  reset  required and other staffs
 
 
 
-        //      for(z=0;z<this.currency1.length;z++){
-        //       if(this.currency1[z].id ===this.post.currency.id) {
-        //         this.postForm.patchValue({
-        //           currency: this.currency1[z]
-        //         })
-        //      }
 
 
 
-      }
+    for (i = 0; i < this.catagorys.length; i++) {
 
-    }
+      // if(this.catagorys[i].productSubcatagory)
+      for (y = 0; y < this.catagorys[i].productSubcatagory.length; y++) {
 
-  }
+        if (this.catagorys[i].productSubcatagory[y].id === this.post.productSubCatagory.id) {
+          this.postForm.patchValue({
+            productSubCatagory: this.catagorys[i].productSubcatagory[y]
+
+          })
+        
+          break;
+        }
+           }
+              }
+                }
 
   deleteOldImage(name) {
 
@@ -637,7 +695,7 @@ export class EditpostComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
 
-      this.deletePosImageAction(result)
+      this.deletePostImageAction(result)
 
 
     }, error => {
@@ -648,7 +706,7 @@ export class EditpostComponent implements OnInit {
     );
   }
 
-  async deletePosImageAction(image: PostImage) {
+  async deletePostImageAction(image: PostImage) {
     const i = await this.postService.deleteImage(this.pid, image.name).toPromise()
     console.log("i ==>" + JSON.stringify(i))
     if (i) {
@@ -658,6 +716,7 @@ export class EditpostComponent implements OnInit {
       this.openSnackBar("Image Deleted !!!", "Message")
     }
   }
+
 
   openSnackBar(message, type) {
     this.snackbar.open(message, type, {

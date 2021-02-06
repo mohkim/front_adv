@@ -66,6 +66,11 @@ import { MgPostDisplayComponent } from './managment/display/mg-post-display/mg-p
 import { AdminPostDisplayComponent } from './admin/post_managment/postlist/admin-post-display/admin-post-display.component';
 import { AdminPostlistComponent } from './admin/post_managment/admin-postlist/admin-postlist.component';
 import { UserPostDisplayComponent } from './user/post/user-post-display/user-post-display.component';
+import { HomepageComponent } from './home/homepage/homepage.component';
+import { CatagoryPageComponent } from './home/catagory-page/catagory-page.component';
+import { SubcatagoryPageComponent } from './home/subcatagory-page/subcatagory-page.component';
+import { UserPageComponent } from './home/user-page/user-page.component';
+import { PostDisplayPageComponent } from './home/post-display-page/post-display-page.component';
  
  
 
@@ -129,6 +134,11 @@ import { UserPostDisplayComponent } from './user/post/user-post-display/user-pos
     AdminPostDisplayComponent,
     AdminPostlistComponent,
     UserPostDisplayComponent,
+    HomepageComponent,
+    CatagoryPageComponent,
+    SubcatagoryPageComponent,
+    UserPageComponent,
+    PostDisplayPageComponent,
   
  
  

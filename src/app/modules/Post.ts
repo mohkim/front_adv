@@ -4,7 +4,7 @@ import { PostSpecification } from "./PostSpecification";
 import { Post_status } from "./Post_status";
 
 
-// :"PENDING"|"ACTIVE"|"ERROR"|"EXPIRED",
+ 
 export class Post {
 
     constructor(
@@ -21,6 +21,7 @@ export class Post {
         public  view:number ,
         public post_receipt?:PostRecipt,
         public  post_status?:Post_status,
+        
         
     ) { }
 

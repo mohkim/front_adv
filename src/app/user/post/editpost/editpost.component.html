@@ -20,7 +20,7 @@
         </mat-select>
       </mat-form-field>
 
-      <!-- //sale Location -->
+      <!-- //sale Location   -->
       <mat-form-field appearance="fill">
         <mat-label>Sales Location</mat-label>
         <mat-select formControlName="salesLocation" required>
@@ -110,18 +110,7 @@
        </div>
            </div>
         
-        <!-- <div class="old_image_frame"   fxLayoutGap="20px" *ngFor="let imge of image_old">
-          <div class="" fxLayout="row wrap" fxLayoutAlign="start start">
-  
-          
-          <div class="one_image_frame" style="height: 150px; border: 2px solid black;" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px">
-             <img [src]="imge.url" alt="" height="80">      
-             <button mat-button  (click)="deleteOldImage(imge)" >
-                 <mat-icon class="mat-18">delete</mat-icon>
-             </button>
-           </div>
-          </div>
-     </div> -->
+ 
     </div>
           
           
@@ -132,8 +121,8 @@
             {{chooseLabel}}
           </button>
 
-          <input #fileUpload type="file" class="input_fileupload--hidden" (input)="onInput($event)"
-            (change)="onFileSelected($event)" formControlName="inputFileName" accept=".png, .jpg, .jpeg" multiple>
+          <input  #fileUpload type="file" class="input_fileupload--hidden" (input)="onInput($event)"
+            (change)="onFileSelected($event)" formControlName="inputFileName" accept=".png, .jpg, .jpeg,.JPG" multiple>
 
              <div fxLayout="row wrap"   fxLayoutGap="10px">
               <div *ngFor="let f of files ; let i=index "     >
@@ -168,14 +157,30 @@
               <div fxLayout="row" *ngIf="selectSubCat.price" fxLayoutAlign="space-between" fxLayoutGap="20px">
                 <mat-radio-button value="PRICE" style="padding-top:20px">Price</mat-radio-button>
                 <div class="" fxLayout="column" fxLayoutAlign="start start">
-                  <mat-form-field class="example-full-width">
+              
+                  <div class="price_curency"  fxLayout="row">
+                    <mat-form-field class="example-full-width">
                     <mat-label>Price</mat-label>
-                    <input matInput placeholder="selling Price" pattern="[0-9]+" formControlName="price_amount"  [readonly]="price_readonly" [required]="price_required" >
-                  </mat-form-field>
-                  <div class="">
-                    <mat-checkbox formControlName="negotiable"   [disabled]="negotiable_readonly">Negotiable</mat-checkbox>
-                  </div>
-                </div>
+                    <input matInput placeholder="selling Price" pattern="[0-9]+"  formControlName="price_amount"
+                      [readonly]="price_readonly" [required]="price_required">
+                </mat-form-field>
+
+                <!-- //currency -->
+                <mat-form-field appearance="fill" >
+                  <mat-label>Currency</mat-label>
+                  <mat-select formControlName="price_currency"    [disabled]="price_readonly" [required]="price_required">
+                    <mat-option *ngFor="let price_curr of currency1" [value]="price_curr">
+                      {{price_curr.shortName}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+
+
+              <div class="">
+                <mat-checkbox formControlName="negotiable" [disabled]="negotiable_readonly">Negotiable</mat-checkbox>
+              </div>
+            </div>
 
               </div>
               <div fxLayout="row" *ngIf="selectSubCat.commision" fxLayoutAlign="space-between" fxLayoutGap="20px">
@@ -195,6 +200,15 @@
                     <input matInput placeholder="Max" pattern="[0-9]+" formControlName="max" [readonly]="max_readonly" [required]="max_required">
 
                   </mat-form-field>
+                  <mat-form-field appearance="fill" >
+                    <mat-label>Currency</mat-label>
+                    <mat-select formControlName="range_currency"   [disabled]="max_readonly"
+                    [required]="max_required">
+                      <mat-option *ngFor="let range_curr of currency1" [value]="range_curr">
+                        {{range_curr.shortName}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
                 </div>
               </div>
 
@@ -209,26 +223,26 @@
             <div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="10px">
              <!-- free package -->
               <div  *ngIf="selectSubCat.fee_free_enable" class="" style="border: solid black  1px;" fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="10px">
-                <mat-radio-button value="0">Free -</mat-radio-button>
+                <mat-radio-button value="1">Free -</mat-radio-button>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p><br>
                 <h3><b>{{selectSubCat.fee_free}}</b></h3>
               </div>
                <!--week  Package -->
                <div *ngIf="selectSubCat.fee_week_enable"    class="" style="border: solid black  1px;" fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="10px">
-                <mat-radio-button value="1">week -</mat-radio-button>
+                <mat-radio-button value="2">week -</mat-radio-button>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.  </p><br>
                 <h3><b>{{selectSubCat.fee_week}}</b></h3>
 
               </div>
             <!--month  Package -->
             <div *ngIf="selectSubCat.fee_month_enable"  class="" style="border: solid black  1px;" fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="10px">
-              <mat-radio-button value="2">month - </mat-radio-button>
+              <mat-radio-button value="3">month - </mat-radio-button>
               <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p><br>
               <h3><b>{{selectSubCat.fee_month}}</b></h3>
             </div>
              <!--Year  Package -->
              <div  *ngIf="selectSubCat.fee_year_enable"  class="" style="border: solid black  1px;" fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="10px">
-              <mat-radio-button value="3">year -</mat-radio-button>
+              <mat-radio-button value="4">year -</mat-radio-button>
               <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p><br>
               <h3><b>{{selectSubCat.fee_year}}</b></h3>
             </div>
@@ -239,8 +253,8 @@
 
         <!-- submit  -->
         <div class="form-row">
-          <button mat-button (click)="submitPost1()" [disabled]="!postForm.valid">Action</button>
-          <!-- <button  mat-button [disabled]="!postForm.valid">Save</button> -->
+          <button mat-button (click)="submitPost1()" [disabled]="!postForm.valid">Save</button>
+ 
         </div>
       </div>
   </form>

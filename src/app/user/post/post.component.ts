@@ -35,18 +35,17 @@ export class PostComponent implements OnInit {
   }
 
   displayPrice(post:Post){
-    if(post.post_payment.option=== "PRICE"){ 
-      return  ""+post.post_payment.price_amount+" SSP"
-   }else if(post.post_payment.option=== "CONTACT"){
-      return  "CONTACT"
- 
-   }
-   else if(post.post_payment.option=== "COMMISSION"){
-     return  "COMMISSION"
- 
-   } else if(post.post_payment.option=== "RANGE"){
-      return ""+post.post_payment.min+"-"+post.post_payment.max
-   }
+   
+      if (post.post_payment.option === 'PRICE') {
+        return '' + post.post_payment.price_amount + " "+post.post_payment.price_currency.shortName;
+      } else if (post.post_payment.option === 'CONTACT') {
+        return 'CONTACT';
+      } else if (post.post_payment.option === 'COMMISSION') {
+        return 'COMMISSION';
+      } else if (post.post_payment.option === 'RANGE') {
+        return '' + post.post_payment.min+ " "+post.post_payment.price_currency.shortName + '-' + post.post_payment.max+ " "+post.post_payment.price_currency.shortName;
+      } 
+    }
 
-}
+
 }
