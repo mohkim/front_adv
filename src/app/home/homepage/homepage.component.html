@@ -1,1 +1,21 @@
-<p>homepage works!</p>
+<div class="page" fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="10px">
+    <div class="catagoryList">
+        <mat-list>
+            <mat-list-item *ngFor="let cat of catagorys">
+                <button mat-button routerLink="link">
+                    {{ cat.name }}
+                </button>
+            </mat-list-item>
+        </mat-list>
+    </div>
+    <div class="mainPage">
+        <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="space-around center" fxLayoutGap="25px">
+            <mat-card *ngFor="let p of posts" fxFlex="150px" fxFlex.sm="calc(50%-25px)" >
+         
+              <img mat-card-image [src]="getImageUrl(p)" >
+              <mat-card-title>{{p.description }}</mat-card-title>
+            </mat-card>
+          </div>
+ 
+    </div>
+</div>

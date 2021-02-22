@@ -20,7 +20,6 @@ import { PostComponent } from './user/post/post.component';
 import { PostNewComponent } from './user/post/post-new/post-new.component';
  
  
-import { PostdisplayComponent } from './common/post/postdisplay/postdisplay.component';
 import { ProfileComponent } from './user/profile/profile.component';
 import { ChangeProfileImageComponent } from './user/profile/change-profile-image/change-profile-image.component';
 import { EditpostComponent } from './user/post/editpost/editpost.component';
@@ -37,12 +36,21 @@ import { MgPostDisplayComponent } from './managment/display/mg-post-display/mg-p
 import { AdminPostDisplayComponent } from './admin/post_managment/postlist/admin-post-display/admin-post-display.component';
 import { AdminPostlistComponent } from './admin/post_managment/admin-postlist/admin-postlist.component';
 import { UserPostDisplayComponent } from './user/post/user-post-display/user-post-display.component';
+import { HomepageComponent } from './home/homepage/homepage.component';
+import { SubcatagoryPageComponent } from './home/subcatagory-page/subcatagory-page.component';
+import { UserPageComponent } from './home/user-page/user-page.component';
+import { PostdisplayComponent } from './common/post/postdisplay/postdisplay.component';
+import { PostDisplayPageComponent } from './home/post-display-page/post-display-page.component';
  
  
  
 
 const routes: Routes = [
-  {path:"",component:HomeComponent},
+  {path:"",component:HomepageComponent},
+  {path:"display",component:PostDisplayPageComponent},
+  {path:"subcat",component:SubcatagoryPageComponent},
+  {path:"user",component:UserPageComponent},
+  {path:"",component:HomepageComponent},
 
   //common section
   

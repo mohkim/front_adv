@@ -1,1 +1,12 @@
-<p>post-display-page works!</p>
+<div fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="space-around center" fxLayoutGap="25px">
+    <mat-card *ngFor="let member of members" fxFlex="calc(20%-25px)" fxFlex.sm="calc(50%-25px)" >
+ 
+      <img mat-card-image [src]="member.url" alt="Photo of {{member.title}}">
+      <mat-card-content>
+        <p>
+          {{member.content}}
+        </p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  
