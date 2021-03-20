@@ -16,6 +16,7 @@ const httpOptions = {
   providedIn: 'root',
 })
 export class PostService {
+  
   constructor(private http: HttpClient,
               private  tokenStorage: TokenStorageService) { }
 
@@ -24,15 +25,24 @@ export class PostService {
     
     return this.http.get<Post[]>(`${AUTH_API}post`, httpOptions);
   }
-  getallPostByUser() {
-    const id=this.tokenStorage.getUserId();
-    return this.http.get<Post[]>(`${AUTH_API}user/${id}/post`, httpOptions);
+  getPostByCat(id: number) {
+    return this.http.get<Post[]>(`${AUTH_API}post/cat/${id}`, httpOptions);
+  }
+  getPostBySubCat(id: number) {
+    return this.http.get<Post[]>(`${AUTH_API}post/subcat/${id}`, httpOptions);
+  }
+  // getallPostByUser() {
+  //   const id=this.tokenStorage.getUserId();
+  //   return this.http.get<Post[]>(`${AUTH_API}user/${id}/post`, httpOptions);
+  // }
+  getallPostByUser(uid:number) {
+     
+    return this.http.get<Post[]>(`${AUTH_API}user/${uid}/post`, httpOptions);
   }
   getPostById(pid: number) {
     return this.http.get<Post>(`${AUTH_API}post/${pid}`, httpOptions);
   }
-  
-  
+   
   getPostImages(pid: number) {
     return this.http.get<any>(`${AUTH_API}post/${pid}/images`, httpOptions);
   }

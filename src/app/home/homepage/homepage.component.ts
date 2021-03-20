@@ -29,7 +29,7 @@ export class HomepageComponent implements OnInit {
     this.catagoryService.getallProductCatagory().subscribe(
       result =>{
         this.catagorys=result
-        console.log("catagories=> "+JSON.stringify(this.catagorys))
+        // console.log("catagories=> "+JSON.stringify(this.catagorys))
       },
       error=>{
         this.messageDialog("Couldn't retrieve catagory !!!","error")
@@ -40,7 +40,7 @@ export class HomepageComponent implements OnInit {
     this.postService.getallPost().subscribe(
       result =>{
         this.posts=result
-        console.log(" active posts=> "+JSON.stringify(this.posts))
+        // console.log(" active posts=> "+JSON.stringify(this.posts))
       },
       error=>{
     this.messageDialog("couldn't retrieve Posts !!!", "error")

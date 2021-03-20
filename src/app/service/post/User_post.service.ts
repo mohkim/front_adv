@@ -35,6 +35,10 @@ export class UserPostService {
     var uid = this.getCurrentUserId()
     return this.http.get<Post>(`${AUTH_API}post/${pid}/user/${uid}`, httpOptions)
   }
+  getallPostByUser() {
+    var uid = this.getCurrentUserId()
+    return this.http.get<Post[]>(`${AUTH_API}post/user/${uid}`, httpOptions)
+  }
   savePost(post: Post) {
     const uid = this.tokenStorage.getUserId();
     // return this.http.post<Post>(AUTH_API + 'user/' + id + '/post', post, httpOptions);

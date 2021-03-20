@@ -11,7 +11,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class PersonalInformationComponent implements OnInit {
 
-  currentUser=new User("","","",0) 
+  currentUser=new User("","","",-1,null) 
   form=this.fb.group({
     fullname: [this.currentUser.username,[Validators.required]]
    });
@@ -40,6 +40,7 @@ export class PersonalInformationComponent implements OnInit {
      this.userService.saveUser(this.currentUser).subscribe(
        reuslt=> {
          this.openSnackBar("User Name Updated Successfully","Message")
+         location.reload()
        },
        error => { this.openSnackBar("User Name Updated Fail","Error")}
      )

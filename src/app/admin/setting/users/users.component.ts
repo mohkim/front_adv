@@ -31,7 +31,7 @@ export class UsersComponent implements OnInit {
 
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  selectedUser = new User('', '', '', -1, true, false);
+  selectedUser = new User('', '', '', -1,null);
 
   constructor(
     private userService: UserService,
@@ -39,7 +39,7 @@ export class UsersComponent implements OnInit {
     private snackbar: MatSnackBar
   ) {}
   ngOnInit(): void {
-    this.selectedUser = new User('', '', '', 5, true, false);
+    this.selectedUser =new User('', '', '', -1,null);
     this.updateSource();
   }
   ngAfterViewInit() {

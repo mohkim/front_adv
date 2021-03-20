@@ -1,5 +1,5 @@
-<div class="page1" fxLayout="column" fxLayoutAlign="start start "  fxLayoutGap="10px">
-    <!-- add button -->
+<!-- <div class="page1" fxLayout="column" fxLayoutAlign="start start "  fxLayoutGap="10px">
+    add button
     <div class="add_button"    fxFlexFill>
         <a mat-button  routerLink="/user/newpost">
             <mat-icon class="mat-18">add</mat-icon>
@@ -9,7 +9,7 @@
     
     </div>
 <!--         ad list -->
-<div class="" fxLayout="column" fxLayoutAlign="start start " fxLayoutGap="10px">
+<!-- <div class="" fxLayout="column" fxLayoutAlign="start start " fxLayoutGap="10px">
     <div class="productList" *ngFor="let post of posts"  >
     
         <mat-card class="main_container" fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="10px">
@@ -38,8 +38,66 @@
 
 
 </div> 
-</div>
+</div> -->
 
 
+<!--  
+<div class="profile_page" fxLayout="row" fxFlex="80" fxFlexOffset="10"  fxLayoutAlign="start start" fxLayoutGap="50px">
+   
+    <div class="profile_data"  fxFlex="grow0">
+       <mat-tab-group  dynamicHeight animationDuration="0ms">
+           <mat-tab label="Personal Information"  >
+              
+           </mat-tab>
+           <mat-tab label=" Address"  >
 
+           <app-change-address></app-change-address>
+           
+        </mat-tab>
+        <mat-tab label="Password"  >
+         <app-change-password></app-change-password>
+      </mat-tab>
+      <mat-tab label="Mobile"  >
+        <app-change-phone></app-change-phone>
+      </mat-tab>
+      <mat-tab label="Profile Image"  >
+       <app-change-profile-image></app-change-profile-image>
+      </mat-tab>
+
+     
+       </mat-tab-group>
+    </div>
+</div>   -->
+
+<section>
+
+
+    <div class="left-section">
+ 
+        <div class="personal-info">
+            <img src="{{userImage}}" alt="">
+            <div class="personal-name">{{userName}}</div>
+ 
+ 
+ 
+        </div>
+ 
+        <div class="personal-option">
+            <ul>
+                <!-- <li class="active"><a href="#"><i class="fas fa-tachometer-alt"></i>Dashboard </a></li> -->
+                <li><a routerLink="/user/setting"><i class="fas fa-user-cog"></i>Profile Setting </a></li>
+                <li class="active"><a   routerLink="/user/setting/post"><i class="fas fa-list-alt"></i>My Ads </a></li>
+ 
+                <li><a href="#"><i class="fas fa-wallet"></i> Payment</a></li>
+                <li><a href="#"><i class="fas fa-cog"></i> Privacy Settings</a></li>
+ 
+ 
+            </ul>
+        </div>
+    </div>
+    <div class="right-section" fxLayout="column"   fxLayoutGap="20px">
+        <app-user-post-list></app-user-post-list>
+       
+    </div>
+ </section>
  

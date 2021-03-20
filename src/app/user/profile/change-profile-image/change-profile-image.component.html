@@ -1,4 +1,4 @@
-  <div class="" fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="20ppx">
+  <!-- <div class="" fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="20ppx">
   
  
   <div class="image_section">
@@ -25,4 +25,24 @@
 
   </div>
 
-</div>  
+</div>   -->
+
+
+<mat-card>
+  <mat-card-title    >Change  Profile Image</mat-card-title>
+    
+    <mat-card-content fxLayoutAlign="start start">
+          
+          <input #fileUpload type="file" class="input_fileupload--hidden" (input)="onInput($event)"
+            (change)="onFileSelected($event)"  [(ngModel)]="inputFileName" accept="image/x-png,image/jpeg">
+            
+            <button class="adv-button" mat-raised-button color="primary" (click)="onClick($event)">
+              <mat-icon>upload</mat-icon>
+              {{chooseLabel}}
+            </button>
+       
+      
+        
+    </mat-card-content>
+ 
+</mat-card>

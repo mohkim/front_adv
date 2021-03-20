@@ -90,7 +90,7 @@ export class EditpostComponent implements OnInit {
     } else if (img_length > this.selectSubCat.img_max) {
       this.openSnackBar('more than' + this.selectSubCat.img_min + ' images is not allowed !!!', 'Error');
     } else {
-      console.log('Post data For send =>' + JSON.stringify(this.post));
+      // console.log('Post data For send =>' + JSON.stringify(this.post));
       this.formToObject()  // preppare post
       const p = await this.postService
         .editPost(this.post, this.pid)
@@ -105,7 +105,7 @@ export class EditpostComponent implements OnInit {
       );
 
 
-      this.router.navigate(['user/post']);
+      this.router.navigate(['user/setting/post']);
     }
 
 

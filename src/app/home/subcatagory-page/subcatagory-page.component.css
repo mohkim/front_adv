@@ -1,0 +1,134 @@
+ 
+   .wrapper {
+    display: flex;
+    flex-direction: row;
+    background-color: #f7f7f7; 
+ 
+  }
+ /* cat-sub-list list */
+ .cat-sub-list{
+     width: 200px;
+     box-sizing: border-box;
+     text-align: left;
+     padding: 10px 0px;
+     
+     background-color: white;
+     margin-left: 20px;
+ }
+ .cat-sub-list ul{
+     list-style: none;
+     padding: 0;
+ }
+ .cat-sub-list li{
+   padding: 3px 15px 3px 10px;
+  
+ }
+ .cat-sub-list a{
+     box-sizing: border-box;
+     display: block;
+     text-decoration: none;
+     vertical-align: middle;
+     color:black;
+     font-weight: 200;
+     font-size: 1em;
+     padding-left: 15px;
+  
+   }
+   .cat-sub-list img{
+       padding:  0  5px 0 0;
+       color: #9ba19e;
+   }
+   .cat-sub-list a:hover,li:hover,span:hover{
+       background-color:  #00a651;
+        color: white;
+   }
+   .cat-sub-list a:hover,li:hover,span:hover,i:hover{
+     background-color:  #00a651;
+      color: white;
+ }
+ 
+   .cat-sub-list span{
+       float: right;
+  
+   }
+   .active{
+     background-color:  #00a651;
+     color: white;
+   }
+ 
+   /* rightside css */
+
+   .right-side{
+     height: 100%;
+     flex-grow: 1;
+     }
+     .card-list {
+       margin-left: 20px;
+      
+       display: flex;
+       flex-direction: row;
+       flex-wrap: wrap;
+     }
+/* adv-card design css    */
+.product-card{
+ margin: 15px 20px;
+ display: flex;
+ text-align: left;
+flex-direction: column;
+ background-color: white;
+ max-width:200px;
+
+ 
+}
+.product-image{
+position: relative; 
+max-height: fit-content;
+padding: 0;
+margin: 0;
+
+
+
+}
+.product-image .price-tag{
+ background-color: #00a651;
+ color: white;
+ float: right;
+  display: block;
+ padding: 5px;
+ 
+ font-size: 16px;
+
+ position: absolute;
+ font-size: 1em;
+ font-weight: 500;
+ right:0 ;
+ top: 15px;
+}
+.product-image img{
+width: 100%;
+max-height: 150;
+max-width: 150;
+
+}
+/* proudct -card data section css */
+.product-data{
+  padding: 10px;
+  font-weight: 300;
+ 
+}
+.product-data .post-date{
+   opacity: 0.8;
+   font-size: 1em;
+}
+.product-data .post-title {
+ font-size: 1.1em;
+}
+.post-title a{
+ text-decoration: none;
+ color: black;
+}
+/* pagination setting */
+mat-paginator{
+ background-color: #f7f7f7; 
+ width: 100%;
+}

@@ -5,8 +5,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MaterialModule}  from '../app/material/material.module'
 import {FlexLayoutModule} from '@angular/flex-layout';
-import { HeaderComponent } from './navigation/header/header.component';
-import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.component';
+ 
 import { ActivateComponent } from './common/activate/activate.component';
 import { ErrorComponent } from './common/error/error.component';
 import { FooterComponent } from './common/footer/footer.component';
@@ -71,6 +70,13 @@ import { CatagoryPageComponent } from './home/catagory-page/catagory-page.compon
 import { SubcatagoryPageComponent } from './home/subcatagory-page/subcatagory-page.component';
 import { UserPageComponent } from './home/user-page/user-page.component';
 import { PostDisplayPageComponent } from './home/post-display-page/post-display-page.component';
+import { CoracelComponent } from './home/homepage/coracel/coracel.component';
+import { HomeCatagoryListComponent } from './home/homepage/home-catagory-list/home-catagory-list.component';
+import { HeaderComponent } from './common/header/header.component';
+import { SidenavListComponent } from './common/sidenav-list/sidenav-list.component';
+import { LatestPostSectionComponent } from './home/homepage/latest-post-section/latest-post-section.component';
+import { UserPostListComponent } from './user/post/user-post-list/user-post-list.component';
+ 
  
  
 
@@ -139,6 +145,10 @@ import { PostDisplayPageComponent } from './home/post-display-page/post-display-
     SubcatagoryPageComponent,
     UserPageComponent,
     PostDisplayPageComponent,
+    CoracelComponent,
+    HomeCatagoryListComponent,
+    LatestPostSectionComponent,
+    UserPostListComponent,
   
  
  

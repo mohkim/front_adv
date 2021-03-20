@@ -1,0 +1,107 @@
+mat-icon {
+  vertical-align: middle;
+  color: #00a651;
+  padding-left: 15px;
+ }
+ ul{
+   list-style-type:none;
+ }
+ li{
+   display: inline;
+   font-size: 1em;
+
+ }
+ li:hover{
+   color: #00a651;
+
+ }
+.top-header{
+    padding: 0 0;
+}
+.flex{
+  display: flex;
+  justify-content: space-between;
+}
+ .top-header{
+   background-color: black;
+   color: white;
+  
+   
+ }
+ .btn1 {
+   background-color:#00a651 ;
+   color: white;
+   border: 0;
+   font-size: 1.2em;
+   padding:5px 20px;
+   margin: 10px 50px;
+  border-radius: 5px;
+ }
+ .support-contact ul {
+   padding-top: 5px;
+   margin: 10px;
+
+ }
+ /* second menu */
+ .wrapper2{
+   background-color: #f7f7f7;
+   padding: 0;
+   margin: 0;
+
+
+
+ 
+ }
+ .second-menu{
+   padding: 0 3%;
+  
+   
+
+   margin: 0;
+ }
+ .second-menu .logo{
+  padding: 10px 0;
+   font-size: 2em;
+   font-family: Verdana, Geneva, Tahoma, sans-serif;
+
+ }
+ .second-menu .logo a{
+   text-decoration: none;
+   color:#00a651  ;
+   padding: 0;
+   margin: 0;
+ }
+ .second-menu .menu{
+   padding: 0;
+   margin: 0;
+ }
+ .second-menu .menu .main-button {
+   font-size: 1.2em;
+   padding:10px 10px ;
+   margin: 0;
+   vertical-align: middle;
+   border-radius: 0px;
+
+ }
+ .second-menu .menu .main-button1 {
+  font-size: 1.2em;
+  padding:10px 10px  ;
+  margin: 0;
+  vertical-align: middle;
+  border-radius: 0px;
+ 
+}
+.second-menu .menu mat-icon {
+  padding: 0;
+  margin: 0;
+  }
+  K:\angular\mat-adv-project\src\app\navigation
+
+ .second-menu .menu .main-button1:hover,.main-button:hover ,.btn3:hover,mat-icon:hover{
+  background-color: #00a651;
+  margin: 0;
+  color: white;
+}
+.menu button{
+  padding: 0;
+}

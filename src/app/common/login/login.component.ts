@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
   isLoginFailed = false;
   errorMessage = '';
   roles: string[] = [];
-  user=new User('','','',-1,false,true)
+  user=new User('','','',-1,null)
 
   constructor(private authService: AuthenticationService,
               private tokenStorage: TokenStorageService ,

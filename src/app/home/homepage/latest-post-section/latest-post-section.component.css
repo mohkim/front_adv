@@ -1,0 +1,114 @@
+section{
+  padding-top: 10px;
+  padding-bottom: 20px;
+  background-color:  #f2f2f2;
+}
+.wrapper{
+  width: 90%;
+  margin: 0 5%;
+  text-align: center;
+ 
+}
+
+.catagory-title hr{
+  width: 20%;
+   margin: 30px 40%;
+   border-color: #00a651;
+
+}
+
+
+.items{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    
+   
+    
+  }
+  .items .item{
+    flex-direction: row;
+    width: 100px;
+    background-color: white;
+    border: 1px solid #00a651;
+    margin: 20px 50px;
+     padding: 10px;
+  }
+  .items .item:hover{
+    background-color: #f2f2f2;
+    
+  }
+
+
+
+
+/* below card css */
+.product-card{
+  margin: 15px 20px;
+  display: flex;
+  text-align: left;
+ flex-direction: column;
+  background-color: white;
+  max-width:250px;
+
+  
+}
+.product-image{
+position: relative; 
+max-height: fit-content;
+padding: 0;
+margin: 0;
+
+
+
+}
+.product-image .price-tag{
+  background-color: #00a651;
+  color: white;
+  float: right;
+   display: block;
+  padding: 5px;
+  
+  font-size: 16px;
+ 
+  position: absolute;
+  font-size: 1em;
+  font-weight: 500;
+  right:0 ;
+  top: 15px;
+}
+.product-image img{
+width: 100%;
+max-height: 150;
+max-width: 150;
+
+}
+/* proudct -card data section css */
+.product-data{
+   padding: 10px;
+   font-weight: 300;
+  
+}
+.product-data .post-date{
+    opacity: 0.8;
+    font-size: 1em;
+}
+.product-data .post-title {
+  font-size: 1.1em;
+}
+.post-title a{
+  text-decoration: none;
+  color: black;
+}
+/* pagination setting */
+mat-paginator{
+  background-color: #f2f2f2;
+}
+/* view all button */
+.view-all a{
+background-color: #00a651;
+ color: white;
+ font-size: 1em;
+ width: 300px ;
+}

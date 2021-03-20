@@ -1,4 +1,5 @@
  
+import { Contact } from './Contact';
 import { Role } from './Role';
 
 export class User  {
@@ -10,7 +11,7 @@ constructor(
              
              public  fullName :String,
              public  id:number,
-             
+             public  contact:Contact,
              public salesLocation?:any, 
              public active?:boolean,
              public disabledbyAdmin?:boolean,

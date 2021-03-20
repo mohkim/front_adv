@@ -1,11 +1,19 @@
-div{
-    border : 2px solid black ;
-    min-height: 200px;
-}
-img{
-     padding: 0px;
-    height: 200px;
-}
+ 
 .input_fileupload--hidden{
     visibility: hidden;
+}
+ 
+mat-card {
+    padding-top: 50px;
+}
+mat-card-title {
+  margin-left: 25%;
+  padding-bottom: 25px;
+  font-weight: 300;
+}
+.adv-button{
+  background-color: #00a651;
+   color: white;
+   font-size: 1em;
+   min-width: 150px;
 }

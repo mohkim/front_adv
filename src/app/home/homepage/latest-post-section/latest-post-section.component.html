@@ -1,0 +1,32 @@
+<section class="catagoryList" >
+  <div class="wrapper">
+     <div class="catagory-title">
+      <h1>Latest Ads </h1>
+    
+   
+   <hr>
+     </div>
+      <div class="items  ">
+
+        <div class="product-card  " *ngFor="let p of posts | async ">
+          <div class="product-image">
+             <a routerLink="/display" [queryParams]="{pid:p.id}"> <img [src]="getImageUrl(p)"     alt=""></a>
+              <div class="price-tag">{{displayPrice(p)}}</div>
+       
+          </div>
+          <div class="product-data">
+           <div class="post-title"><a   routerLink="/display" [queryParams]="{pid:p.id}"> <p>{{p.description}}</p></a></div>
+                     
+          </div>
+      </div>
+      </div>
+      <div class="paginator">
+        <mat-paginator [pageSizeOptions]="[10]"></mat-paginator>
+      </div>
+      <div class="view-all">
+        <a routerLink="/cat"  mat-button>View All Ads</a>
+       
+      </div>
+  </div>
+
+</section>

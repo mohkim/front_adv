@@ -1,1 +1,53 @@
-<p>user-page works!</p>
+<section>
+    <div class="personal-info">
+        <img src="http://localhost:8080/adv/img/{{user.image_name}}"  alt="">
+        <div class="personal-name"><h2>{{user.fullName}}</h2></div>
+        <div class="personal-joined"><h3>Joined February 06, 2017</h3></div>
+        <div class="personal-edit">Phone : {{user.contact.phone}}</div>
+    </div>
+
+    <div class="ads-list">
+<!--  
+                <div class="card-list">
+                    <div class="product-card  " *ngFor="let p of posts  | async  ">
+                        <div class="product-image">
+                           <a routerLink="/display" [queryParams]="{pid:p.id}"> <img [src]="getImageUrl(p)"     alt=""></a>
+                            <div class="price-tag">{{displayPrice(p)}}</div>
+                     
+                        </div>
+                        <div class="product-data">
+                         <div class="post-title"><a   routerLink="/display" [queryParams]="{pid:p.id}"> <p>{{p.description}}</p></a></div>
+                                   
+                        </div>
+                    </div>
+              </div>
+                <div class="paginator">
+                    <mat-paginator [pageSizeOptions]="[10]"></mat-paginator>
+                  </div> -->
+  
+ 
+        <div class="product-card"  *ngFor="let p of posts | async   ">
+         
+      
+            <div class="product-image" >
+                <a routerLink="/display" [queryParams]="{pid:p.id}"> <img src="{{getImageUrl(p)}}" width="150" height="150"   alt=""></a> 
+                <div class="price-tag">{{displayPrice(p)}}</div>
+         
+            </div>
+            <div class="product-data">
+              <div class="post-date"><p>  posted on {{p.post_status.apply_date | date}}</p></div>
+              <div class="post-title"><p>{{p.description}}</p></div>
+              <div class="add-info"><p>{{p.detail}}</p></div>
+              
+            </div>
+        </div>
+
+
+   <div class="paginator">
+        <mat-paginator [pageSizeOptions]="[10]"></mat-paginator>
+      </div>
+   </div>
+   
+       
+ 
+</section>

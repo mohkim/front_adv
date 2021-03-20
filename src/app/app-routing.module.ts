@@ -41,6 +41,7 @@ import { SubcatagoryPageComponent } from './home/subcatagory-page/subcatagory-pa
 import { UserPageComponent } from './home/user-page/user-page.component';
 import { PostdisplayComponent } from './common/post/postdisplay/postdisplay.component';
 import { PostDisplayPageComponent } from './home/post-display-page/post-display-page.component';
+import { CatagoryPageComponent } from './home/catagory-page/catagory-page.component';
  
  
  
@@ -48,6 +49,7 @@ import { PostDisplayPageComponent } from './home/post-display-page/post-display-
 const routes: Routes = [
   {path:"",component:HomepageComponent},
   {path:"display",component:PostDisplayPageComponent},
+  {path:"cat",component:CatagoryPageComponent},
   {path:"subcat",component:SubcatagoryPageComponent},
   {path:"user",component:UserPageComponent},
   {path:"",component:HomepageComponent},
@@ -85,8 +87,9 @@ const routes: Routes = [
   {path:"user/newpost",component:PostNewComponent,canActivate:[UserGuardService]},
   {path:"user/editpost",component:EditpostComponent,canActivate:[UserGuardService]},
   {path:"user/postdisplay",component:UserPostDisplayComponent,canActivate:[UserGuardService]},
-  {path:"user/profile",component:ProfileComponent,canActivate:[UserGuardService]},
-  {path:"user/post",component:PostComponent,canActivate:[UserGuardService]},
+  {path:"user/setting",component:ProfileComponent,canActivate:[UserGuardService]},
+  {path:"user/setting/post",component:PostComponent,canActivate:[UserGuardService]},
+  
   {path:"demo",component:ChangeProfileImageComponent},
   {path:"error",component:ErrorComponent},
   {path:"**",component:ErrorComponent},

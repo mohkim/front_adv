@@ -1,10 +1,10 @@
- 
+<!--  
 <div class="profile_page" fxLayout="row" fxFlex="80" fxFlexOffset="10"  fxLayoutAlign="start start" fxLayoutGap="50px">
    
     <div class="profile_data"  fxFlex="grow0">
        <mat-tab-group  dynamicHeight animationDuration="0ms">
            <mat-tab label="Personal Information"  >
-              <app-personal-information></app-personal-information>
+              
            </mat-tab>
            <mat-tab label=" Address"  >
 
@@ -24,29 +24,47 @@
      
        </mat-tab-group>
     </div>
-</div>  
+</div>   -->
+
+<section>
+
+
+   <div class="left-section">
+
+       <div class="personal-info">
+           <img src="{{userImage}}" alt="">
+           <div class="personal-name">{{userName}}</div>
 
 
 
-<!-- <div class="container">
-   <div id="content" >
-     <div id="main-content" >
-       <mat-tab-group animationDuration="0ms"    color="white" >
-         <mat-tab label="Edit Personal Information"  style="align-content: flex-end;" >
-            <app-personal-information></app-personal-information>
-         </mat-tab>
-         <mat-tab label=" Change Address"  style="align-content: flex-end;" >
+       </div>
 
-         <app-change-address></app-change-address>
-         
-      </mat-tab>
-      <mat-tab label="Change Password" style="align-content: flex-end;" >
-       <app-change-password></app-change-password>
-    </mat-tab>
-    <mat-tab label="Change Mobile" style="align-content: flex-end;"  >
-      <app-change-phone></app-change-phone>
-    </mat-tab>
-       </mat-tab-group>
-     </div>
+       <div class="personal-option">
+           <ul>
+               <!-- <li class="active"><a href="#"><i class="fas fa-tachometer-alt"></i>Dashboard </a></li> -->
+               <li class="active"><a routerLink="/user/setting"><i class="fas fa-user-cog"></i>Profile Setting </a></li>
+               <li><a  routerLink="/user/setting/post"><i class="fas fa-list-alt"></i>My Ads </a></li>
+
+               <li><a href="#"><i class="fas fa-wallet"></i> Payment</a></li>
+               <li><a href="#"><i class="fas fa-cog"></i> Privacy Settings</a></li>
+
+
+           </ul>
+       </div>
    </div>
- </div> -->
+   <div class="right-section" fxLayout="column"   fxLayoutGap="20px">
+       
+         <app-personal-information></app-personal-information>  
+        
+         <app-change-address></app-change-address>
+          
+         <app-change-password></app-change-password>
+          
+         <app-change-phone></app-change-phone>
+          
+         <app-change-profile-image></app-change-profile-image>
+      
+   </div>
+</section>
+
+ 

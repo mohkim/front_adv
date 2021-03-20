@@ -1,0 +1,53 @@
+<!-- Slideshow container -->
+<div class="slideshow-container">
+
+    <!-- Full-width images with number and caption text -->
+    <div class="mySlides fade">
+       
+      <img src="{{imagePath}}"   style="width:100%">
+      <div class="text" >
+        <div class="title">Welcome <br></div>
+        <div class="content"> <p>Lorem ipsum dolor sit amet, consectetur adipisicing.</p></div>
+       <div class="btn"><button>View ads</button></div>
+      </div>
+      <div class="search-form flex "  >
+       
+        <div  class="card flex"  >
+          <form >
+            <mat-card>
+
+            
+         <select class="search-field catagory" >
+             <option value="volvo">Volvo</option>
+              <option value="saab">Saab</option>
+              <option value="mercedes">Mercedes</option>
+              <option value="audi">Audi</option>
+            </select>
+          
+            <select class="search-field  location" >
+              <option value="volvo">Volvo</option>
+               <option value="saab">Saab</option>
+               <option value="mercedes">Mercedes</option>
+               <option value="audi">Audi</option>
+             </select>
+            <input class="search-field search-text " matInput placeholder="Ex. Pizza" value="">
+           
+         <button class="search-btn" >SEARCH</button>
+        </mat-card>
+        </form>
+  
+        </div>
+      
+          
+      
+      </div>
+    </div>
+  
+ 
+  
+    <!-- Next and previous buttons -->
+    <a class="prev"  (click)="preveousSlides()"><mat-icon>chevron_left</mat-icon></a>
+    <a class="next" (click)="nextSlides()"><mat-icon>chevron_right</mat-icon></a>
+  </div>
+  
+  

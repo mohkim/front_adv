@@ -1,12 +1,88 @@
-<div fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="space-around center" fxLayoutGap="25px">
-    <mat-card *ngFor="let member of members" fxFlex="calc(20%-25px)" fxFlex.sm="calc(50%-25px)" >
+<div class="wrapper">
+    <div class="detail-left">
+
+        <div class="main-image">
+            <img src="{{imagePath}}" alt="">
+            <div class="price-tag">{{displayPrice()}}</div>
+   
+    <div class="image-number">
+        <p> <mat-icon>camera_alt</mat-icon>{{getIndex_lenth()}}</p></div>
+            <a class="prev2" (click)="preveousSlides()"><mat-icon>chevron_left</mat-icon></a>
+            <a class="next2" (click)="nextSlides()"> <mat-icon>chevron_right</mat-icon> </a>
+
+        </div>
+        
+        <div class="product-info ">
+            
+            <div class="post-date">
+                <p> <mat-icon>watch_later</mat-icon> Posted  {{post.post_status.apply_date|date}}</p>
+                <p><mat-icon>location_on</mat-icon> {{post.salesLocation.state}}, {{post.salesLocation.city}} </p> 
+                <p><mat-icon>visibility</mat-icon> {{post.view}} views </p> 
+            </div>
+            <div class="post-title">
+                <h1>{{post.description}}</h1> 
+            </div>
+            <hr >
+
+
+            <div class="post-specification">
+                <h1>   Specifiation </h1>
+                 <div class="specification-table">
+                    <table *ngFor="let sp of post.specificationList">
+                        <tr>
+                          <td class="specificaiton-name">{{sp.specification.key}}</td>
+                          <td> ........................................</td>
+                          <td class="specification-value">{{sp.value}}</td>
+                        </tr>
+            
+            
+                      </table>
+                 </div>
+            </div>
+            <div class="post-description">
+                <h2> Description </h2>
+                <p class="description-detail">
+                    {{post.detail}}
+                </p>
+            </div>
+
+        </div>
+
+        <div class="seller-loction">
+          <h1> Seller Location </h1>
+          <hr>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        </div>
+    </div>
+      <div class="right-side">
+        <div class="seller-detail">
+            <div class="seller-img">
+            <!-- <img src="assets/img/1.png" alt=""> -->
+            <img src="http://localhost:8080/adv/img/{{post.user.image_name}}" width="100" height="100" alt="">
+           </div>
+           <div class="seller-info">
+               <p>Seller : <a class="link" href="#"> {{post.user.fullName}}</a> </p>
+              
+               <p>Phone : <span style="color: #00a651;">{{post.user.contact.phone}}</span>  </p>
+               <div class=""> <a class="link" routerLink="/user" [queryParams]="{uid:post.user.id}" href="">View My other items</a></div>
+           </div>
+        </div>
+        <!-- <div class="contact-seller">
+            <h1><b>Contact Seller</b></h1>
+          
+            <div class="contact-seller-form">
+                <form action="">
+             <input type="text" name="name" id="name">
+             <input type="text" name="name" id="name">
+             <input type="text" name="subject" id="subject">
+             <textarea name="message" id="message" cols="30" rows="10"></textarea>
+             <button>Submit Message</button>
+            </form>
+            </div>
+        </div> -->
+        
+
+    </div>
  
-      <img mat-card-image [src]="member.url" alt="Photo of {{member.title}}">
-      <mat-card-content>
-        <p>
-          {{member.content}}
-        </p>
-      </mat-card-content>
-    </mat-card>
-  </div>
-  
+
+</div>

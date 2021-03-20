@@ -1,0 +1,48 @@
+mat-table,mat-card-content {
+    width: 100%;
+}
+mat-card{
+    width: 100%;
+}
+.status{
+   
+    padding: 10px;
+    border-radius: 7px;
+    width: 80px;
+    text-align: center;
+    
+}
+.post_action{
+    align-items: center;
+}
+.post_action a{
+    padding: 5px 7px;
+    margin: 5px;
+ 
+}
+.post_action i{
+    font-size: 1em;
+    color:  #00a651;
+}
+/* .post_action  .display {
+      color:  #00a651;
+      
+     
+ }
+ .post_action .edit{
+    color:yellow;  
+   
+}
+.post_action .delete{
+   color:red;
+   
+} */
+
+ .post_action:hover{
+    
+    cursor: pointer;
+   
+} 
+.delete:hover ,.edit:hover,.display:hover{
+    font-size: 1.5em;
+}

@@ -22,7 +22,7 @@ import { CatagoryYesNoComponent } from './catagory-yes-no/catagory-yes-no.compon
   styleUrls: ['./product-catagory.component.css'],
 })
 export class ProductCatagoryComponent implements OnInit {
-  displayedColumns = ['id', 'name', 'Edit','Delete','Sub Catagory'];
+  displayedColumns = ['id','img', 'name', 'Edit','Delete','Sub Catagory'];
   dataSource = new MatTableDataSource<ProductCatagory>();
 
   @ViewChild(MatSort) sort: MatSort;
@@ -82,7 +82,7 @@ export class ProductCatagoryComponent implements OnInit {
   }
   newCatagory(){
    
-    var catagory=new  ProductCatagory(-1,"","")
+    var catagory=new  ProductCatagory(-1,"","","")
     this.openDialog(catagory);
   }
   doFilter(filterValue: string) {
@@ -104,7 +104,7 @@ export class ProductCatagoryComponent implements OnInit {
   openDialog( catagory:ProductCatagory): void {
     
     const dialogRef = this.dialog.open(CatagoryFormComponent, {
-      width: '25%',
+       width: '500px',
       data: catagory,
     });
 

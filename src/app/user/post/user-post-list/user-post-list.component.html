@@ -1,0 +1,94 @@
+<section fxLayout="row" fxLayoutAlign="start center">
+
+  <mat-card fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="0px">
+
+    <!-- <div class=""    >
+      <mat-card-header   >
+        
+          <mat-card-title>My Ads</mat-card-title>
+        
+           
+        
+           
+        </mat-card-header>
+      </div> -->
+
+    <mat-card-content>
+      <!-- <div fxLayoutAlign="space-between">
+              <mat-form-field fxFlex="30%" >
+                <input matInput type="text" (keyup)="doFilter($event.target.value)" placeholder="Filter" />
+              </mat-form-field>
+               
+            </div> -->
+
+      <mat-table [dataSource]="dataSource">
+        <!-- <ng-container matColumnDef="id">
+                <mat-header-cell *matHeaderCellDef  >Id</mat-header-cell>
+                <mat-cell *matCellDef="let element">{{ element.id }}</mat-cell>
+              </ng-container> -->
+        <ng-container matColumnDef="img">
+          <mat-header-cell *matHeaderCellDef></mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <img src="{{getImage(element)}}" width="100" height="100" alt="">
+
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="title">
+          <mat-header-cell *matHeaderCellDef>Title</mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <div>
+              <p> {{ element.description }} </p>
+            </div>
+          </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="catagory">
+          <mat-header-cell *matHeaderCellDef>Catagory</mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <p style="font-weight: 600;"> {{element.productSubCatagory.name}}</p>
+           </mat-cell>
+
+        </ng-container>
+        <ng-container matColumnDef="Status">
+          <mat-header-cell *matHeaderCellDef>Status</mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <p class="status" *ngIf="getStatus(element)=='PENDING'"  style="background-color:rgb(138, 132, 132);">PENDING</p>
+            <p class="status" *ngIf="getStatus(element)=='ACTIVE'" style="background-color:#00a651">ACTIVE</p>
+            <p class="status" *ngIf="getStatus(element)=='ERROR'" style="background-color: rgb(228, 74, 74);">ERROR</p>
+            <p class="status" *ngIf="getStatus(element)=='DISABLED'" style="background-color:rgb(241, 238, 238);">DISABLED</p>
+             <p class="status" *ngIf="getStatus(element)=='SOLD'" style="background-color: red;">SOLD</p>
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="price">
+          <mat-header-cell *matHeaderCellDef>Price</mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <p style="font-weight: 600;">{{getPrice(element) }}</p>
+            
+          </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="action">
+          <mat-header-cell *matHeaderCellDef>Action</mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <div class="post_action">
+              <a routerLink="/user/postdisplay" [queryParams]="{pid:element.id}" class="display"  matTooltipPosition="above" matTooltip="display"><i class="  fas  fa-eye"  ></i></a>
+              <a routerLink="/user/editpost" [queryParams]="{pid:element.id}" class="edit"  matTooltipPosition="above"  matTooltip="Edit"><i class="fas fa-pencil-alt"></i></a>
+              <a class="delete"  matTooltipPosition="above" matTooltip="delete"><i class="fas fa-trash-alt"></i></a>
+            </div>
+
+          </mat-cell>
+        </ng-container>
+
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+      </mat-table>
+      <mat-paginator [pageSize]="10" [pageSizeOptions]="[1, 5, 10, 20]">
+      </mat-paginator>
+    </mat-card-content>
+
+
+    <mat-card-footer>
+    </mat-card-footer>
+  </mat-card>
+</section>

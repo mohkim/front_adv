@@ -1,1 +1,37 @@
-<p>subcatagory-page works!</p>
+<div class="wrapper">
+    <div class="left-side">
+      <div class="cat-sub-list">
+          <ul *ngFor="let scat of  subCatagories">
+           
+              <li  ><a routerLink="/subcat" [queryParams]="{scid:scat.id}" >{{scat.name}} <span>(23)</span></a></li>
+            
+               
+          </ul>
+    </div>
+          
+
+    </div>
+    <div class="right-side"  >
+        <!-- -->
+        <div class="card-list">
+            <div class="product-card  " *ngFor="let p of posts  | async  ">
+                <div class="product-image">
+                   <a routerLink="/display" [queryParams]="{pid:p.id}"> <img [src]="getImageUrl(p)"     alt=""></a>
+                    <div class="price-tag">{{displayPrice(p)}}</div>
+             
+                </div>
+                <div class="product-data">
+                 <div class="post-title"><a   routerLink="/display" [queryParams]="{pid:p.id}"> <p>{{p.description}}</p></a></div>
+                           
+                </div>
+            </div>
+      </div>
+        <div class="paginator">
+            <mat-paginator [pageSizeOptions]="[10]"></mat-paginator>
+          </div>
+ 
+        </div>
+      
+ 
+</div>   
+ 

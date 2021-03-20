@@ -1,0 +1,10 @@
+.input_fileupload--hidden{
+    visibility: hidden;
+}
+
+
+.dialog{
+    
+    display: flex;
+    justify-content: space-around;
+  }

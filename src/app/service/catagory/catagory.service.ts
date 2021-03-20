@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
  
  
  
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { HttpClient, HttpHeaders, HttpRequest } from '@angular/common/http';
+ 
 import { ProductCatagory } from 'src/app/modules/ProductCatagory';
 const AUTH_API = 'http://localhost:8080/adv/admin/';
 
@@ -45,6 +45,24 @@ export class CatagoyrService {
     return  this.http.get<ProductCatagory>(AUTH_API + 'catagory/'+selectedid , httpOptions)
    
   }
+
+  saveCatagoryImage(file: File,cid:number) {
+ 
+ 
+ 
+    const formData: FormData = new FormData();
+      
+       formData.append('file', file);
+ 
+     
+     const req = new HttpRequest('POST',`${AUTH_API}catagory/${cid}/image`, formData, {
+       reportProgress: true,
+       responseType: 'json'
+     });
+ 
+     return this.http.request(req);
+      
+   }
  
   
 }

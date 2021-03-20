@@ -3,6 +3,7 @@ import { Validators, FormBuilder, FormControl } from '@angular/forms';
 import { UserService } from 'src/app/service/user/user.service';
 import { User } from 'src/app/modules/User';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-change-profile-image',
@@ -24,8 +25,8 @@ export class ChangeProfileImageComponent implements OnInit {
 
 
   constructor(private userService: UserService,
-
-    private snackbar: MatSnackBar) { }
+              private router:Router,
+              private snackbar: MatSnackBar) { }
 
   ngOnInit(): void {
    
@@ -34,7 +35,7 @@ export class ChangeProfileImageComponent implements OnInit {
   }
   async getSource() {
   const s=await   this.userService.getUserImageUrl().toPromise();
-  console.log("s data =>"+JSON.stringify(s))
+ 
     if(s != undefined) {
       this.url=s.message
     }else{
@@ -66,6 +67,8 @@ export class ChangeProfileImageComponent implements OnInit {
       this.userService.saveUserImage(event.target.files[0]).subscribe(
         result =>{
           this.openSnackBar("Uplode Done ","Message")
+          location.reload()
+           
         },
         error => {
           this.openSnackBar("Upload Fail","Error")
