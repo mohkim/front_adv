@@ -5,7 +5,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpRequest } from '@angular/common/http';
  
 import { ProductCatagory } from 'src/app/modules/ProductCatagory';
-const AUTH_API = 'http://localhost:8080/adv/admin/';
+import { CatagoryByQuantity} from 'src/app/modules/CatagoryByQuantity';
+import { GlobalConstants } from 'src/app/utility/global-constants';
+const AUTH_API = GlobalConstants.serverUrl+'adv/admin/';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -22,7 +24,9 @@ export class CatagoyrService {
     private http: HttpClient
   ) {}
 
-
+  getListOfCatagoryByPost(){ 
+    return  this.http.get<CatagoryByQuantity>(AUTH_API + 'catagorybynumber', httpOptions)
+     }
  
   deleteProductCatagory(cat:ProductCatagory){ 
     return  this.http.delete(AUTH_API + 'catagory/'+cat.id, httpOptions)

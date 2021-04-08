@@ -1,4 +1,12 @@
-<div fxFlexOffset="50px">
+<section>
+
+
+  
+  
+
+  <div class="wrapper"  >
+    <div class="header_New"><h1>Edit Ads Form</h1></div>
+    <hr>
   <!-- (ngSubmit)="submitPost1()" -->
   <form  [formGroup]="postForm">
     <div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="20px">
@@ -8,7 +16,7 @@
         <input matInput placeholder="Id"   type="text" formControlName="id">
       </mat-form-field>
 
-      <mat-form-field appearance="fill">
+      <mat-form-field  >
         <mat-label>Catagory</mat-label>
         <mat-select formControlName="productSubCatagory" (selectionChange)="onCatagoryChange($event)" required>
           <mat-option value=""> </mat-option>
@@ -21,7 +29,7 @@
       </mat-form-field>
 
       <!-- //sale Location   -->
-      <mat-form-field appearance="fill">
+      <mat-form-field  >
         <mat-label>Sales Location</mat-label>
         <mat-select formControlName="salesLocation" required>
           <mat-option *ngFor="let sal of salesLocations" [value]="sal">
@@ -87,7 +95,7 @@
         <input matInput placeholder="Price"   formControlName="price" required>
       </mat-form-field> -->
         <!-- //currency -->
-        <!-- <mat-form-field appearance="fill">
+        <!-- <mat-form-field  >
           <mat-label>Currency</mat-label>
           <mat-select  formControlName="currency" required>
             <mat-option *ngFor="let cur of currency1" [value]="cur">
@@ -116,7 +124,7 @@
           
 
         <div class="" *ngIf="isSubCatSelected"  fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="10px">
-          <button mat-raised-button color="primary" (click)="onClick()">
+          <button class="adv-button" mat-raised-button color="primary" (click)="onClick()">
             <mat-icon>add</mat-icon>
             {{chooseLabel}}
           </button>
@@ -158,15 +166,15 @@
                 <mat-radio-button value="PRICE" style="padding-top:20px">Price</mat-radio-button>
                 <div class="" fxLayout="column" fxLayoutAlign="start start">
               
-                  <div class="price_curency"  fxLayout="row">
-                    <mat-form-field class="example-full-width">
+                  <div class="price_curency"  fxLayout="row"  >
+                    <mat-form-field class="example-full-width" style="max-width: 200px;">
                     <mat-label>Price</mat-label>
                     <input matInput placeholder="selling Price" pattern="[0-9]+"  formControlName="price_amount"
                       [readonly]="price_readonly" [required]="price_required">
                 </mat-form-field>
 
                 <!-- //currency -->
-                <mat-form-field appearance="fill" >
+                <mat-form-field  class="currency" >
                   <mat-label>Currency</mat-label>
                   <mat-select formControlName="price_currency"    [disabled]="price_readonly" [required]="price_required">
                     <mat-option *ngFor="let price_curr of currency1" [value]="price_curr">
@@ -200,7 +208,7 @@
                     <input matInput placeholder="Max" pattern="[0-9]+" formControlName="max" [readonly]="max_readonly" [required]="max_required">
 
                   </mat-form-field>
-                  <mat-form-field appearance="fill" >
+                  <mat-form-field  >
                     <mat-label>Currency</mat-label>
                     <mat-select formControlName="range_currency"   [disabled]="max_readonly"
                     [required]="max_required">
@@ -218,46 +226,55 @@
         </div>
 
         <!-- service  type and charge options  -->
-        <div class="" *ngIf="isSubCatSelected">
-          <mat-radio-group aria-label="Select package" formControlName="package_fee"  [required]="fee_required()">
-            <div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="10px">
-             <!-- free package -->
-              <div  *ngIf="selectSubCat.fee_free_enable" class="" style="border: solid black  1px;" fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="10px">
-                <mat-radio-button value="1">Free -</mat-radio-button>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p><br>
-                <h3><b>{{selectSubCat.fee_free}}</b></h3>
-              </div>
+        <mat-card  *ngIf="isSubCatSelected" style="background-color: rgb(230, 224, 224);">
+          <h4> promote my ads </h4>
+          <div  >
+           <mat-radio-group aria-label="Select package" formControlName="package_fee" [required]="fee_required()">
+             <div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="10px">
+               <!-- free package -->
+               <div *ngIf="selectSubCat.fee_free_enable" class="promote_item"   >
+                 <mat-radio-button value="1"></mat-radio-button>
+                 <p>Post Ads for 30 days   <span>  {{selectSubCat.fee_free}} SSP </span> </p> 
+                 
+               </div>
                <!--week  Package -->
-               <div *ngIf="selectSubCat.fee_week_enable"    class="" style="border: solid black  1px;" fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="10px">
-                <mat-radio-button value="2">week -</mat-radio-button>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.  </p><br>
-                <h3><b>{{selectSubCat.fee_week}}</b></h3>
-
-              </div>
-            <!--month  Package -->
-            <div *ngIf="selectSubCat.fee_month_enable"  class="" style="border: solid black  1px;" fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="10px">
-              <mat-radio-button value="3">month - </mat-radio-button>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p><br>
-              <h3><b>{{selectSubCat.fee_month}}</b></h3>
-            </div>
-             <!--Year  Package -->
-             <div  *ngIf="selectSubCat.fee_year_enable"  class="" style="border: solid black  1px;" fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="10px">
-              <mat-radio-button value="4">year -</mat-radio-button>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p><br>
-              <h3><b>{{selectSubCat.fee_year}}</b></h3>
-            </div>
-            </div>
-
-          </mat-radio-group>
-        </div>
-
+               <div *ngIf="selectSubCat.fee_week_enable" class="promote_item"   >
+                 <mat-radio-button value="2"> </mat-radio-button>
+                 <p> Post Ads for 7 days promote your ads - <span> {{selectSubCat.fee_week}}  SSP </span> </p> 
+                 
+                    
+               </div>
+               <!--month  Package -->
+               <div *ngIf="selectSubCat.fee_month_enable" class="promote_item"   >
+                 <mat-radio-button value="3"></mat-radio-button>
+                 <p> Post Ads for 30 days promote your ads <span  > {{selectSubCat.fee_month}}  SSP </span> </p> 
+                 
+               </div>
+               <!--Year  Package -->
+               <div *ngIf="selectSubCat.fee_year_enable" class="promote_item"   >
+                 <mat-radio-button value="4"> </mat-radio-button>
+                 <p> Post Ads for 1 Year promote your Ads -  <span> {{selectSubCat.fee_year}}  SSP </span> </p> 
+                 
+               </div>
+             </div>
+     
+           </mat-radio-group>
+         </div>   
+       
+          
+            
+       </mat-card>
         <!-- submit  -->
-        <div class="form-row">
-          <button mat-button (click)="submitPost1()" [disabled]="!postForm.valid">Save</button>
- 
+        <div class="submit-button" *ngIf="isSubCatSelected"> 
+          <button class="adv-button" mat-button (click)="submitPost1()" [disabled]="!postForm.valid">Save Ads</button>
+    
+            <p>By clicking Save Ads you accept the <a href="">Terms of Service</a> and <a href="">Privacy Policy</a> and</p>
+            <p> agree to receive newsletters and promo offers from us.</p>
+         
         </div>
-      </div>
-  </form>
-
-  
-</div>
+    </div>
+    </form>
+     
+    </div>
+    
+    </section> 

@@ -85,7 +85,7 @@ export class PostNewComponent implements OnInit {
   max_readonly = true
   max_required = false
 
-  async submitPost() {
+  async submitPost(){
 //     this.formToObject()
 //  console.log("payment object==>"+JSON.stringify(this.serviceFee))
     if (this.files.length < this.selectSubCat.img_min) {
@@ -107,7 +107,7 @@ export class PostNewComponent implements OnInit {
       } else {
       }
 
-      this.router.navigate(['user/post']);
+      this.router.navigate(['user/setting/post']);
     }
   }
 
@@ -202,7 +202,7 @@ export class PostNewComponent implements OnInit {
         //   this.files = [];
         // }
         if (files1[i].size <= 5000000) {  // check the size
-          if (files1[i].type === 'image/jpeg' || files1[i].type === 'image/png') { // image type
+          if (files1[i].type === 'image/jpeg' || files1[i].type === 'image/png'|| files1[i].type === 'image/JPEG') { // image type
             if (this.files.length < this.selectSubCat.img_max) { //check number of image 
               const imgWidth = await this.getImageWidths(files1[i]);
               // console.log("return  result ==> "+imgWidth)
@@ -241,16 +241,19 @@ export class PostNewComponent implements OnInit {
     for (let i = 0; i < num; i++) {
       // test
       if (this.files[i].size <= 2000000) {
-        if (this.files[i].type === 'image/jpeg' || this.files[i].type === 'image/png') {
+        if (this.files[i].type === 'image/jpeg' || this.files[i].type === 'image/png'|| this.files[i].type === 'image/JPG') {
           var reader = new FileReader();
-
+          
           reader.readAsDataURL(this.files[i]);
-
+          console.log("img src => "+JSON.stringify( this.files[i]))
           reader.onload = (event) => {
             // called once readAsDataURL is completed
-
+            
             this.imageSrc[i] = event.target.result;
           };
+           
+        
+       //   reader.readAsDataURL(this.files[i]);
         }
       }
     }

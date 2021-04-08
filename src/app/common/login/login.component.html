@@ -26,14 +26,17 @@
 
       </mat-card-content>
       <mat-card-actions align="start">
-        <button type="submit" mat-raised-button color="primary" [disabled]="loginForm.invalid">Submit</button>
+        <button class="adv-button" type="submit" mat-raised-button color="primary" [disabled]="loginForm.invalid">Submit</button>
 
 
       </mat-card-actions>
-      <mat-card-footer style="padding-bottom: 10px;" >
-        <div class=""> <a routerLink="/register"> <u> Sign Up</u></a>
-          <a routerLink="/forgotpassword" style="padding-left: 100px;"> <u> Forgot Password</u> </a></div>
-        <div class=""> </div>
+      <mat-card-footer     >
+     
+          <a routerLink="/register">   Sign Up </a> 
+           <a routerLink="/forgotpassword"   >   Forgot Password  </a> 
+          
+        
+       
       </mat-card-footer>
     </form>
   </mat-card>

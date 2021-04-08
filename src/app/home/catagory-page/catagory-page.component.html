@@ -3,7 +3,7 @@
       <div class="cat-sub-list">
           <ul *ngFor="let cat of catagories">
            
-              <li  ><a routerLink="/subcat" [queryParams]="{cid:cat.id}" ><img src="http://localhost:8080/adv/img/{{cat.img}}" width="20" height="20"> {{cat.name}} <span>(23)</span></a></li>
+              <li  ><a routerLink="/subcat" [queryParams]="{cid:cat.id}" ><img src="http://localhost:8080/adv/img/{{cat.img}}" width="20" height="20"> {{cat.name}} <span>({{cat.qty}})</span></a></li>
             
                
           </ul>

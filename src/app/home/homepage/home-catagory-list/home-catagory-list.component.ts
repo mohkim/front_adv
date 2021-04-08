@@ -14,7 +14,7 @@ export class HomeCatagoryListComponent implements OnInit {
     public snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
-    this.catService.getallProductCatagory().subscribe(
+    this.catService.getListOfCatagoryByPost().subscribe(
       result => {
         this.catagories = result
         // console.log("cat==>"+JSON.stringify(this.catagories))

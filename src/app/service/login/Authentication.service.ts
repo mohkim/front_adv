@@ -3,7 +3,8 @@ import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { TokenStorageService } from '../tokenStorage/token-storage.service';
-const AUTH_API = 'http://localhost:8080/adv/auth/';
+import { GlobalConstants } from "src/app/utility/global-constants";
+const AUTH_API = GlobalConstants.serverUrl+'adv/auth/';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })

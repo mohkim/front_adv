@@ -1,8 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ProductSubCatagory } from 'src/app/modules/ProductSubCatagory';
-import { ProductCatagory } from 'src/app/modules/ProductCatagory';
-const AUTH_API = 'http://localhost:8080/adv/admin/';
+ 
+import { GlobalConstants } from 'src/app/utility/global-constants';
+import { SubCatagoryByQuantity } from 'src/app/modules/SubCatagoryByQuantity';
+
+const AUTH_API = GlobalConstants.serverUrl+'adv/admin/';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -17,6 +20,9 @@ export class SubcatagoryService {
     private http: HttpClient
   ) {}
  
+  getListOfCatagoryByPost(id:number){ 
+    return  this.http.get<SubCatagoryByQuantity>(`${AUTH_API}cat/${id}/subcatagorybynumber`, httpOptions)
+     }
   getSubcatagoryList(id:number){ 
     return  this.http.get<ProductSubCatagory[]>(`${AUTH_API}subcatagorylist/${id}`, httpOptions)
      }

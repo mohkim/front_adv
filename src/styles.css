@@ -24,3 +24,17 @@ body{
   mat-form-field span.mat-form-field-label-wrapper label {
     color: #00a651 !important;
   }
+
+ /*click effect color change*/
+    /* .mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element {
+    opacity: 0.5 !important;    
+    background-color:  #00a651 !important;
+} */
+/*inner circle color change*/
+   .mat-radio-button.mat-accent .mat-radio-inner-circle {
+    background-color:  #00a651 !important;  
+}  
+/* outer ring color change */
+ .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+   border-color:#00a651 !important;   
+} 

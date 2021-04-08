@@ -4,7 +4,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { SalesLocation }  from '../../modules/SalesLocation';
-const AUTH_API = 'http://localhost:8080/adv/admin/';
+import { GlobalConstants } from 'src/app/utility/global-constants';
+const AUTH_API = GlobalConstants.serverUrl+'adv/admin/';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })

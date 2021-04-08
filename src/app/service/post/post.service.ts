@@ -4,9 +4,10 @@ import { HttpClient, HttpHeaders, HttpRequest } from '@angular/common/http';
  
 import { Post } from '../../modules/Post';
 import { TokenStorageService } from '../tokenStorage/token-storage.service';
+import { GlobalConstants } from 'src/app/utility/global-constants';
  
  
-const AUTH_API = 'http://localhost:8080/adv/';
+const AUTH_API = GlobalConstants.serverUrl+'adv/';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' }),

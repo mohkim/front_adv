@@ -46,9 +46,10 @@ export class CatagoryPageComponent implements OnInit {
       this.openSnackBar("couldn't retrieve Posts !!!", "error")
     }
 
-    const p =await  this.catService.getallProductCatagory().toPromise()
+    const p =await  this.catService.getListOfCatagoryByPost().toPromise()
     if(p != undefined){
        this.catagories=p
+      
        
     }else {
       this.openSnackBar("couldn't retrieve catagories !!!", "error")

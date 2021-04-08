@@ -61,12 +61,13 @@ export class SubcatagoryPageComponent implements OnInit {
       this.openSnackBar("couldn't retrieve Posts !!!", "error")
     }
 
-    const p =await  this.scatService.getSubcatagoryList(this.cid).toPromise()
+    const p =await  this.scatService.getListOfCatagoryByPost(this.cid).toPromise()
     if(p != undefined){
         console.log("out put data => "+JSON.stringify(p))
-        if(p.length>0){
+       // if(p.length>0){
           this.subCatagories=p
-         } else   this.route.navigate(['/error'])
+        //  }
+        //   else   this.route.navigate(['/error'])
        }else {
       this.route.navigate(['/error'])    ///catagory not found 
            }

@@ -1,9 +1,13 @@
 <div class="wrapper">
     <div class="left-side">
       <div class="cat-sub-list">
+          <div class="back_cat" style="border-bottom: 3px solid #d6d6d6; padding-left: 20px;">
+            <a routerLink="/cat"   > <i class="fas fa-arrow-left"></i>  To Catagory  </a> 
+          </div>
+         
           <ul *ngFor="let scat of  subCatagories">
            
-              <li  ><a routerLink="/subcat" [queryParams]="{scid:scat.id}" >{{scat.name}} <span>(23)</span></a></li>
+              <li  ><a routerLink="/subcat" [queryParams]="{scid:scat.id}" >{{scat.name}} <span>({{scat.qty}})</span></a></li>
             
                
           </ul>

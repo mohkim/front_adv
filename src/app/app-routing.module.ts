@@ -84,7 +84,7 @@ const routes: Routes = [
 
   //user pages
  
-  {path:"user/newpost",component:PostNewComponent,canActivate:[UserGuardService]},
+  {path:"user/newpost",component:PostNewComponent,canActivate:[LogInGuardService]},
   {path:"user/editpost",component:EditpostComponent,canActivate:[UserGuardService]},
   {path:"user/postdisplay",component:UserPostDisplayComponent,canActivate:[UserGuardService]},
   {path:"user/setting",component:ProfileComponent,canActivate:[UserGuardService]},

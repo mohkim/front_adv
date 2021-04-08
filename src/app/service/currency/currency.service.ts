@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Currency }  from '../../modules/Currency';
+import { GlobalConstants } from 'src/app/utility/global-constants';
 
-const AUTH_API = 'http://localhost:8080/adv/admin/';
+const AUTH_API = GlobalConstants.serverUrl+'adv/admin/';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })

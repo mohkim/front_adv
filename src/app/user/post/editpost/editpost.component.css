@@ -1,3 +1,37 @@
+section{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px 0px;
+  min-height: 25%;
+  overflow: hidden;
+}
+.wrapper{
+
+  background-color: white;
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+   width: fit-content;
+
+}
+.header_New{
+ 
+  padding: 10px;
+ 
+  border-bottom: 2px solid #d6d6d6;
+  background-color: white;
+ width: 100%;
+ 
+ 
+}
+.header_New h1 {
+  margin: 0;
+  text-align: center;
+ 
+}
 .input_fileupload--hidden{
     visibility: hidden;
 }
@@ -33,4 +67,47 @@ mat-form-field{
  .img-wraps:hover .closes {
    opacity: 1;
  }
+
+ /* select setting */
  
+.currency{
+  width: 80px;
+  padding-left: 10px;
+}
+.submit-button{
+    display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.submit-button button{
+  margin-bottom: 10px;
+}
+.submit-button p{
+  padding: 0;
+  margin: 0;
+  font-weight: 300;
+}
+.submit-button a{
+  color: #00a651;
+  font-weight: 400;
+}
+ 
+.adv-button{
+  background-color: #00a651;
+   color: white;
+   font-size: 1em;
+   min-width: 150px;
+}
+.promote_item{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: baseline;
+  
+}
+.promote_item span {
+ 
+  color: #00a651;
+ 
+}
