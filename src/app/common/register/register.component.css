@@ -1,7 +1,54 @@
-mat-form-field {
-    width: 300px;
+section {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.container {
+  max-width: 350px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+   padding: 0 20px 0 30px;
+}
+.title {
+  font-weight: 300;
+  width: 100%;
+
+  padding-top: 20px;
+}
+.title h1 {
+  padding-left: 50px;
+}
+
+mat-form-field,
+mat-checkbox {
+  width: 300px;
+  margin-top: 5px;
+}
+.agree {
+  width: 300px;
+  margin: 5px;
+}
+.adv-button {
+  background-color: #00a651;
+  color: white;
+  font-size: 1em;
+  min-width: 80%;
+  margin: 5px 5% 10px;
+}
+.alert-error {
+  margin: 0;
+  margin: 10px;
+  background-color: #f44336;
+  color: white;
+  text-align: center;
+}
+.alert-message {
    
-  }
-  .signup-form{
-    padding-top: 5%;
-  }
+  margin: 0;
+  margin: 10px;
+  background-color: #0ddb71;
+  color: white;
+  text-align: center;
+}

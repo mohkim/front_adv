@@ -5,12 +5,17 @@ import { MatDialog } from '@angular/material/dialog';
 import { UserPostService } from 'src/app/service/post/User_post.service';
 import { User } from 'src/app/modules/User';
 import { UserService } from 'src/app/service/user/user.service';
+import { GlobalConstants } from 'src/app/utility/global-constants';
+
+const SERVER_URL = GlobalConstants.serverUrl;
 
 @Component({
   selector: 'app-post',
   templateUrl: './post.component.html',
   styleUrls: ['./post.component.css']
 })
+
+ 
 export class PostComponent implements OnInit {
  
  
@@ -28,13 +33,16 @@ export class PostComponent implements OnInit {
       const s=await   this.userService.getCurrentUser().toPromise();
       console.log("s data =>"+JSON.stringify(s))
         if(s != undefined) {
-          this.userImage="http://localhost:8080/adv/img/"+s.image_name
+          if(s.image_name=== null) this.userImage = "assets/img/default_user.png"
+          else  this.userImage=`${SERVER_URL}adv/img/`+s.image_name         
            this.userName=s.fullName
         }else{
-          this.userImage = "assets/img/avatar.png"
+         
           this.userName=""
+          this.userImage = "assets/img/default_user.png"
          
         }
+  
       }
   
   }

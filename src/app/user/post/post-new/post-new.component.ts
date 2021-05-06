@@ -86,12 +86,14 @@ export class PostNewComponent implements OnInit {
   max_required = false
 
   async submitPost(){
+ 
 //     this.formToObject()
 //  console.log("payment object==>"+JSON.stringify(this.serviceFee))
+ 
     if (this.files.length < this.selectSubCat.img_min) {
       this.openSnackBar('upload atleast ' + this.selectSubCat.img_min + ' images', 'Error');
     } else {
-      console.log('Post data For send =>' + JSON.stringify(this.post));
+      // console.log('Post data For send =>' + JSON.stringify(this.post));
       this.formToObject()  // preppare post
       const p = await this.postService
         .savePost(this.post)
@@ -245,7 +247,7 @@ export class PostNewComponent implements OnInit {
           var reader = new FileReader();
           
           reader.readAsDataURL(this.files[i]);
-          console.log("img src => "+JSON.stringify( this.files[i]))
+         // console.log("img src => "+JSON.stringify( this.files[i]))
           reader.onload = (event) => {
             // called once readAsDataURL is completed
             
@@ -504,7 +506,7 @@ export class PostNewComponent implements OnInit {
 
   getPostSpecification() {
     this.postSpecifcation.splice(0, this.postSpecifcation.length)
-    console.log("length of array =>" + this.selectSubCat.specificationList.length)
+  //  console.log("length of array =>" + this.selectSubCat.specificationList.length)
     for (let index = 0; index < this.selectSubCat.specificationList.length; index++) {
 
       // console.log("index = "+index+" data => "+ JSON.stringify(

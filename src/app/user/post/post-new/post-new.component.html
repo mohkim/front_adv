@@ -52,16 +52,18 @@
           <div [ngSwitch]="form_elem.controlType">
             <!-- text box section -->
             <mat-form-field *ngSwitchCase="'textbox'">
-              <mat-label>{{form_elem.label}}</mat-label>
-              <input matInput [placeholder]="form_elem.placeholder" [pattern]="form_elem.pattern"
+              <!-- <mat-label>{{form_elem.label}}</mat-label> -->
+              <mat-label>{{form_elem.placeholder}}</mat-label>
+              <input matInput   [pattern]="form_elem.pattern"
                 formControlName="{{form_elem.key}}" [value]="form_elem.value" [id]="form_elem.key"
                 [type]="form_elem.type">
               <!-- <div color="accent" *ngIf="!isValid">{{question.label}} is required</div> -->
             </mat-form-field>
             <!-- drop down selection  section -->
             <mat-form-field *ngSwitchCase="'dropdown'">
-              <mat-label>{{form_elem.label}}</mat-label>
-              <mat-select [formControlName]="form_elem.key" [placeholder]="form_elem.placeholder" [id]="form_elem.key">
+         <!-- <mat-label>{{form_elem.label}}</mat-label> -->
+              <mat-label>{{form_elem.placeholder}}</mat-label>
+              <mat-select [formControlName]="form_elem.key"   [id]="form_elem.key">
                 <mat-option *ngFor="let opt of form_elem.option" [value]="opt.item">
                   {{opt.item}}
                 </mat-option>
@@ -70,8 +72,9 @@
 
             <!-- textarea section  -->
             <mat-form-field *ngSwitchCase="'textarea'">
-              <mat-label>{{form_elem.label}}</mat-label>
-              <textarea matInput [placeholder]="form_elem.placeholder" formControlName="{{form_elem.key}}"
+              <!-- <mat-label>{{form_elem.label}}</mat-label> -->
+              <mat-label>{{form_elem.placeholder}}</mat-label>
+              <textarea matInput   formControlName="{{form_elem.key}}"
                 [id]="form_elem.key" [value]="form_elem.value"></textarea>
             </mat-form-field>
 
@@ -243,15 +246,17 @@
 
     <!-- submit  -->
     <div class="submit-button" *ngIf="isSubCatSelected"> 
-      <button class="adv-button" mat-button (click)="submitPost()" [disabled]="!postForm.valid">Save Ads</button>
-
-        <p>By clicking Save Ads you accept the <a href="">Terms of Service</a> and <a href="">Privacy Policy</a> and</p>
-        <p> agree to receive newsletters and promo offers from us.</p>
+      <p>By clicking Save Ads you accept the <a href="">Terms of Service</a> and <a href="">Privacy Policy</a> and</p>
+      <p> agree to receive newsletters and promo offers from us.</p>
+      <button class="adv-button" mat-button (click)="submitPost()" [disabled]="!postForm.valid"  >Save Ads  </button>
+      <!-- [disabled]="!postForm.valid" -->
+      <p style="color: red;" *ngIf="!postForm.valid">Please complete the form!!!</p>
+       
      
     </div>
 </div>
 </form>
  
 </div>
-
+ 
 </section> 

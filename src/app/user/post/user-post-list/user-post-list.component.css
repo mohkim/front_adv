@@ -5,7 +5,6 @@ mat-card{
     width: 100%;
 }
 .status{
-   
     padding: 10px;
     border-radius: 7px;
     width: 80px;
@@ -45,4 +44,22 @@ mat-card{
 } 
 .delete:hover ,.edit:hover,.display:hover{
     font-size: 1.5em;
+}
+
+/* ads status button css */
+.card_status{
+    padding: 10px;
+    margin: 10px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content:flex-end ;
+    width: 98%;
+}
+
+.card_status button{
+    font-size: 1em;
+    padding: 5px;
+    margin: 5px;
+    text-decoration: none;
 }

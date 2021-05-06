@@ -1,4 +1,4 @@
-<section>
+<section >
     <div class="personal-info">
         <img src="http://localhost:8080/adv/img/{{user.image_name}}"  alt="">
         <div class="personal-name"><h2>{{user.fullName}}</h2></div>
@@ -6,24 +6,8 @@
         <div class="personal-edit">Phone : {{user.contact.phone}}</div>
     </div>
 
-    <div class="ads-list">
-<!--  
-                <div class="card-list">
-                    <div class="product-card  " *ngFor="let p of posts  | async  ">
-                        <div class="product-image">
-                           <a routerLink="/display" [queryParams]="{pid:p.id}"> <img [src]="getImageUrl(p)"     alt=""></a>
-                            <div class="price-tag">{{displayPrice(p)}}</div>
-                     
-                        </div>
-                        <div class="product-data">
-                         <div class="post-title"><a   routerLink="/display" [queryParams]="{pid:p.id}"> <p>{{p.description}}</p></a></div>
-                                   
-                        </div>
-                    </div>
-              </div>
-                <div class="paginator">
-                    <mat-paginator [pageSizeOptions]="[10]"></mat-paginator>
-                  </div> -->
+    <div class="ads-list"   >
+ 
   
  
         <div class="product-card"  *ngFor="let p of posts | async   ">

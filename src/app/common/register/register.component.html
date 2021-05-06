@@ -1,102 +1,60 @@
-<!-- <div class="col-md-12 offset-3" style="width: 50%;margin-top: 5%;">
-    <div class="card card-container " style="padding: 20px;">
+<section>
 
+    <form #f="ngForm" (ngSubmit)="onSubmit(f)">
 
-
-        <form *ngIf="!isSuccessful" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
-            <div class="form-group">
-                <label for="username">Username</label>
-                <input type="text" class="form-control" name="username" [(ngModel)]="form.username" required
-                    minlength="3" maxlength="20" #username="ngModel" />
-                <div class="alert-danger" *ngIf="f.submitted && username.invalid">
-                    <div *ngIf="username.errors.required">Username is required</div>
-                    <div *ngIf="username.errors.minlength">
-                        Username must be at least 3 characters
-                    </div>
-                    <div *ngIf="username.errors.maxlength">
-                        Username must be at most 20 characters
-                    </div>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" class="form-control" name="email" [(ngModel)]="form.email" required email
-                    #email="ngModel" />
-                <div class="alert-danger" *ngIf="f.submitted && email.invalid">
-                    <div *ngIf="email.errors.required">Email is required</div>
-                    <div *ngIf="email.errors.email">
-                        Email must be a valid email address
-                    </div>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" class="form-control" name="password" [(ngModel)]="form.password" required
-                    minlength="6" #password="ngModel" />
-                <div class="alert-danger" *ngIf="f.submitted && password.invalid">
-                    <div *ngIf="password.errors.required">Password is required</div>
-                    <div *ngIf="password.errors.minlength">
-                        Password must be at least 6 characters
-                    </div>
-                </div>
-            </div>
-            <div class="form-group">
-                <button class="btn btn-primary btn-block">Sign Up</button>
-            </div>
-
-            <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
+        <dir class="container">
+            <div *ngIf="f.submitted && isSignUpFailed" class="alert-error">
                 Signup failed!<br />{{ errorMessage }}
             </div>
-        </form>
+            <div   *ngIf="isSuccessful" class="alert-message">
+                <p> Your registration is successful In Ordr to activate your account
+                    please go to your email : {{form.email}} </p>
+            </div>
 
-        <div class="alert alert-success" *ngIf="isSuccessful">
-            <p> Your registration is successful In Ordr to activate your account
-                please go to your email : {{form.email}} </p>
-        </div>
-    </div>
-</div> -->
+            <div class="title">
+                <h1>User Ragistration</h1>
+            </div>
+            <div class="form-field">
+                <mat-form-field>
+                    <input type="text" matInput placeholder="Full Name" required ngModel #usernameInput="ngModel" name
+                        name="username">
+                    <!-- <mat-error *ngIf="usernameInput.hasError('required')">Empty is not allawed</mat-error>
+     -->
+                </mat-form-field>
+                <mat-form-field>
+                    <input type="email" matInput placeholder="Your email" required ngModel #emailInput="ngModel" email
+                        name="email">
+                    <mat-error *ngIf="!emailInput.hasError('required')">E-mail is invalid</mat-error>
+                    <!-- <mat-error *ngIf="emailInput.hasError('required')">Empty is not allawed</mat-error>
+                   
+               -->
+                </mat-form-field>
+                <mat-form-field hintLabel="Should be Atleast 6 charachters">
+                    <input type="password" matInput ngModel name="password" #pwInput="ngModel" minlength="6"
+                        placeholder="Your password">
+                    <!-- <mat-hint align="end">{{pwInput.value?.length}}/6</mat-hint>
+                    <mat-error>Short Password</mat-error> -->
+                </mat-form-field>
+                <mat-form-field hintLabel="Should be Atleast 6 charachters">
+                    <input type="password" matInput ngModel name="password2" #pwInput2="ngModel" minlength="6"
+                        placeholder="Retype password">
+                    <!-- <mat-hint align="end">{{pwInput2.value?.length}}/6</mat-hint> -->
+                    <!--     
+                    <mat-error>Short Password</mat-error> -->
+                </mat-form-field>
+                <div class="agree">
+                    <mat-checkbox ngModel name="agree" color="primary" required>Agreed To Terms and Conditions
+                    </mat-checkbox>
 
-   
+                </div>
 
-<section class="signup-form" >
-  
-<div *ngIf="f.submitted && isSignUpFailed">
-    Signup failed!<br />{{ errorMessage }}
-  </div>
-  <div class="alert alert-success" *ngIf="isSuccessful">
-    <p> Your registration is successful In Ordr to activate your account 
-       please go to your email : {{form.email}}   </p> 
-    </div> 
+            </div>
+            <div class="action">
+                <button type="submit" mat-raised-button class="adv-button" [disabled]="f.invalid">Submit</button>
+            </div>
 
-    <form   fxLayout="column" fxLayoutGap="10px" fxLayoutAlign="center center" #f="ngForm" (ngSubmit)="onSubmit(f)" >
-         
-        <div class="h1 " style="background-color: cadetblue; width: 300px;text-align: center;font-size: 18;">Sign Up </div>
-        <mat-form-field >
-            <input type="text" matInput placeholder="Full Name" required ngModel #usernameInput="ngModel" name  name="username">
-          <mat-error *ngIf="usernameInput.hasError('required')">Empty is not allawed</mat-error>
-        
-          </mat-form-field>
-        <mat-form-field >
-        <input type="email" matInput placeholder="Your email" required ngModel #emailInput="ngModel" email  name="email">
-      <mat-error *ngIf="emailInput.hasError('required')">Empty is not allawed</mat-error>
-      <mat-error *ngIf="!emailInput.hasError('required')">E-mail is invalid</mat-error>
-      </mat-form-field>
-      <mat-form-field hintLabel="Should be Atleast 6 charachters">
-        <input type="password" matInput ngModel name="password" #pwInput="ngModel" minlength="6" placeholder="Your password">
-        <mat-hint align="end">{{pwInput.value?.length}}/6</mat-hint>
-        <mat-error>Short Password</mat-error>
-    </mat-form-field>
-    <mat-form-field hintLabel="Should be Atleast 6 charachters">
-        <input type="password" matInput ngModel name="password2" #pwInput2="ngModel" minlength="6" placeholder="Retype password">
-        <mat-hint align="end">{{pwInput2.value?.length}}/6</mat-hint>
-      
-        <mat-error>Short Password</mat-error>
-    </mat-form-field>
-     
-        <mat-checkbox ngModel  name="agree" color="primary" required>Agreed To Terms and Conditions</mat-checkbox>
 
-      
-      
-      <button type="submit" mat-raised-button  color="primary"  [disabled]="f.invalid">Submit</button>
+
+        </dir>
     </form>
-  </section> 
+</section>

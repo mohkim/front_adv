@@ -1,5 +1,13 @@
-<section fxLayout="row" fxLayoutAlign="start center">
-
+<section fxLayout="column" fxLayoutAlign="start center">
+<mat-card  class="card_status">
+   
+  <button mat-button  (click)="getSourceByStatus('ACTIVE')" style="color:#00a651" >ACTIVE ({{getCount('ACTIVE')}})</button>
+ <button mat-button (click)="getSourceByStatus('PENDING')" style="color:rgb(138, 132, 132);" >PENDING ({{getCount('PENDING')}})</button>
+ <button mat-button (click)="getSourceByStatus('ERROR')" style="color: rgb(228, 74, 74);" >ERROR ({{getCount('ERROR')}})</button>
+ <button mat-button (click)="getSourceByStatus('DISABLED')" style="color:rgb(56, 74, 153);" >DISABLED ({{getCount('DISABLED')}})</button>
+ <button mat-button  (click)="getSourceByStatus('SOLD')" style="color: rgb(34, 31, 31);" >SOLD ({{getCount('SOLD')}})</button>
+ <button mat-button (click)="getSourcedata()" style="color: rgb(104, 91, 91);" >ALL ({{getCount('ALL')}})</button>
+</mat-card>
   <mat-card fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="0px">
 
     <!-- <div class=""    >
@@ -56,7 +64,7 @@
             <p class="status" *ngIf="getStatus(element)=='ACTIVE'" style="background-color:#00a651">ACTIVE</p>
             <p class="status" *ngIf="getStatus(element)=='ERROR'" style="background-color: rgb(228, 74, 74);">ERROR</p>
             <p class="status" *ngIf="getStatus(element)=='DISABLED'" style="background-color:rgb(241, 238, 238);">DISABLED</p>
-             <p class="status" *ngIf="getStatus(element)=='SOLD'" style="background-color: red;">SOLD</p>
+             <p class="status" *ngIf="getStatus(element)=='SOLD'" style="background-color: rgb(34, 31, 31);color: white;">SOLD</p>
           </mat-cell>
         </ng-container>
 

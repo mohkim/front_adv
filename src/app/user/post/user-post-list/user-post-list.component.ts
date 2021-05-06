@@ -11,6 +11,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   
 import { Post } from 'src/app/modules/Post';
 import { UserPostService } from 'src/app/service/post/User_post.service';
+import { UserService } from 'src/app/service/user/user.service';
+import { Post_status } from 'src/app/modules/Post_status';
  
  
  
@@ -26,28 +28,32 @@ export class UserPostListComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
  
- 
+  post_status_list
+   status:Post_status
 
   constructor(
     private postService: UserPostService,
     public dialog: MatDialog,
-    private snackbar:MatSnackBar
+    private snackbar:MatSnackBar,
+    private  userService:UserService,
   ) {}
   ngOnInit(): void {
     this.getSourcedata();
   }
-  getSourcedata(){
-    this.postService.getallPostByUser().subscribe(
-      data=> {
-        
-        this.dataSource.data =data
-      },
-      error=>{
-        this.snackbar.open("Retrieve Data Fail","error")._dismissAfter(2000)
-      }
-    );
-    
-  }
+ async getSourcedata(){
+  const p=await  this.postService.getallPostByUser().toPromise()
+  if(p)  this.dataSource.data =p
+
+  const s=await  this.userService.getPostCatagoryByStatusOfUser().toPromise()
+  if(s)this.post_status_list=s;
+ }
+ async getSourceByStatus(status:string){
+   console.log("status data =>"+status)
+  const p=await  this.postService.getAllPostByStatus(status).toPromise()
+  if(p)  this.dataSource.data =p
+
+  
+ }
  
  
   // deleteOldCatagory(result:ProductCatagory){
@@ -142,4 +148,34 @@ export class UserPostListComponent implements OnInit {
       duration: 2000,
     });
   }
+  getCount(status:string){
+    var n
+    if(status === 'ACTIVE' ){
+      n= this.post_status_list.find(x => x.status=== Post_status.active)
+      if(n != undefined)  return  n.qty
+     return  0
+      
+    }else if(status==='PENDING' ){
+       n= this.post_status_list.find(x => x.status===  Post_status.pending)
+      if(n != undefined)  return  n.qty
+     return  0
+    }else if(status==='DISABLED' ){
+             n= this.post_status_list.find(x => x.status=== Post_status.disabled)
+            if(n != undefined)  return  n.qty
+                return  0
+    }else if(status==='SOLD' ){
+       n= this.post_status_list.find(x => x.status=== Post_status.sold)
+      if(n != undefined)  return  n.qty
+          return  0
+    }else if(status==='ERROR' ){
+       n= this.post_status_list.find(x => x.status=== Post_status.error)
+      if(n != undefined)  return  n.qty
+          return  0 
+    }else if(status==='ALL' ){
+       var sum=0
+       this.post_status_list.forEach(a => sum += a.qty);
+        return  sum
+      
+    }
+}
 }

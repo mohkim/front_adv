@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpRequest } from '@angular/common/http';
 import { User } from 'src/app/modules/User';
 import { Message } from 'src/app/modules/Message';
+import {PostCatagoryByStatus} from 'src/app/modules/PostCatagoryByStatus'
 import { TokenStorageService } from '../tokenStorage/token-storage.service';
 import { GlobalConstants } from 'src/app/utility/global-constants';
 
@@ -70,6 +71,12 @@ export class UserService {
 
   getCurrentUser() {
     return this.http.get<User>(AUTH_API + 'user/' + this.getCurrentUserId(), httpOptions);
+  }
+  getPostCatagoryByStatusOfUser() {
+    var id=this.getCurrentUserId()
+
+    return this.http.get<PostCatagoryByStatus>(`${AUTH_API}user/${id}/post_catagory_status`, httpOptions);
+    
   }
   getCurrentUserId() {
     return this.userToken.getCurrentUserId();

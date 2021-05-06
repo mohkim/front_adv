@@ -1,0 +1,19 @@
+.alert-error {
+    width: 80%;
+    margin: 10px 10%;
+    padding: 20px;
+    background-color: #f44336;
+    color: white;
+    text-align: center;
+    font-size: 1.2em;
+    
+}
+.alert-message {
+    width: 80%;
+    margin: 10px 10%;
+    padding: 20px;
+    background-color: #0ddb71;
+    color: white;
+    text-align: center;
+    font-size: 1.3em;
+}

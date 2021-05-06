@@ -16,6 +16,7 @@ mat-icon {
 
  }
 .top-header{
+ 
     padding: 0 0;
 }
 .flex{
@@ -23,7 +24,8 @@ mat-icon {
   justify-content: space-between;
 }
  .top-header{
-   background-color: black;
+ 
+  background-color: black; 
    color: white;
   
    
@@ -44,30 +46,24 @@ mat-icon {
  }
  /* second menu */
  .wrapper2{
-   background-color: #f7f7f7;
+   background-color: #fafafa;
    padding: 0;
    margin: 0;
-
-
-
- 
  }
  .second-menu{
    padding: 0 3%;
-  
-   
-
    margin: 0;
  }
- .second-menu .logo{
-  padding: 10px 0;
+  .logo{
+  padding: 10px 50px;
    font-size: 2em;
+    
    font-family: Verdana, Geneva, Tahoma, sans-serif;
 
  }
- .second-menu .logo a{
+  .logo a{
    text-decoration: none;
-   color:#00a651  ;
+   color:white ;
    padding: 0;
    margin: 0;
  }
@@ -83,7 +79,7 @@ mat-icon {
    border-radius: 0px;
 
  }
- .second-menu .menu .main-button1 {
+   .main-button1 {
   font-size: 1.2em;
   padding:10px 10px  ;
   margin: 0;
@@ -105,3 +101,13 @@ mat-icon {
 .menu button{
   padding: 0;
 }
+/* some extra */
+.login-post , .user{
+  display: flex;
+  flex-direction: row;
+}
+.user a{
+  vertical-align: middle;
+  padding-top: 8px;
+}
+ 

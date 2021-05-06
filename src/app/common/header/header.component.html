@@ -4,12 +4,24 @@
     <div class="top-header">
      <div class="flex"   >
        <div class="support-contact">
-      <ul>
-        <li>  <mat-icon>phone</mat-icon>+024564874 </li>
-        <li><span><mat-icon>email</mat-icon>support@gmail.com</span></li>
-      </ul>
+        <div class="logo">
+          <a href="#">Hakir</a>
         </div>
-        <div class="login-social">
+        </div>
+        <div class="login-post">
+          <div class="user">
+             
+            <a class="main-button1" mat-button [matMenuTriggerFor]="userMenu" *ngIf="userRoleLogedIn()" > 
+              <img src="{{userImage}}" alt="assets/img/default_user.png" width="40" height="40" style="border-radius:50%;">
+               </a>
+            <a class="main-button1" mat-button  routerLink="/login" *ngIf="!userLogedIn()"  > <i class="fas fa-sign-in-alt"></i> Login </a>
+            <!--  -->
+            <mat-menu #userMenu="matMenu" xPosition="after">
+              
+              <button class="btn3" mat-menu-item routerLink="/user/setting">My Setting</button>
+              <button class="btn3" mat-menu-item routerLink="/logout">Log Out</button>
+            </mat-menu>
+          </div>
           <a mat-button routerLink="/user/newpost"  class="btn1" >  Post Ads      </a>
            
          
@@ -17,11 +29,9 @@
        
      </div>
     </div>
-      <div class="wrapper2"> 
+      <div class="wrapper2"    > 
        <div class="second-menu flex"> 
-      <div class="logo">
-        <a href="#">Hakir</a>
-      </div>
+     
        <div class="menu">
          <button class="main-button" mat-button [matMenuTriggerFor]="adminMenu" *ngIf="adminRoleLogedIn()">Admin <i class="fas fa-caret-down"></i></button>
          <mat-menu #adminMenu="matMenu" yPosition="above">
@@ -45,14 +55,7 @@
          </mat-menu>
          
          
-         <button class="main-button1" mat-button [matMenuTriggerFor]="userMenu" *ngIf="userRoleLogedIn()" >User <i class="fas fa-caret-down"></i></button>
-         <a class="main-button1" mat-button  routerLink="/login" *ngIf="!userLogedIn()"  > <i class="fas fa-sign-in-alt"></i> Login </a>
-         <!--  -->
-         <mat-menu #userMenu="matMenu" xPosition="after">
-           
-           <button class="btn3" mat-menu-item routerLink="/user/setting">My Setting</button>
-           <button class="btn3" mat-menu-item routerLink="/logout">Log Out</button>
-         </mat-menu>
+        
 
           <!-- <ul>
             <li>Home</li>

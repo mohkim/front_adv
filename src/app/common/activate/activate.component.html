@@ -1,6 +1,9 @@
-  <div  *ngIf="activated" class="alert alert-success">
-    <p>Accout Activated Successfully !!! </p>
+ 
+<div  *ngIf="activated"   class="alert-message">
+  
+  <p>Accout Activated Successfully !!! </p>
 </div>
-<div  *ngIf="!activated" class="alert alert-warning">
-    <p>{{errorMessage}} </p>
+<div   *ngIf="!activated" class="alert-error">  
+ 
+  <p>{{errorMessage}} </p>
 </div>  

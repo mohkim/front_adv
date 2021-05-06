@@ -266,10 +266,12 @@
        </mat-card>
         <!-- submit  -->
         <div class="submit-button" *ngIf="isSubCatSelected"> 
-          <button class="adv-button" mat-button (click)="submitPost1()" [disabled]="!postForm.valid">Save Ads</button>
-    
-            <p>By clicking Save Ads you accept the <a href="">Terms of Service</a> and <a href="">Privacy Policy</a> and</p>
-            <p> agree to receive newsletters and promo offers from us.</p>
+          <p>By clicking Save Ads you accept the <a href="">Terms of Service</a> and <a href="">Privacy Policy</a> and</p>
+          <p> agree to receive newsletters and promo offers from us.</p>
+          <button class="adv-button" mat-button (click)="submitPost1()" [disabled]="!postForm.valid"  >Save Ads  </button>
+          <!-- [disabled]="!postForm.valid" -->
+          <p style="color: red;" *ngIf="!postForm.valid">Please complete the form!!!</p>
+           
          
         </div>
     </div>

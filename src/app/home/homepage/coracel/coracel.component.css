@@ -10,6 +10,7 @@
     width: 80%;
     margin: 0 10%;
     text-align: center;
+   
   }
   img {
     max-height: 450px;
@@ -51,13 +52,7 @@
     border-radius: 3px 0 0 3px;
   }
   
-  /* On hover, add a black background color with a little bit see-through */
-  .prev:hover,
-  .next:hover {
-    background-color: #00a651;
-    color: white;
-    padding: 0 20px 0 0px;
-  }
+   
   
   /* Caption text */
   .text {
@@ -67,24 +62,30 @@
     margin: 20px 0;
     position: absolute;
   
-    left: 100px;
-    top: 150px;
-    width: 80%;
+    left: 0%;
+    top: 15%;
+    width: 100%;
   }
+ 
   .text .title {
-    font-size: 4em;
-    font-weight: bold;
-    padding: 0 50px;
-  
-    color: #00a651;
+    font-size: 3.5em;
+    font-weight:bold;
+    padding: 0 25px;
+    text-align: center;
+    color: white;
   }
   
-  .text .content {
-    font-size: 2em;
-    font-weight: bold;
+  .text .content  {
+    font-size: 1.5em;
+   
     padding: 0 50px;
     color: white;
     margin-top: 50px;
+  }
+  .text .content p{
+    font-size: 20px;
+  padding-bottom: 5px;
+  text-align: center;
   }
   
   .text button {
@@ -145,9 +146,12 @@
     font-size: 1.4em;
     width: 150px;
   }
-  mat-card{
-    background-color: #f7f7f7;
-  }
+  .adv-button{
+    background-color: #00a651;
+     color: white;
+     font-size: 1em;
+     min-width: 150px;
+}
   
 
   
