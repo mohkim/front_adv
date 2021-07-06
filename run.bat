@@ -1,1 +1,1 @@
-ng serve --o
+ng serve --o --host 192.168.100.125

@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Post } from 'src/app/modules/Post';
 import { PostService } from 'src/app/service/post/post.service';
+import { GlobalConstants } from 'src/app/utility/global-constants';
+
+const AUTH_API = GlobalConstants.serverUrl+'adv/';
 
 @Component({
   selector: 'app-post-display-page',
@@ -67,17 +70,17 @@ export class PostDisplayPageComponent implements OnInit {
   }
   displayPrice() {
     if (this.post.post_payment.option === 'PRICE') {
-      return '' + this.post.post_payment.price_amount + ' SSP';
+      return '' + this.post.post_payment.price_amount  +" "+ this.post.post_payment.price_currency.shortName ;
     } else if (this.post.post_payment.option === 'CONTACT') {
       return 'CONTACT';
     } else if (this.post.post_payment.option === 'COMMISSION') {
       return 'COMMISSION';
     } else if (this.post.post_payment.option === 'RANGE') {
-      return '' + this.post.post_payment.min + '-' + this.post.post_payment.max;
+      return '' + this.post.post_payment.min + '-' + this.post.post_payment.max  +" "+ this.post.post_payment.range_currency.shortName;
     }
   }
   showSlides() {
-    this.imagePath = "http://localhost:8080/adv/img/" + this.post.postImage[this.slideIndex].name
+    this.imagePath = `${AUTH_API}img/` + this.post.postImage[this.slideIndex].name
   }
 
   

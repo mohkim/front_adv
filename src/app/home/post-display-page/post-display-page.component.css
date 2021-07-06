@@ -12,7 +12,8 @@
   flex-direction: column;
 }
 .main-image img {
-  height: auto;
+  height: 600px;
+  transform: scale(1);
   width: 100%;
 }
 .main-image {
@@ -147,7 +148,7 @@ td{
   padding: 5px;
 }
 
-.seller-loction {
+.seller-loction  {
   box-sizing: border-box;
   max-width: 720px;
   padding: 20px;
@@ -161,7 +162,7 @@ td{
   flex-direction: column;
   padding: 0px;
 }
-.seller-detail {
+.seller-detail , post-detail {
   display: flex;
   flex-direction: row;
   width: 100%;

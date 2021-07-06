@@ -32,14 +32,18 @@
                 <mat-header-cell *matHeaderCellDef mat-sort-header>Label</mat-header-cell>
                 <mat-cell *matCellDef="let element">{{ element.label }}</mat-cell>
               </ng-container>
-              <ng-container matColumnDef="Edit">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header >Edit</mat-header-cell>
-                  <mat-cell *matCellDef="let element"><a    mat-button  (click)="editSpecification($event, element.id)"  ><mat-icon class="mat-16">edit</mat-icon></a>  </mat-cell>
+              <ng-container matColumnDef="ControlType">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Label</mat-header-cell>
+                <mat-cell *matCellDef="let element">{{ element.controlType }}</mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="action">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header >Action</mat-header-cell>
+                  <mat-cell *matCellDef="let element">
+                    <a    mat-button  (click)="editSpecification($event, element.id)"  ><mat-icon class="mat-16">edit</mat-icon></a>
+                    <a    mat-button  (click)="deleteSpecification($event, element.id)"  ><mat-icon class="mat-16">delete</mat-icon></a>  
+                  </mat-cell>
                 </ng-container>
-                <ng-container matColumnDef="Delete">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header>Delete</mat-header-cell>
-                  <mat-cell *matCellDef="let element"><a    mat-button  (click)="deleteSpecification($event, element.id)"  ><mat-icon class="mat-16">delete</mat-icon></a>  </mat-cell>
-                </ng-container>
+ 
                 <ng-container matColumnDef="go to Post">
                   <mat-header-cell *matHeaderCellDef mat-sort-header>go to Post</mat-header-cell>
                   <mat-cell *matCellDef="let element"  ><a    style="padding-left: 20px;" mat-button-a  href="/" ><mat-icon class="mat-16  "    >forward</mat-icon></a></mat-cell>

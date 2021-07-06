@@ -6,7 +6,9 @@ import { Observable } from 'rxjs';
 import { Post } from 'src/app/modules/Post';
 import { CatagoyrService } from 'src/app/service/catagory/catagory.service';
 import { PostService } from 'src/app/service/post/post.service';
+import { GlobalConstants } from 'src/app/utility/global-constants';
 
+const AUTH_API = GlobalConstants.serverUrl+'adv/';
 @Component({
   selector: 'app-catagory-page',
   templateUrl: './catagory-page.component.html',
@@ -68,7 +70,7 @@ export class CatagoryPageComponent implements OnInit {
     if(post.postImage.length<1){
       return "assets/img/avatar.png"
     }else {
-      return    "http://localhost:8080/adv/img/"+post.postImage[0].name
+      return    AUTH_API+"img/"+post.postImage[0].img
     }
 
   }

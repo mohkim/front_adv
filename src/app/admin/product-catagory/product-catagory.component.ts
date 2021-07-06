@@ -13,8 +13,9 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ProductCatagory } from 'src/app/modules/ProductCatagory';
 import { CatagoyrService } from 'src/app/service/catagory/catagory.service';
 import { CatagoryYesNoComponent } from './catagory-yes-no/catagory-yes-no.component';
+import { GlobalConstants } from 'src/app/utility/global-constants';
  
- 
+const AUTH_API = GlobalConstants.serverUrl+'adv/';
 
 @Component({
   selector: 'app-product-catagory',
@@ -131,6 +132,10 @@ export class ProductCatagoryComponent implements OnInit {
        this.deleteOldCatagory(result)
        
     });
+  }
+
+  getImageUrl(img:String){
+    return AUTH_API+"img/"+img
   }
   openSnackBar( message,type) {
     this.snackbar.open(message, type, {

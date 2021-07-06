@@ -24,6 +24,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatStepperModule } from '@angular/material/stepper';
 import {MatRadioModule} from '@angular/material/radio'; 
 import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 @NgModule({
   exports: [
     MatButtonModule,
@@ -48,7 +49,8 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     MatPaginatorModule,
     MatStepperModule,
     MatRadioModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatAutocompleteModule
 
 
   ],
@@ -75,7 +77,8 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     MatPaginatorModule,
     MatStepperModule,
     MatRadioModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatAutocompleteModule
 
   ]
 })

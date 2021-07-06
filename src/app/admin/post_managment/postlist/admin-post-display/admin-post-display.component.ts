@@ -5,8 +5,11 @@ import { MatDialog } from '@angular/material/dialog';
 
 import { Router, ActivatedRoute } from '@angular/router';
 import { PostImageDialogComponent } from 'src/app/common/post/post-image-dialog/post-image-dialog.component';
+import { Post } from 'src/app/modules/Post';
 import { AdminPostService } from 'src/app/service/post/Admin_post.service';
- 
+import { GlobalConstants } from 'src/app/utility/global-constants';
+
+const AUTH_API = GlobalConstants.serverUrl+'adv/';
 
 @Component({
   selector: 'app-admin-post-display',
@@ -14,151 +17,129 @@ import { AdminPostService } from 'src/app/service/post/Admin_post.service';
   styleUrls: ['./admin-post-display.component.css']
 })
 export class AdminPostDisplayComponent implements OnInit {
-  post;
-  mainPicture_url = '';
-  loopsize;
-  progress = 0;
-  postid: number;
-  timer;
-  error_description_required:boolean=false
-  submit_button_enable:boolean=false 
-  display_error_message:boolean=false
-  display_disable_form:boolean=false
-  error_message:String=""
-  post_disable:boolean
+  slideIndex = 0
+  length:number
+  imagePath = ""
+  post: Post
+  pid: number
+
   form;
+  error_description_required:boolean=true
+  post_disable:boolean
+  
+  error_message:String=""
   constructor(
-    public dialog: MatDialog,
     private postService: AdminPostService,
-    private route: ActivatedRoute,
-    private router: Router
-  ) {}
+    private route: Router,
+    private router: ActivatedRoute
+  ) {
 
-  ngOnInit(): void {
-    // this.postid=                params['pid']
+  }
 
-    this.route.queryParams.subscribe(
-      (result) => {
-        console.log('pid ==>' + JSON.stringify(result.pid));
-        this.postid = result.pid;
-      },
-      (error) => {
-        console.log('pid ==>' + JSON.stringify(error));
+ async ngOnInit(){
+    this.router.queryParams.subscribe(
+      result => {
+        this.pid = result.pid
+        // console.log("post id=>" + this.pid)
+      }, error => {
+        this.route.navigate(['/error'])
       }
-    );
 
-    this.getSource(this.postid);
+    )
+    this.form = new FormGroup({
+      decision: new FormControl('1'),
+      error_description: new FormControl(''),
+     })
+
+    this.getSource(this.pid)
    
-    
-
-
   }
-
-  ngOnDestroy(): void {
-    clearInterval(this.timer);
-  }
-  async getSource(pid: number) {
+  async getSource(pid:number) {
     const p = await this.postService.getPostById(pid).toPromise();
     if (p != null) {
       this.post = p;
-      if(p.post_status.status==='ERROR') {
-        this.display_error_message=true
-        this.display_disable_form=false
-        this.error_message=p.post_status.rejectionReason
-      }  else if(p.post_status.status==='ACTIVE'){
-        this.display_error_message=false
-        this.display_disable_form=true
-        this.error_message=""
-        this.post_disable=false
-      }
-      else if(p.post_status.status==='PENDING'){
-        this.display_error_message=false
-        this.display_disable_form=false
-        this.error_message=""
-      } else if(p.post_status.status==='DISABLED'){
-        this.display_error_message=false
-        this.display_disable_form=true
-        this.error_message=""
-        this.post_disable=true
+ if(p.post_status.status==='DISABLED'){
+         this.post_disable=true
       }  
       /// enable disable post  display
       
 
-    } else {
 
-      this.router.navigate(['error']);
+       } else {
+
+      this.route.navigate(['error']);
     }
 
-    this.loop();
-  }
-  loop() {
-    this.mainPicture_url = this.post.postImage[0].url;
-    this.loopsize = this.post.postImage.length;
-    // console.log("post loop size=> " + this.loopsize)
-    this.timer = setInterval(() => {
-      // console.log("progress=> " + this.progress)
-      this.progress = this.progress + 1;
-      this.progress = this.progress % this.loopsize;
-      this.mainPicture_url = this.post.postImage[this.progress].url;
-    }, 3000);
-  }
-  onClick(id: number) {}
-  imageClick(id: number) {
-    this.openDialog(this.post.postImage[id].url);
-  }
-  imageClick2() {
-    this.openDialog(this.mainPicture_url);
+    // set display setting
+    this.length = this.post.postImage.length
+    // console.log("post id=>" + JSON.stringify(this.post.postImage.length))
+
+    this.showSlides();
   }
 
-  openDialog(image_url: String): void {
-    const dialogRef = this.dialog.open(PostImageDialogComponent, {
-      width: 'auto',
 
-      data: { image: image_url },
-    });
 
-    dialogRef.afterClosed().subscribe((result) => {});
+  // Next/previous controls
+  preveousSlides() {
+    if (this.slideIndex == 0) this.slideIndex = this.length - 1
+    else this.slideIndex--
+    // console.log("previeous  slide ==>" + this.slideIndex)
+    this.showSlides();
+  }
+  nextSlides() {
+    // console.log("next  slide ==>" + this.slideIndex)
+    if (this.slideIndex >= (this.length - 1)) this.slideIndex = 0
+    else this.slideIndex++
+    this.showSlides();
+  }
+  getIndex_lenth(){
+    return  (this.slideIndex+1)+"/"+(this.length)
   }
   displayPrice() {
     if (this.post.post_payment.option === 'PRICE') {
-      return '' + this.post.post_payment.price_amount + ' SSP';
+      return '' + this.post.post_payment.price_amount  +" "+ this.post.post_payment.price_currency.shortName ;
     } else if (this.post.post_payment.option === 'CONTACT') {
       return 'CONTACT';
     } else if (this.post.post_payment.option === 'COMMISSION') {
       return 'COMMISSION';
     } else if (this.post.post_payment.option === 'RANGE') {
-      return '' + this.post.post_payment.min + '-' + this.post.post_payment.max;
+      return '' + this.post.post_payment.min + '-' + this.post.post_payment.max  +" "+ this.post.post_payment.range_currency.shortName;
     }
   }
-
-  // error_description_required
-  decisionChange(){
-  //  console.log("radio button changed !!!!" +JSON.stringify(this.form.value.decision))
-    if(this.form.value.decision==="1") {
-      this.error_description_required=true
-       
-       this.form.patchValue({  error_description: ""  })
-    }
-    else {
-      this.error_description_required=false
-      this.form.patchValue({  error_description: "" })
-    } 
+  showSlides() {
+ 
+    this.imagePath = `${AUTH_API}img/`+ this.post.postImage[this.slideIndex].name
   }
+  getUserImage(){
+        var  s=this.post.user.image_name
+        if(s === undefined)     return "assets/img/default_user.png"
+          else   return `${AUTH_API}img/`+s   
+    }
 
-  submitForm(){
-
-    console.log("Check box value ==>"+this.post_disable)
+    submitForm(){
+      console.log("Check box value ==>"+this.post_disable)
  
    
-  this.postService.enableDisalbePost(this.post.id,this.post_disable).subscribe(
-    result=> {
-      console.log("accept ==>"+JSON.stringify(result))
-      this.getSource(this.post.id)
-    },error=>{
-      console.log("accept ==>"+JSON.stringify(error))
-    }  )
-  this.router.navigate(['/admin/post'])
- 
-  
-}
+      this.postService.enableDisalbePost(this.post.id,this.post_disable).subscribe(
+        result=> {
+          console.log("accept ==>"+JSON.stringify(result))
+          this.getSource(this.post.id)
+        },error=>{
+          console.log("accept ==>"+JSON.stringify(error))
+        }  )
+      this.route.navigate(['/admin/post'])
+    }
+      // error_description_required
+  decisionChange(){
+    //  console.log("radio button changed !!!!" +JSON.stringify(this.form.value.decision))
+      if(this.form.value.decision==="1") {
+        this.error_description_required=true
+         
+         this.form.patchValue({  error_description: ""  })
+      }
+      else {
+        this.error_description_required=false
+        this.form.patchValue({  error_description: "" })
+      } 
+    }
 }

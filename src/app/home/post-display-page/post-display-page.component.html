@@ -2,7 +2,7 @@
     <div class="detail-left">
 
         <div class="main-image">
-            <img src="{{imagePath}}" alt="">
+            <img src="{{imagePath}}" >
             <div class="price-tag">{{displayPrice()}}</div>
    
     <div class="image-number">
@@ -39,25 +39,21 @@
                       </table>
                  </div>
             </div>
-            <div class="post-description">
-                <h2> Description </h2>
-                <p class="description-detail">
-                    {{post.detail}}
-                </p>
-            </div>
+  
 
         </div>
-
+            
+        
         <div class="seller-loction">
-          <h1> Seller Location </h1>
+          <h1> Detail </h1>
           <hr>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+          <div [innerHtml]="post.detail"> </div>
         </div>
     </div>
       <div class="right-side">
         <div class="seller-detail">
             <div class="seller-img">
-            <!-- <img src="assets/img/1.png" alt=""> -->
+            <!-- <imአg src="assets/img/1.png" alt=""> -->
             <img src="http://localhost:8080/adv/img/{{post.user.image_name}}" width="100" height="100" alt="">
            </div>
            <div class="seller-info">

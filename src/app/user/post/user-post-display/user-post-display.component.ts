@@ -2,11 +2,14 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
  
 
 import { Router, ActivatedRoute } from '@angular/router';
+import { CKEditor4 } from 'ckeditor4-angular';
  
 import { Post } from 'src/app/modules/Post';
  
 import { UserPostService } from 'src/app/service/post/User_post.service';
+import { GlobalConstants } from 'src/app/utility/global-constants';
  
+const AUTH_API = GlobalConstants.serverUrl+'adv/';
 
 @Component({
   selector: 'app-user-post-display',
@@ -15,7 +18,7 @@ import { UserPostService } from 'src/app/service/post/User_post.service';
 })
 
 export class UserPostDisplayComponent implements OnInit {
-   slideIndex = 0
+ slideIndex = 0
   length:number
   imagePath = ""
   post: Post
@@ -72,19 +75,21 @@ export class UserPostDisplayComponent implements OnInit {
   }
   displayPrice() {
     if (this.post.post_payment.option === 'PRICE') {
-      return '' + this.post.post_payment.price_amount + ' SSP';
+      return '' + this.post.post_payment.price_amount  +" "+ this.post.post_payment.price_currency.shortName ;
     } else if (this.post.post_payment.option === 'CONTACT') {
       return 'CONTACT';
     } else if (this.post.post_payment.option === 'COMMISSION') {
       return 'COMMISSION';
     } else if (this.post.post_payment.option === 'RANGE') {
-      return '' + this.post.post_payment.min + '-' + this.post.post_payment.max;
+      return '' + this.post.post_payment.min + '-' + this.post.post_payment.max  +" "+ this.post.post_payment.range_currency.shortName;
     }
   }
   showSlides() {
-    this.imagePath = "http://localhost:8080/adv/img/" + this.post.postImage[this.slideIndex].name
+    this.post.post_status.rejectionReason
+    this.imagePath = `${AUTH_API}img/`+ this.post.postImage[this.slideIndex].name
   }
 
   
+   
 
 }

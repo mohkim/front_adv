@@ -1,4 +1,5 @@
 import { SalesLocation } from './SalesLocation';
+import { SpecificationHead } from './SpecificationHead';
 
 export class ProductSubCatagory {
     constructor(

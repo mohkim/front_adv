@@ -8,7 +8,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Post } from 'src/app/modules/Post';
 import { PostService } from 'src/app/service/post/post.service';
-
+import { GlobalConstants } from 'src/app/utility/global-constants';
+const AUTH_API = GlobalConstants.serverUrl+'adv/';
 @Component({
   selector: 'app-latest-post-section',
   templateUrl: './latest-post-section.component.html',
@@ -55,7 +56,7 @@ export class LatestPostSectionComponent implements OnInit {
     if(post.postImage.length<1){
       return "assets/img/avatar.png"
     }else {
-      return    "http://localhost:8080/adv/img/"+post.postImage[0].name
+      return    AUTH_API +"img/"+post.postImage[0].name
     }
 
   }

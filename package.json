@@ -22,7 +22,6 @@
     "@angular/platform-browser": "~9.1.11",
     "@angular/platform-browser-dynamic": "~9.1.11",
     "@angular/router": "~9.1.11",
-    "@ngmodule/material-carousel": "^0.6.0",
     "ckeditor4-angular": "^1.2.2",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",

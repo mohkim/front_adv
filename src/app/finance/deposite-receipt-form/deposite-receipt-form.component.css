@@ -1,0 +1,164 @@
+section{
+    width: 90%;
+    padding:  0 5% 0 5%;
+    background-color: #d6d6d6;
+     display: flex;
+     flex-direction: row;
+  }
+  .right-section{
+    flex-grow: 1;
+    background-color: #d6d6d6;
+    /* margin: 10px; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    /* padding:10px; */
+  }
+   
+ .left-section{
+     margin-top: 10px;
+ }
+  .personal-edit button{
+      background-color: #00a651;
+      border: 0;
+      padding: 10px 20px;
+      border-radius: 5px;
+      color: white;
+      font-size: 0.8em;
+      outline: none;
+  } 
+  /* personal-option list */
+  .personal-option{
+      width: 250px;
+      box-sizing: border-box;
+      text-align: left;
+      padding: 10px 0px;
+      margin-top: 10px;
+      
+      background-color: white;
+      margin: 10px;
+  }
+  .personal-option ul{
+      list-style: none;
+      padding: 0;
+  }
+  .personal-option li{
+    padding: 15px 10px;
+   
+  }
+  .personal-option a{
+      box-sizing: border-box;
+      display: block;
+      text-decoration: none;
+      color:black;
+      font-weight: 200;
+      font-size: 1.2em;
+      padding-left: 5px;
+   
+    }
+    .personal-option i{
+        padding: 0 20px 10px 10px;
+        color: #9ba19e;
+    }
+    .personal-option a:hover,li:hover,span:hover{
+        background-color:  #00a651;
+         color: white;
+    }
+    .personal-option a:hover,li:hover,span:hover,i:hover{
+      background-color:  #00a651;
+       color: white;
+  }
+  
+    .personal-option span{
+        float: right;
+   
+    }
+    .active{
+      background-color:  #00a651;
+      color: white;
+    }
+   
+    /* below  main section css setting */
+
+
+
+
+flex{
+    display: flex;
+}
+ 
+section{
+   display: flex;
+   flex-direction: row;
+   justify-content: center;
+}
+.container {
+   background-color: white;
+  max-width: 80%;
+   justify-content: center;
+   padding: 10px 0;
+   margin :20px;
+   
+}
+.header {
+   width: 100%;
+   display: flex;
+   justify-content: center;
+  border-bottom: 2px solid #d6d6d6; ;
+  
+}
+.instruction{
+    padding: 10px 10px 0px 10px ;
+    font-weight: 300;
+}
+.input mat-form-field {
+    width: 80%;
+    padding: 0 10px;
+
+}
+
+.action{
+  display: flex;
+  justify-content: center;
+}
+
+.adv-button{
+  background-color: #00a651;
+   color: white;
+   font-size: 1em;
+   min-width: 200px;
+   margin: 5px ;
+  
+}
+ 
+.userList  {
+    margin: 0px;
+    width: 80%;
+    padding: 5px 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: space-between;
+    
+    
+      
+}
+ 
+.user_name{
+    padding: 10px ;
+}
+.form_receipt{
+    width: 80%;
+    margin: 0px;
+    padding: 5px 50px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+.form_receipt mat-form-field{
+    width: 80%;
+}
+.casher_Name{
+    font-weight: 300;
+}
+ 

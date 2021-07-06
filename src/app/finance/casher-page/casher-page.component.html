@@ -1,0 +1,28 @@
+<section>
+
+
+    <div class="left-section">
+ 
+ 
+ 
+        <div class="personal-option">
+            <ul>
+                <!-- <li class="active"><a href="#"><i class="fas fa-tachometer-alt"></i>Dashboard </a></li> -->
+                <li class="active"><a routerLink="/finance"><i class="fas  fa-list"></i>Deposite List </a></li>
+                <li><a  routerLink="/finance/deposite_form"><i class="fab fa-wpforms"></i>Deposite Form </a></li>
+ 
+                <li><a routerLink="/finance/report"><i class="fas fa-wallet"></i> Daily Report</a></li>
+                <!-- <li><a href="#"><i class="fas fa-cog"></i> Privacy Settings</a></li> -->
+ 
+ 
+            </ul>
+        </div>
+    </div>
+    <div class="right-section" fxLayout="column"   fxLayoutGap="20px">
+        
+           <app-deposite-receiptlist></app-deposite-receiptlist>
+         
+        
+       
+    </div>
+ </section>

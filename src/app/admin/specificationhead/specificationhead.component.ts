@@ -17,7 +17,7 @@ import { SpecificationheadYesNoDialogComponent } from './specificationhead-yes-n
   styleUrls: ['./specificationhead.component.css']
 })
 export class SpecificationheadComponent implements OnInit {
-  displayedColumns = ['id', 'label', 'Edit', 'Delete', 'go to Post'];
+  displayedColumns = ['id', 'label','ControlType','action', 'go to Post'];
   dataSource = new MatTableDataSource<SpecificationHead>();
 
   @ViewChild(MatSort) sort: MatSort;

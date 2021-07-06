@@ -76,50 +76,7 @@ export class UserPostListComponent implements OnInit {
   doFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
-
-  // deleteCatagory(event, id){
-  // var temp=this.dataSource.data.find(x=>x.id===id)  
-  // this.deleteDialog(temp);
-    
-   
-  // }
-  // editCat(event, id) {
-  //   var temp=this.dataSource.data.find(x=>x.id===id)  
-  //   this.openDialog(temp);
-     
-  // }
-
-  // openDialog( catagory:ProductCatagory): void {
-    
-  //   const dialogRef = this.dialog.open(CatagoryFormComponent, {
-  //      width: '500px',
-  //     data: catagory,
-  //   });
-
-  //   dialogRef.afterClosed().subscribe((result) => {
-     
-      
-  //     if(result != undefined){
-       
-  //           this.saveCatagory(result);
-             
-  //     }
-  //   });
-  // }
-  
-
-  // deleteDialog(cat:ProductCatagory): void {
-  //   const dialogRef = this.dialog.open(CatagoryYesNoComponent, {
-  //     width: '300px',
-  //     data: cat
-  //   });
-
-  //   dialogRef.afterClosed().subscribe(result => {
-        
-  //      this.deleteOldCatagory(result)
-       
-  //   });
-  // }
+ 
   getImage(post){
     if(post.postImage.length<1){
       return "assets/img/avatar.png"
@@ -132,17 +89,19 @@ export class UserPostListComponent implements OnInit {
     return   post.post_status.status
     
   }
-  getPrice(post){
+  
+  getPrice(post) {
     if ( post.post_payment.option === 'PRICE') {
-      return '' +  post.post_payment.price_amount + ' SSP';
+      return '' +  post.post_payment.price_amount +" "+  post.post_payment.price_currency.shortName ;
     } else if ( post.post_payment.option === 'CONTACT') {
       return 'CONTACT';
     } else if ( post.post_payment.option === 'COMMISSION') {
       return 'COMMISSION';
     } else if ( post.post_payment.option === 'RANGE') {
-      return '' +  post.post_payment.min + '-' +  post.post_payment.max;
+      return '' +  post.post_payment.min + '-' +  post.post_payment.max  +" "+  post.post_payment.range_currency.shortName;
     }
   }
+  
   openSnackBar( message,type) {
     this.snackbar.open(message, type, {
       duration: 2000,

@@ -25,6 +25,10 @@
                 <mat-header-cell *matHeaderCellDef mat-sort-header>item</mat-header-cell>
                 <mat-cell *matCellDef="let element">{{ element.item }}</mat-cell>
               </ng-container>
+              <ng-container matColumnDef="pvalue">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Parent Value</mat-header-cell>
+                <mat-cell *matCellDef="let element">{{ element.pvalue }}</mat-cell>
+              </ng-container>
               <ng-container matColumnDef="Edit">
                   <mat-header-cell *matHeaderCellDef mat-sort-header>Edit</mat-header-cell>
                   <mat-cell *matCellDef="let element"><a    mat-button  (click)="editOption($event, element.id)"  ><mat-icon class="mat-16">edit</mat-icon></a>  </mat-cell>

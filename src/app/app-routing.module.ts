@@ -42,6 +42,10 @@ import { UserPageComponent } from './home/user-page/user-page.component';
 import { PostdisplayComponent } from './common/post/postdisplay/postdisplay.component';
 import { PostDisplayPageComponent } from './home/post-display-page/post-display-page.component';
 import { CatagoryPageComponent } from './home/catagory-page/catagory-page.component';
+import { DepositReciept } from './modules/DepositReciept';
+import { FinanceGuardService } from './service/router-guard/finance-guard.service';
+import { CasherPageComponent } from './finance/casher-page/casher-page.component';
+import { DepositeReceiptFormComponent } from './finance/deposite-receipt-form/deposite-receipt-form.component';
  
  
  
@@ -76,11 +80,16 @@ const routes: Routes = [
    {path:"admin/subcatagory",component:ProductSubCatagoryComponent,canActivate:[AdmGuardService]},
    {path:"admin/post",component:AdminPostlistComponent,canActivate:[AdmGuardService]},
     {path:"admin/postdisplay",component:AdminPostDisplayComponent,canActivate:[AdmGuardService]},
-
-// managment pages
-{path:"managment/post",component:MgPostListComponent,canActivate:[ManagerGuardService]},
-{path:"managment/postdisplay",component:MgPostDisplayComponent,canActivate:[ManagerGuardService]},
+  
+   // managment pages
+   {path:"managment/postdisplay",component:MgPostDisplayComponent,canActivate:[ManagerGuardService]},
+   {path:"managment/post",component:MgPostListComponent,canActivate:[ManagerGuardService]},
  
+ //finance pages
+ {path:"finance",component:CasherPageComponent,canActivate:[FinanceGuardService]},
+ {path:"finance/casher",component:CasherPageComponent,canActivate:[FinanceGuardService]},
+ {path:"finance/deposite_form",component:DepositeReceiptFormComponent,canActivate:[FinanceGuardService]},
+  // {path:"finance/report",component:DepositeReceiptFormComponent,canActivate:[FinanceGuardService]},
 
   //user pages
  

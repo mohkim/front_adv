@@ -1,0 +1,251 @@
+.wrapper {
+    width: 90%;
+    margin: 10px 5%;
+    text-align: left;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    background-color: #d6d6d6;
+}
+
+.notice-bord {
+    background-color: rgb(238, 102, 102);
+    width: 80%;
+    margin: 10px 5%;
+    padding: 10px;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 1.2em;
+    color: white;
+}
+
+.detail-left {
+    display: flex;
+    flex-direction: column;
+}
+
+.main-image img {
+    height: auto;
+    width: 100%;
+}
+
+.main-image {
+    position: relative;
+    max-width: 720px;
+    float: left;
+}
+
+
+/* next2 & previous buttons */
+
+mat-icon {
+    font-size: 50px;
+    font-weight: bolder;
+    margin: 0;
+}
+
+.prev2,
+.next2 {
+    cursor: pointer;
+    position: absolute;
+    width: auto;
+    margin-top: -22px;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 0 10px;
+    color: #00a651;
+    font-weight: 800;
+    font-size: 30px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+}
+
+
+/* Position the "next2 button" to the right */
+
+.next2 {
+    right: 0;
+    top: 50%;
+}
+
+.prev2 {
+    left: 0;
+    top: 50%;
+}
+
+
+/* On hover, add a black background color with a little bit see-through */
+
+.prev2:hover,
+.next2:hover {
+    background-color: #00a651;
+    color: white;
+    padding: 0 20px 0 0px;
+}
+
+.image-number {
+    position: absolute;
+    bottom: 10px;
+    max-height: 16px;
+    left: 12px;
+    opacity: 0.5;
+    background-color: #abadac;
+    padding: 5px 10px;
+    text-align: center;
+    border-radius: 3px;
+}
+
+.image-number mat-icon {
+    vertical-align: middle;
+    font-size: 1.25em;
+}
+
+.image-number p {
+    color: black;
+    padding: 0;
+    font-weight: 600;
+    font-size: 16px;
+}
+
+
+/* price tag */
+
+.price-tag {
+    position: absolute;
+    top: 10px;
+    right: 0;
+    background-color: #00a651;
+    color: white;
+    padding: 10px;
+    font-size: 1.2em;
+}
+
+
+/* product information */
+
+.product-info {
+    box-sizing: border-box;
+    max-width: 720px;
+    padding: 10px;
+    margin-top: 10px;
+    background-color: white;
+}
+
+.product-info .post-date {
+    opacity: 0.5;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.post-date mat-icon {
+    padding-top: 5px;
+    vertical-align: middle;
+    font-size: 1.25em;
+}
+
+.post-title h1 {
+    padding: 0;
+}
+
+.post-description {
+    padding-top: 20px;
+}
+
+.post-specification {
+    padding-top: 20px;
+}
+
+.post-specification .specificaiton-name {
+    font-weight: 300;
+}
+
+.post-specification .specification-value {
+    font-weight: 500;
+    text-align: right;
+    color: black;
+}
+
+specification-table {
+    padding-top: 20px;
+}
+
+table {
+    width: 300px;
+}
+
+td {
+    max-width: 200px;
+    padding: 5px;
+}
+
+.seller-loction,
+.decision,
+.post-description {
+    box-sizing: border-box;
+    max-width: 720px;
+    padding: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-color: white;
+}
+
+mat-radio-button {
+    padding: 0 20px;
+}
+
+mat-form-field {
+    width: 300px;
+    padding: 10px 0;
+}
+
+
+/* seller detail info */
+
+.right-side {
+    display: flex;
+    flex-direction: column;
+    padding: 0px;
+}
+
+.seller-detail {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    box-sizing: border-box;
+    height: fit-content;
+    padding: 20px;
+    margin: 0 20px;
+    background-color: white;
+}
+
+.seller-img {
+    margin: 5px;
+    max-width: 100px;
+    max-height: auto;
+    padding: 5px;
+}
+
+.seller-info {
+    margin: 10px 0;
+    max-width: 200px;
+    padding-left: 25px;
+}
+
+.link {
+    text-decoration: black;
+    color: #00a651;
+}
+
+.adv-button {
+    background-color: #00a651;
+    color: white;
+    font-size: 1em;
+    min-width: 150px;
+}
+
+.submit_button {
+    padding: 30px 0;
+}

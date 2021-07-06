@@ -50,7 +50,9 @@ export class LoginComponent implements OnInit {
           this.isLoginFailed = false;
           this.isLoggedIn = true;
           this.roles = this.tokenStorage.getUser().roles;
-       this.router.navigate(['/home'])
+
+       this.redirectTo('/home')
+        
         },
         err => {
            
@@ -60,7 +62,10 @@ export class LoginComponent implements OnInit {
         }
       );
     }
-  
+    redirectTo(uri:string){
+      this.router.navigateByUrl('/', {skipLocationChange: true}).then(()=>
+      this.router.navigate([uri]));
+   }
     openSnackBar( message) {
       this.snackbar.open(message, "Error", {
         duration: 2000,

@@ -175,7 +175,7 @@ export class EditpostComponent implements OnInit {
     if (p != null) {
 
       this.post = p;
-       // console.log("post ==>"+JSON.stringify(this.post))
+      // console.log("post ==>"+JSON.stringify(this.post))
 
     } else this.router.navigate(['error']);
 
@@ -192,7 +192,7 @@ export class EditpostComponent implements OnInit {
     else console.log("  currency retrieve failed!!! ")
     this.image_old = this.post.postImage
 
-    
+
 
     this.objectToForm();
   }
@@ -540,7 +540,7 @@ export class EditpostComponent implements OnInit {
   getServiceFee() {
 
     var index = this.postForm.value.package_fee
-    if (this.post.post_receipt === null) this.post.post_receipt = new PostRecipt(null, "FREE", "", 0)
+    if (this.post.post_receipt === null) this.post.post_receipt = new PostRecipt(null,"", "FREE", "", 0)
 
     if (index == "1") {
       this.post.post_receipt.feeOption = 'FREE'
@@ -570,19 +570,29 @@ export class EditpostComponent implements OnInit {
    * used in creating dynamic form  based on the data that was ginven by user  [ upgrade is needed in the code]
    */
   putSepecifiationListToProductionSubcatagory() {
-    var i=0;
+    var i = 0;
     var array_length = this.post.productSubCatagory.specificationList.length //> this.post.specificationList.length ? this.post.productSubCatagory.specificationList.length : this.post.specificationList.length
 
     for (let index = 0; index < array_length; index++) {
       // console.log(" index = "+ index+" -specifiationlist= "+this.post.specificationList[index].specification.id+" product subcatagory = "+
       // this.post.productSubCatagory.specificationList[index].id     )
-    //
-    i=this.post.productSubCatagory.specificationList[index].id
- 
-    this.post.productSubCatagory.specificationList[index].value = (this.post.specificationList.find(x=>x.specification.id===i)).value
+      //
+      i = this.post.productSubCatagory.specificationList[index].id
+
+       if(this.post.productSubCatagory.specificationList[index].selectType==="CHILD"){
+      var parentkey=this.post.productSubCatagory.specificationList[index].parentkey
+       var  parentId=(this.post.specificationList.find(x => x.specification.key=== parentkey)).id
+      console.log("child parent key  ==>" + JSON.stringify(parentkey))
+      
+       console.log(" parentId  ==>" + JSON.stringify(parentId))
+     this.post.productSubCatagory.specificationList[index].parentvalue=
+     (this.post.specificationList.find(x => x.specification.key=== parentkey)).value
+       }
+    
+      this.post.productSubCatagory.specificationList[index].value = (this.post.specificationList.find(x => x.specification.id === i)).value
 
     }
-    console.log("product subcatagory  ==>" +JSON.stringify(this.post.productSubCatagory.specificationList))
+    // console.log("product subcatagory  ==>" + JSON.stringify(this.post.productSubCatagory.specificationList))
   }
 
   setPostDataToForm() {
@@ -646,17 +656,17 @@ export class EditpostComponent implements OnInit {
       else if (this.post.post_receipt.feeOption === "YEAR") { this.postForm.patchValue({ package_fee: "4" }) }
 
     }
-        //sales location start
+    //sales location start
 
-        for (s = 0; s < this.salesLocations.length; s++) {
-          if (this.salesLocations[s].id == this.post.salesLocation.id) {
-            this.postForm.patchValue({
-              salesLocation: this.salesLocations[s]
-            })
-          }
+    for (s = 0; s < this.salesLocations.length; s++) {
+      if (this.salesLocations[s].id == this.post.salesLocation.id) {
+        this.postForm.patchValue({
+          salesLocation: this.salesLocations[s]
+        })
+      }
 
 
-        }
+    }
 
 
 
@@ -673,12 +683,12 @@ export class EditpostComponent implements OnInit {
             productSubCatagory: this.catagorys[i].productSubcatagory[y]
 
           })
-        
+
           break;
         }
-           }
-              }
-                }
+      }
+    }
+  }
 
   deleteOldImage(name) {
 
@@ -722,5 +732,18 @@ export class EditpostComponent implements OnInit {
     this.snackbar.open(message, type, {
       duration: 2000,
     });
+  }
+  changeParent(e: any, comp: any) {
+    this.selectSubCat.specificationList.forEach(x => {
+      if (x.parentkey === comp) {
+        x.parentvalue = e
+      }
+
+    });
+    //  var i=   this.regConfig.findIndex(x=>x.parentkey===comp)
+    //   this.regConfig[i]
+    //  console.log("index value ==>"+JSON.stringify(i));
+    console.log("e value ==>" + JSON.stringify(e));
+    console.log("c value ==>" + JSON.stringify(comp));
   }
 }

@@ -37,6 +37,9 @@ export class SpecificaitonHeadService {
     return  this.http.get<SpecificationHead>(`${AUTH_API}/specification_head/${id}` , httpOptions)
    
   }
- 
   
+  getallSpecificationHeadKey(scid:number){   
+    return  this.http.get<String>(`${AUTH_API}/subcatagory/${scid}/specification_head/key` , httpOptions)
+   
+  }
 }

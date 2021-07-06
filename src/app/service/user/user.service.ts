@@ -68,7 +68,9 @@ export class UserService {
   getUserById(selectedid: number) {
     return this.http.get<User>(AUTH_API + 'user/' + selectedid, httpOptions);
   }
-
+  getUserByEmail(email: String) {
+    return this.http.get<User>(`${AUTH_API}user/email/${email}`, httpOptions);
+  }
   getCurrentUser() {
     return this.http.get<User>(AUTH_API + 'user/' + this.getCurrentUserId(), httpOptions);
   }

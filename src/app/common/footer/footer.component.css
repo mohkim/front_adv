@@ -1,83 +1,91 @@
+ footer {
+     background-color: black;
+     padding: 0;
+     margin: 0;
+     font-size: 1em;
+ }
  
-footer{
-  background-color: black;
-   
-    
-    padding: 0;
-    margin: 0;
-    font-size: 1em;
-  }
-  .footer{
- 
-    padding:  25px;
-    display: flex;
-    flex-direction: row;
+ .footer {
+     padding: 25px;
+     display: flex;
+     flex-direction: row;
      flex-wrap: wrap;
-    justify-content: space-around;
-    
-  }
-  i{
-    padding: 5px;
-    color: #a0a0a0;
-  }
-  ul{
-    list-style: none;
-    color: #a0a0a0;
-    padding-left: 0;
-    padding-right: 30px;
-     
-  }
-  li{
-    margin-top: 5px;
-  }
-  a{
-    text-decoration: none;
-    color: #a0a0a0;
-  }
-  .about h3{
-    color: white;
-  }
-  .about{
-    width: 30%;
-     
-    color: #a0a0a0;
-  }
-  .about p{
-    padding-top: 20px;
-  }
-  .useful{
-    display: flex;
-    flex-direction: column;
-  }
-  .useful h3{
-    color: white;
-  }
-  .useful-link{
-    display: flex;
-    flex-direction: row;
-  
-  }
-  
-  .contact h3{
-   color: white;
-   padding-bottom: 10px;
-  }
-  
-  .soical-media li {
-  display: inline;
-  padding-right:25px ;
-  font-size: 1.2em;
-  }
-  a:hover,i:hover{
-    color: #13aa57;
-  }
-  .copy-right{
-    padding: 5px;
-    margin: 0;
-    font-size: 1.1em;
-    border-top: 1px solid #a0a0a0;
-    color: #a0a0a0;
-    text-align: center;
-  }
-  
-  
+     justify-content: space-around;
+ }
+ 
+ i {
+     padding: 5px;
+     color: #a0a0a0;
+ }
+ 
+ ul {
+     list-style: none;
+     color: #a0a0a0;
+     padding-left: 0;
+     padding-right: 30px;
+ }
+ 
+ li {
+     margin-top: 5px;
+ }
+ 
+ a {
+     text-decoration: none;
+     color: #a0a0a0;
+ }
+ 
+ .about h3 {
+     color: white;
+ }
+ 
+ .about {
+     width: 30%;
+     color: #a0a0a0;
+ }
+ 
+ .about p {
+     padding-top: 20px;
+ }
+ 
+ .useful {
+     display: flex;
+     flex-direction: column;
+ }
+ 
+ .useful h3 {
+     color: white;
+ }
+ 
+ .useful-link {
+     display: flex;
+     flex-direction: row;
+ }
+ 
+ .contact h3 {
+     color: white;
+     padding-bottom: 10px;
+ }
+ 
+ .soical-media li {
+     display: inline;
+     padding-right: 25px;
+     font-size: 1.2em;
+ }
+ 
+ a:hover {
+     color: #13aa57;
+ }
+ 
+ .contact i:hover {
+     color: #13aa57;
+     font-size: 1.5em;
+ }
+ 
+ .copy-right {
+     padding: 5px;
+     margin: 0;
+     font-size: 1.1em;
+     border-top: 1px solid #a0a0a0;
+     color: #a0a0a0;
+     text-align: center;
+ }

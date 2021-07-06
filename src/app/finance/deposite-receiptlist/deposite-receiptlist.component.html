@@ -1,0 +1,53 @@
+<section fxLayout="row" fxLayoutAlign="start center" style="margin: 20px 20px 20px 20px;">
+
+    <mat-card fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="0px" style="width: 100%;padding-top: 5px;" class="mat-elevation-z8">
+
+        <div class="" fxLayout="row" fxLayoutAlign="center end" style="width: 100%;">
+            <mat-card-header>
+        <mat-card-title>List Of Deposites</mat-card-title>
+    </mat-card-header>
+        </div>
+
+        <mat-card-content>
+            <div fxLayoutAlign="space-between">
+                <mat-form-field fxFlex="30%">
+                    <input matInput type="text" (keyup)="doFilter($event.target.value)" placeholder="Filter" />
+                </mat-form-field>
+               
+            </div>
+
+            <mat-table [dataSource]="dataSource" matSort>
+                <ng-container matColumnDef="id">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>Id</mat-header-cell>
+                    <mat-cell *matCellDef="let element">{{ element.id }}</mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="customerName">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>Name</mat-header-cell>
+                    <mat-cell *matCellDef="let element">{{ element.user.fullName }}</mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="Amount">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>Amount</mat-header-cell>
+                    <mat-cell *matCellDef="let element">{{ element.amount}} SSP</mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="Date">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>Date</mat-header-cell>
+                    <mat-cell *matCellDef="let element">{{ element.createdDate | date}}</mat-cell>
+                </ng-container>
+                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+            </mat-table>
+
+           
+        </mat-card-content>
+
+
+        <mat-card-footer fxLayout="row" fxLayoutAlign="space-around space-around">
+            
+            <mat-paginator [pageSize]="10" [pageSizeOptions]="[1, 5, 10, 20]">
+               
+            </mat-paginator>
+            <div class="">total :  {{total}} SSP</div>
+        </mat-card-footer>
+    </mat-card>
+</section>

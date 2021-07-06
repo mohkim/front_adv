@@ -17,7 +17,7 @@ import { SpecificationHeadOptionervice } from 'src/app/service/specificationHead
   styleUrls: ['./specificationhead-option.component.css']
 })
 export class SpecificationheadOptionComponent implements OnInit {
-  displayedColumns = ['id', 'item', 'Edit', 'Delete'];
+  displayedColumns = ['id', 'item','pvalue', 'Edit', 'Delete'];
   dataSource = new MatTableDataSource<SpecificationHeadOption>();
   
   @ViewChild(MatSort) sort: MatSort;
@@ -136,13 +136,13 @@ export class SpecificationheadOptionComponent implements OnInit {
   }
   newOption(){
    
-    var opt=new  SpecificationHeadOption(-1,"")
+    var opt=new  SpecificationHeadOption(-1,"","")
     this.openDialog(opt);
   }
 
   openDialog(speHedOption: SpecificationHeadOption): void {
  const dialogRef = this.dialog.open(SpecificationheadOptionFormComponent, {
-      width: '80%',
+      width: '350px',
       data: speHedOption,
     });
 

@@ -37,7 +37,7 @@ import { LocationYesNoFormComponent } from './admin/setting/location/location-ye
 import { PostComponent } from './user/post/post.component';
 import { PostNewComponent } from './user/post/post-new/post-new.component';
  import { EditpostComponent } from './user/post/editpost/editpost.component';
-import { MatCarouselModule } from '@ngmodule/material-carousel';
+
 import { LayoutComponent } from './demo/layout/layout.component';
 import { PostdisplayComponent } from './common/post/postdisplay/postdisplay.component';
 import { PostImageDialogComponent } from './common/post/post-image-dialog/post-image-dialog.component';
@@ -76,6 +76,11 @@ import { HeaderComponent } from './common/header/header.component';
 import { SidenavListComponent } from './common/sidenav-list/sidenav-list.component';
 import { LatestPostSectionComponent } from './home/homepage/latest-post-section/latest-post-section.component';
 import { UserPostListComponent } from './user/post/user-post-list/user-post-list.component';
+import { FilterListPipe } from './user/post/filter-list.pipe';
+import { DepositeReceiptFormComponent } from './finance/deposite-receipt-form/deposite-receipt-form.component';
+import { DepositeReceiptlistComponent } from './finance/deposite-receiptlist/deposite-receiptlist.component';
+import { CasherPageComponent } from './finance/casher-page/casher-page.component';
+ 
  
  
  
@@ -149,6 +154,10 @@ import { UserPostListComponent } from './user/post/user-post-list/user-post-list
     HomeCatagoryListComponent,
     LatestPostSectionComponent,
     UserPostListComponent,
+    FilterListPipe,
+    DepositeReceiptFormComponent,
+    DepositeReceiptlistComponent,
+    CasherPageComponent,
   
  
  
@@ -164,7 +173,8 @@ import { UserPostListComponent } from './user/post/user-post-list/user-post-list
     FlexLayoutModule,
     HttpClientModule,
     CKEditorModule,
-    MatCarouselModule.forRoot()
+  
+     
 
  
   ],

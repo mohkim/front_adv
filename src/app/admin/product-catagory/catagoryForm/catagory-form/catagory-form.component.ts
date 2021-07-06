@@ -5,7 +5,8 @@ import { FormGroup } from '@angular/forms';
 import { ProductCatagory } from 'src/app/modules/ProductCatagory';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { CatagoyrService } from 'src/app/service/catagory/catagory.service';
-
+import { GlobalConstants } from 'src/app/utility/global-constants';
+const AUTH_API = GlobalConstants.serverUrl+'adv/';
 @Component({
   selector: 'app-catagory-form',
   templateUrl: './catagory-form.component.html',
@@ -76,6 +77,9 @@ export class CatagoryFormComponent implements OnInit {
       )
     
     }
+  }
+  getImageUrl(img:String){
+    return  AUTH_API+"img/"+img;
   }
   openSnackBar( message,type) {
     this.snackbar.open(message, type, {

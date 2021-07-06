@@ -1,160 +1,92 @@
-<!-- <div class="post_detail" fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="10px" FX fxFlex="80"
-  fxFlexOffset="5" style="padding-top: 30px;">
+<div class="wrapper">
+    <div class="notice-bord  " *ngIf="this.post.post_status.status=='ERROR'">
+        <p>{{this.post.post_status.rejectionReason}}</p>
+        <p>And Apply agian!!!</p>
+    </div>
+    <div class="notice-bord  " *ngIf="this.post.post_status.status=='DISABLED'">
+        <p>Post Disabled By Admin !!!</p>
+    </div>
+    <div class="detail-left ">
 
-  <mat-card  *ngIf="display_error_message">
-    <h2>Error Message From  Evaluator</h2>
-     <p> {{error_message}}</p>
-  </mat-card>
+        <div class="main-image ">
+            <img src="{{imagePath}} " alt=" ">
+            <div class="price-tag ">{{displayPrice()}}</div>
 
-  <div class="top_section" fxLayout="row wrap" fxLayoutAlign="start start" fxLayoutGap="50px">
-
-    <div class="corasel_image_list" fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="20px">
-      
-      
-
-
-        <img src="{{mainPicture_url}}" style="width:300px;height: 300px;" (click)="imageClick2()">
-
-      
-      <div style="max-width: 300px;">
-        <div class="image_list">
-          <div class="image_list" fxLayout="row wrap" fxLayoutAlign="start start" fxLayoutGap="10px">
-            <div class="" *ngFor="let s of post.postImage ;let i=index">
-
-
-              <a (click)="imageClick(i)"><img src="{{s.url}}" style="width: 50px;height: 50px;"> </a>
+            <div class="image-number ">
+                <p>
+                    <mat-icon>camera_alt</mat-icon>{{getIndex_lenth()}}</p>
             </div>
-          </div>
+            <a class="prev2 " (click)="preveousSlides() ">
+                <mat-icon>chevron_left</mat-icon>
+            </a>
+            <a class="next2 " (click)="nextSlides() ">
+                <mat-icon>chevron_right</mat-icon>
+            </a>
+
         </div>
-      </div>
+
+        <div class="product-info ">
+
+            <div class="post-date ">
+                <p>
+                    <mat-icon>watch_later</mat-icon> Posted {{post.post_status.apply_date|date}}</p>
+                <p>
+                    <mat-icon>location_on</mat-icon> {{post.salesLocation.state}}, {{post.salesLocation.city}} </p>
+                <p>
+                    <mat-icon>visibility</mat-icon> {{post.view}} views </p>
+            </div>
+            <div class="post-title ">
+                <h1>{{post.description}}</h1>
+            </div>
+            <hr>
 
 
-
-    </div> 
-    <div class="coracelsid" fxLayout="column" fxLayoutAlign="start start">
-  
-      <div class="description"><h1>{{post.description}}</h1></div>
-      <div class="price"><h2>{{displayPrice()}}</h2></div>
-
-      
-
-        <div class="postdate">{{post.post_status.apply_date |date}}</div>
-        <div class="view" ><p>view : {{post.view}} </p> </div>
-
-     
-
-      <div class="specification" fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="10px">
-        
-        <div class="">Secification</div>
-        <div class="specifcation_detail">
-          <table *ngFor="let sp of post.specificationList">
-            <tr>
-              <td>{{sp.specification.key}}</td>
-              <td>{{sp.value}}</td>
-            </tr>
+            <div class="post-specification ">
+                <h1> Specifiation </h1>
+                <div class="specification-table ">
+                    <table *ngFor="let sp of post.specificationList ">
+                        <tr>
+                            <td class="specificaiton-name ">{{sp.specification.key}}</td>
+                            <td> ........................................</td>
+                            <td class="specification-value ">{{sp.value}}</td>
+                        </tr>
 
 
-          </table>
-        </div>
-      </div> 
-
-    </div> 
-
-
-
-
-  </div>
-  <div class="tab">
-    <mat-tab-group [disableRipple]="false">
-        <mat-tab label="Detail" >
-         <div class="">
-           <p>{{post.detail}}</p>
-         </div>
-        </mat-tab>
-        
-         
-    </mat-tab-group>
-  </div>
- 
-
-  
-</div>
-
- -->
- <div class="wrapper">
-  <div class="detail-left">
-
-      <div class="main-image">
-          <img src="{{imagePath}}" alt="">
-          <div class="price-tag">{{displayPrice()}}</div>
- 
-  <div class="image-number">
-      <p> <mat-icon>camera_alt</mat-icon>{{getIndex_lenth()}}</p></div>
-          <a class="prev2" (click)="preveousSlides()"><mat-icon>chevron_left</mat-icon></a>
-          <a class="next2" (click)="nextSlides()"> <mat-icon>chevron_right</mat-icon> </a>
-
-      </div>
-      
-      <div class="product-info ">
-          
-          <div class="post-date">
-              <p> <mat-icon>watch_later</mat-icon> Posted  {{post.post_status.apply_date|date}}</p>
-              <p><mat-icon>location_on</mat-icon> {{post.salesLocation.state}}, {{post.salesLocation.city}} </p> 
-              <p><mat-icon>visibility</mat-icon> {{post.view}} views </p> 
-          </div>
-          <div class="post-title">
-              <h1>{{post.description}}</h1> 
-          </div>
-          <hr >
-
-
-          <div class="post-specification">
-              <h1>   Specifiation </h1>
-               <div class="specification-table">
-                  <table *ngFor="let sp of post.specificationList">
-                      <tr>
-                        <td class="specificaiton-name">{{sp.specification.key}}</td>
-                        <td> ........................................</td>
-                        <td class="specification-value">{{sp.value}}</td>
-                      </tr>
-          
-          
                     </table>
-               </div>
-          </div>
-          <div class="post-description">
-              <h2> Description </h2>
-              <p class="description-detail">
-                  {{post.detail}}
-              </p>
-          </div>
+                </div>
+            </div>
 
-      </div>
 
-      <div class="seller-loction">
-        <h1> Seller Location </h1>
-        <hr>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-      </div>
-  </div>
-    <div class="right-side">
-      <div class="seller-detail">
-          <div class="seller-img">
-          
-          <img src="http://localhost:8080/adv/img/{{post.user.image_name}}" width="100" height="100" alt="">
-         </div>
-         <div class="seller-info">
-           
-             <p>Seller : <a class="link" href="#"> {{post.user.fullName}}</a> </p>
+        </div>
+        <div class="post-description ">
+            <h2> Detail </h2>
+            <hr>
+            <div [innerHtml]="post.detail"> </div>
+        </div>
+        <div class="seller-loction ">
+            <h1> Seller Location </h1>
+            <hr>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        </div>
+    </div>
+    <div class="right-side ">
+        <div class="seller-detail ">
+            <div class="seller-img ">
 
-             <p>Phone : <span style="color: #00a651;">{{post.user.contact.phone}}</span>  </p>
+                <img src="http://localhost:8080/adv/img/{{post.user.image_name}} " width="100 " height="100 " alt=" ">
+            </div>
+            <div class="seller-info ">
+
+                <p>Seller : <a class="link " href="# "> {{post.user.fullName}}</a> </p>
+
+                <p>Phone : <span style="color: #00a651; ">{{post.user.contact.phone}}</span> </p>
 
             </div>
-      </div>
- 
-      
+        </div>
 
-  </div>
+
+
+    </div>
 
 
 </div>

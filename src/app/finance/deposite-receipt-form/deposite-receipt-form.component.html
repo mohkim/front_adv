@@ -1,0 +1,130 @@
+<section>
+
+
+    <div class="left-section">
+ 
+ 
+ 
+        <div class="personal-option">
+            <ul>
+                <!-- <li class="active"><a href="#"><i class="fas fa-tachometer-alt"></i>Dashboard </a></li> -->
+                <li ><a routerLink="/finance"><i class="fas  fa-list"></i>Deposite List </a></li>
+                <li class="active"><a  routerLink="/finance/deposite_form"><i class="fab fa-wpforms"></i>Deposite Form </a></li>
+ 
+                <li><a routerLink="/finance/report"><i class="fas fa-wallet"></i> Daily Report</a></li>
+                <!-- <li><a href="#"><i class="fas fa-cog"></i> Privacy Settings</a></li> -->
+ 
+ 
+            </ul>
+        </div>
+    </div>
+    <div class="right-section" fxLayout="column"   >
+        <!-- main form section -->
+      
+
+            <div id="userFindSection" class="container">
+                <form class="form" role="form" (ngSubmit)="f.valid&&findUserSubmit()" #f="ngForm">
+                    <div class="container">
+                        <div class="header">
+                            <h1>Deposite Receipt Form</h1>
+                        </div>
+                        <div class="instruction">
+                            <p>Please Enter email to find user </p>
+                        </div>
+                        <div class="input">
+                            <mat-form-field>
+                                <mat-label>email</mat-label>
+                                <input matInput [(ngModel)]="email" email required name=email>
+        
+                            </mat-form-field>
+        
+                            <button class="adv-button" type="submit" mat-raised-button [disabled]="f.invalid"
+                                >Find Customer</button>
+        
+                        </div>
+        
+                    </div>
+                </form>
+        
+            </div>
+            <div id="foundUserSection" class="container" *ngIf="userFound">
+ 
+                <div class="userList" >
+                    <div class="user_image"><img src="{{getImage()}}" width="30" height="30"></div>
+                    <div class="user_name"> {{user.fullName}}</div>
+                    <div class="close_button">
+                        <button mat-button  style="color: red;" (click)="clearbutton()">
+                            <i class=" fas fa-trash"></i>
+                        </button>
+                    </div>
+        
+                </div>
+            </div>
+            <div id="section" class="container"  *ngIf="userFound" >
+                <form  (ngSubmit)="R.valid&&DepositSubmit()" #R="ngForm" >
+                    <div class="form_receipt">
+                        <div class="description">
+                            <mat-form-field>
+                                <input type="text" matInput placeholder="Description" required  [(ngModel)]="description"  
+                                     name="description">
+                               </mat-form-field>
+                        </div>
+                        <div class="amount">
+                            <mat-form-field>
+                                <input type="text" matInput placeholder=" Amount" pattern="^(?:100000|[1-9]\d{0,4})(?:\.\d{1,2})?$" required  [(ngModel)]="amount"  
+                                 name="amount">
+                               
+         
+                            </mat-form-field>
+                        </div>
+                        <div class="casher_Name">
+                            <p>Casher Name : {{casherName}}</p>
+                        </div>
+                        <div class="receipt_action">
+                            <button class="adv-button"  type="submit" mat-raised-button [disabled]="R.invalid"   
+                            mat-raised-button>Send Receipt</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+   
+         
+        <!-- main form end section -->
+       
+    </div>
+ </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

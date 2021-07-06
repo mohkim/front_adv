@@ -1,63 +1,62 @@
- 
 <div class="wrapper">
-  <header>
-    <div class="top-header">
-     <div class="flex"   >
-       <div class="support-contact">
-        <div class="logo">
-          <a href="#">Hakir</a>
-        </div>
-        </div>
-        <div class="login-post">
-          <div class="user">
-             
-            <a class="main-button1" mat-button [matMenuTriggerFor]="userMenu" *ngIf="userRoleLogedIn()" > 
-              <img src="{{userImage}}" alt="assets/img/default_user.png" width="40" height="40" style="border-radius:50%;">
-               </a>
-            <a class="main-button1" mat-button  routerLink="/login" *ngIf="!userLogedIn()"  > <i class="fas fa-sign-in-alt"></i> Login </a>
-            <!--  -->
-            <mat-menu #userMenu="matMenu" xPosition="after">
-              
-              <button class="btn3" mat-menu-item routerLink="/user/setting">My Setting</button>
-              <button class="btn3" mat-menu-item routerLink="/logout">Log Out</button>
-            </mat-menu>
-          </div>
-          <a mat-button routerLink="/user/newpost"  class="btn1" >  Post Ads      </a>
-           
-         
-        </div>
-       
-     </div>
-    </div>
-      <div class="wrapper2"    > 
-       <div class="second-menu flex"> 
-     
-       <div class="menu">
-         <button class="main-button" mat-button [matMenuTriggerFor]="adminMenu" *ngIf="adminRoleLogedIn()">Admin <i class="fas fa-caret-down"></i></button>
-         <mat-menu #adminMenu="matMenu" yPosition="above">
-           <button class="btn3" mat-menu-item routerLink="/admin/catagory">Product Catagory </button>
-           <button class="btn3" mat-menu-item routerLink="/admin/post">Post Managment</button>
-           <button class="btn3" mat-menu-item routerLink="/admin/setting">Admin Setting</button>
-           <button class="btn3" mat-menu-item routerLink="/admin/finance">Admin Finance</button>
-            
-         </mat-menu>
-         
-         <button  class="main-button"  mat-button [matMenuTriggerFor]="managerMenu" *ngIf="managerRoleLogedIn()">Manager <i class="fas fa-caret-down"></i></button>
-         <mat-menu #managerMenu="matMenu" yPosition="below">
-           <button class="btn3" mat-menu-item routerLink="/managment/post">Post</button>
-          
-         </mat-menu>
-         
-         <button  class="main-button" mat-button  [matMenuTriggerFor]="financeMenu" *ngIf="financeRoleLogedIn()">Finance <i class="fas fa-caret-down"></i></button>
-         <mat-menu #financeMenu="matMenu" yPosition="below">
-           <button class="btn3" mat-menu-item  routerLink="/income_recept">Income recept</button>
-           <button class="btn3" mat-menu-item routerLink="/Expense_recept">expense receipt </button>
-         </mat-menu>
-         
-         
-        
+    <header>
+        <div class="top-header">
+            <div class="flex">
+                <div class="support-contact">
+                    <div class="logo">
+                        <a href="#">Hakir</a>
+                    </div>
+                </div>
+                <div class="login-post">
+                    <div class="user">
 
-          <!-- <ul>
+                        <a class="main-button1" mat-button [matMenuTriggerFor]="userMenu" *ngIf="userRoleLogedIn()">
+                            <img src="{{userImage}}" width="40" height="40" style="border-radius:50%;">
+                        </a>
+                        <a class="main-button1" mat-button routerLink="/login" *ngIf="!userLogedIn()"> <i class="fas fa-sign-in-alt"></i> Login </a>
+                        <!--  -->
+                        <mat-menu #userMenu="matMenu" xPosition="after">
+
+                            <button class="btn3" mat-menu-item routerLink="/user/setting">My Setting</button>
+                            <button class="btn3" mat-menu-item routerLink="/logout">Log Out</button>
+                        </mat-menu>
+                    </div>
+                    <a mat-button routerLink="/user/newpost" class="btn1">  Post Ads      </a>
+
+
+                </div>
+
+            </div>
+        </div>
+        <div class="wrapper2">
+            <div class="second-menu flex">
+
+                <div class="menu">
+                    <button class="main-button" mat-button [matMenuTriggerFor]="adminMenu" *ngIf="adminRoleLogedIn()">Admin <i class="fas fa-caret-down"></i></button>
+                    <mat-menu #adminMenu="matMenu" yPosition="above">
+                        <button class="btn3" mat-menu-item routerLink="/admin/catagory">Product Catagory </button>
+                        <button class="btn3" mat-menu-item routerLink="/admin/post">Post Managment</button>
+                        <button class="btn3" mat-menu-item routerLink="/admin/setting">Admin Setting</button>
+                        <button class="btn3" mat-menu-item routerLink="/admin/finance">Admin Finance</button>
+
+                    </mat-menu>
+
+                    <button class="main-button" mat-button [matMenuTriggerFor]="managerMenu" *ngIf="managerRoleLogedIn()">Manager <i class="fas fa-caret-down"></i></button>
+                    <mat-menu #managerMenu="matMenu" yPosition="below">
+                        <button class="btn3" mat-menu-item routerLink="/managment/post">Post</button>
+
+                    </mat-menu>
+
+                    <button class="main-button" mat-button [matMenuTriggerFor]="financeMenu" *ngIf="financeRoleLogedIn()">Finance <i class="fas fa-caret-down"></i></button>
+                    <mat-menu #financeMenu="matMenu" yPosition="below">
+                        <button class="btn3" mat-menu-item routerLink="/finance/casher">Casher</button>
+                        
+                    </mat-menu>
+
+
+
+
+                    <!-- <ul>
             <li>Home</li>
             <li>Admin</li>
             <li>Managment</li>
@@ -65,10 +64,10 @@
             <li>Contact</li>
             <li>About</li>
           </ul> -->
-         </div>
-       </div>
-     </div>
-  </header>
+                </div>
+            </div>
+        </div>
+    </header>
 
 
 

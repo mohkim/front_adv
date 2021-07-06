@@ -128,7 +128,7 @@ export class PostNewComponent implements OnInit {
   ngOnInit() {
     this.post = new Post(-1,"",null,null,null,"",null,null,null,null,null,null)
     this.paymentObj = new PostPayment(-1, "PRICE", false, 0,null, 0, 0,null)
-    this.serviceFee=new  PostRecipt(-1,"FREE","",0)
+    this.serviceFee=new  PostRecipt(-1,"","FREE","",0)
 
     this.isSubCatSelected = false;
 
@@ -148,7 +148,7 @@ export class PostNewComponent implements OnInit {
       productSubCatagory: new FormControl(),
       detail: new FormControl(''),
       inputFileName: new FormControl(''),
-      salesLocation: new FormControl(''),
+      salesLocation: new FormControl(''), 
       // specification: this.form,
       post_payment: this.paymentform,
       package_fee: new FormControl("")
@@ -161,7 +161,7 @@ export class PostNewComponent implements OnInit {
     const c = await this.catServive.getallProductCatagory().toPromise();
     if (c != null) this.catagorys = c;
     else console.log('  catagorys retrieve failed!!! ');
-
+    //  console.log('  catagory data=>'+JSON.stringify(this.catagorys));
     const s = await this.salesLocationService.getallSalesLocation().toPromise();
     if (c != null) this.salesLocation = s;
     else console.log('  Sales Location retrieve failed!!! ');
@@ -343,9 +343,9 @@ export class PostNewComponent implements OnInit {
   onCatagoryChange(ev) {
     if (ev.value) {
       this.selectSubCat = ev.value;
-      // console.log(
-      //   'form = >' + JSON.stringify(this.selectSubCat)
-      // );
+      console.log(
+        'form = >' + JSON.stringify(this.selectSubCat)
+      );
       // update  the form
       let group = {};
       this.selectSubCat.specificationList.forEach((specification) => {
@@ -525,5 +525,17 @@ export class PostNewComponent implements OnInit {
   getPostStatus(){
     return  new Post_status(-1,"PENDING",null,null,null,null,null,null,null)
   }
-
+  changeParent(e:any,comp:any){
+    this.selectSubCat.specificationList.forEach(x => {
+      if(x.parentkey===comp){
+        x.parentvalue=e
+      }
+      
+    });
+    //  var i=   this.regConfig.findIndex(x=>x.parentkey===comp)
+//   this.regConfig[i]
+//  console.log("index value ==>"+JSON.stringify(i));
+console.log("e value ==>"+JSON.stringify(e));
+console.log("c value ==>"+JSON.stringify(comp));
+}
 }

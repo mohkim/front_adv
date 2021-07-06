@@ -31,6 +31,10 @@ export class TokenStorageService {
     
     return JSON.parse(window.sessionStorage.getItem(USER_KEY));
   }
+  public getUserName() {
+    
+    return JSON.parse(window.sessionStorage.getItem(USER_KEY)).username;
+  }
   public getCurrentUserId() {
     return JSON.parse(window.sessionStorage.getItem(USER_KEY)).id;
   }

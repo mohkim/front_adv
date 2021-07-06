@@ -24,6 +24,7 @@ export class HeaderComponent implements OnInit ,OnDestroy {
     const s=await   this.userService.getCurrentUser().toPromise();
     console.log("s data =>"+JSON.stringify(s))
       if(s != undefined) {
+         
         if(s.image_name=== null) this.userImage = "assets/img/default_user.png"
         else  this.userImage=`${SERVER_URL}adv/img/`+s.image_name   
         

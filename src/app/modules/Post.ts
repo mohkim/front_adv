@@ -2,6 +2,7 @@ import { PostPayment } from "./PostPayment";
 import { PostRecipt } from "./PostRecipt";
 import { PostSpecification } from "./PostSpecification";
 import { Post_status } from "./Post_status";
+import { User } from "./User";
 
 
  
@@ -15,7 +16,7 @@ export class Post {
         public  specificationList: PostSpecification[],  // tabular specification of product
         public  detail :String , // detail of product
         public postImage: any,      // images of product if there 
-        public user:any,              //seller id       
+        public user:User,              //seller id       
         public post_payment: PostPayment,
         
         public  view:number ,

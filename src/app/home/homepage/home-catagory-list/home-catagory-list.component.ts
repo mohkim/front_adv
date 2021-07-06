@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { CatagoyrService } from 'src/app/service/catagory/catagory.service';
-
+import { GlobalConstants } from 'src/app/utility/global-constants';
+const AUTH_API = GlobalConstants.serverUrl+'adv/';
 @Component({
   selector: 'app-home-catagory-list',
   templateUrl: './home-catagory-list.component.html',
@@ -29,5 +30,10 @@ export class HomeCatagoryListComponent implements OnInit {
       duration: 2000,
     });
   }
+  getImageUrl(img){
+  
+      return    AUTH_API +"img/"+img
+     
 
+  }
 }
