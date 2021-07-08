@@ -30,9 +30,10 @@ import { EditPostYesNoDialogComponent } from './edit-post-yes-no-dialog/edit-pos
 import { PostImage } from 'src/app/modules/PostImage';
 import { CurrencyService } from 'src/app/service/currency/currency.service';
 import { PostRecipt } from 'src/app/modules/PostRecipt';
+import { GlobalConstants } from 'src/app/utility/global-constants';
 
 
-
+const AUTH_PATH=GlobalConstants.serverUrl
 
 @Component({
   selector: 'app-editpost',
@@ -745,5 +746,8 @@ export class EditpostComponent implements OnInit {
     //  console.log("index value ==>"+JSON.stringify(i));
     console.log("e value ==>" + JSON.stringify(e));
     console.log("c value ==>" + JSON.stringify(comp));
+  }
+  getImageUrl(img){
+return  AUTH_PATH+"adv/img/"+img;
   }
 }

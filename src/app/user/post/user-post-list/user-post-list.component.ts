@@ -13,7 +13,8 @@ import { Post } from 'src/app/modules/Post';
 import { UserPostService } from 'src/app/service/post/User_post.service';
 import { UserService } from 'src/app/service/user/user.service';
 import { Post_status } from 'src/app/modules/Post_status';
- 
+import { GlobalConstants } from 'src/app/utility/global-constants';
+ const AUTH_PATH=GlobalConstants.serverUrl
  
  
 @Component({
@@ -81,7 +82,7 @@ export class UserPostListComponent implements OnInit {
     if(post.postImage.length<1){
       return "assets/img/avatar.png"
     }else {
-      return    "http://localhost:8080/adv/img/"+post.postImage[0].name
+      return    AUTH_PATH+"adv/img/"+post.postImage[0].name
     }
 
   }

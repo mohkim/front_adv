@@ -153,7 +153,7 @@
                         <div *ngFor="let imge of image_old ; let i=index ">
                             <div class="img-wraps">
                                 <span class="closes" title="Delete" (click)="deleteOldImage(imge)">&times; </span>
-                                <img [src]="imge.url" style="height: 100px; width:100px" class="img-responsive">
+                                <img [src]="getImageUrl(imge.name)" style="height: 100px; width:100px" class="img-responsive">
 
 
                             </div>
